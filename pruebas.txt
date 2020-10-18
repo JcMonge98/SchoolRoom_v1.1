@@ -1,0 +1,558 @@
+cargarGrados() {
+      var grado = this.inscripcion.grado;
+      var i = "";
+      var listado ="";
+      inscripcionDService.generarGrado(grado)
+        .then(res => {
+          i = res.data.grados;
+          i.forEach(element => {
+            console.log(element.seccion);
+            listado += element.seccion
+            
+          });
+          console.log(Array.from(listado));
+          this.grados = Array.from(listado);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+
+
+
+
+cargarGrados() {
+      var grado = this.inscripcion.grado;
+      var i = "";
+      var listado ="";
+      inscripcionDService.generarGrado(grado)
+        .then(res => {
+          i = res.data.grados;
+          i.forEach(element => {
+            console.log(element);
+            listado += element
+            
+          });
+          console.log(Object.values(listado));
+          //this.grados = Array.from(listado);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+
+
+cargarGrados() {
+      var grado = this.inscripcion.grado;
+      var i = "";
+      var secciones ="";
+      var ids = "";
+      inscripcionDService.generarGrado(grado)
+        .then(res => {
+          i = res.data.grados;
+          i.forEach(element => {
+            console.log(element.seccion);
+            secciones += element.seccion;
+            ids += element._id;
+            
+          });
+          console.log(Array.from(secciones));
+          console.log((ids));
+
+          //this.grados = Array.from(listado);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+
+
+
+cargarGrados() {
+      var grado = this.inscripcion.grado;
+      var listado = [];
+      //var secciones = {_id, seccion};
+      var i = "";
+      
+      inscripcionDService.generarGrado(grado)
+        .then(res => {
+          i = Array.from(res.data.grados);
+
+          i.forEach(element => {
+
+            console.log(element.seccion);
+            listado += element.seccion;
+            
+          });
+          console.log(listado);
+          this.grados = Array.from(listado);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+
+
+
+
+____________________________________________ vista inscripcionDocentes ______________________________________________
+<template>
+  <v-data-table
+    :headers="headers"
+    :items="desserts"
+    :search="buscar"
+    class="elevation-5 mr-12 ml-12 mt-8"
+  >
+    <template v-slot:top>
+      <!-- encabezado de la tabla -->
+      <v-toolbar flat color>
+        <v-toolbar-title>
+          <h3 class="text-center">Inscripciones Docentes</h3>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <!-- input de busqueda(filtro) -->
+        <v-text-field
+          class="text-xs-center"
+          v-model="buscar"
+          append-icon="search"
+          label="Busqueda"
+          single-line
+          hide-details
+          color="danger"
+        ></v-text-field>
+        <v-spacer></v-spacer>
+
+        <!-- formulario temporal -->
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="purple" dark class="mb-2" v-on="on">Inscribir Docente</v-btn>
+          </template>
+          <v-card>
+            <v-form ref="form" :lazy-validation="lazy">
+              <v-card-title>
+                <span class="headline">{{ formTitle }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-text-field
+                    v-model="inscripcion.fecha_inscripcion"
+                    :rules="RolTexto"
+                    label="Fecha Inscripcion"
+                    disabled
+                  ></v-text-field>
+                  <v-text-field v-model="inscripcion.docente" label="Docente" disabled></v-text-field>
+                  <v-select
+                    v-on:change="cargarGrados()"
+                    v-model="inscripcion.grado"
+                    :items="listaGrado"
+                    :rules="RolTexto"
+                    label="Grado"
+                    required
+                  ></v-select>
+
+                  <v-select
+                    :items="vehiculos_usuario"
+                    label="Selecciona vehiculo"
+                    item-text="nombre"
+                    item-key="vehiculos_usuario"
+                    item-value="id"
+                    v-model="vehiculos_usuario"
+                    return-object
+                    @change="vehiculoSeleccionado"
+                  ></v-select>
+
+                  <v-select
+                  @change="vehiculoSeleccionado"
+                    :items="grados"
+                    v-model="inscripcion.seccion"
+                    item-text="seccion"
+                    item-value="_id"
+                    :rules="RolTexto"
+                    label="Seccion"
+                    required
+                  ></v-select>
+                  <v-select
+                    v-model="inscripcion.materia"
+                    :rules="RolTexto"
+                    label="Materia"
+                    data-vv-name="materia"
+                    required
+                  ></v-select>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
+                <v-btn color="blue darken-1" text @click="save">Guardar</v-btn>
+              </v-card-actions>
+            </v-form>
+          </v-card>
+          <!-- Cierre formulario temporal -->
+        </v-dialog>
+      </v-toolbar>
+    </template>
+    <!-- Datos de la tabla -->
+    <template v-slot:item.actions="{ item }">
+      <v-btn icon :to="{name:'Grado'}" color="purple">
+        <v-icon small>mdi-note</v-icon>Ver
+      </v-btn>
+      <v-icon small color="orange" class="mr-2 ml-4" @click="editItem(item)">mdi-pencil</v-icon>
+      <v-icon small color="red" @click="deleteItem(item)">mdi-delete</v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="initialize">Reset</v-btn>
+    </template>
+  </v-data-table>
+</template>
+
+<script>
+import inscripcionDService from "../services/inscripcionDService";
+import moment from "moment"; //para fecha
+export default {
+  data: () => ({
+    vehiculos_usuario: [
+      {
+        id: "-L_UU2Ca0hEruJ8Yxwt2",
+        idcategoria: "-LWPTMu1m4WYO1wzJFiv",
+        nombre: "Mazda 2019 - PP223PRL",
+        placa: "P223PRL"
+      },
+      {
+        id: "-L_UYxSRD9_1rb02fp5X",
+        idcategoria: "-LWPRsmK3uBYWGeixA8E",
+        nombre: "Honda - Moto - CC222RRR",
+        placa: "C222RRR"
+      }
+    ],
+    buscar: "",
+    dialog: "",
+    lazy: "",
+    fecha_inscripcion: moment().format("YYYY-MM-DD"),
+    docente: "",
+    RolTexto: [v => !!v || "Este campo es requerido"],
+    materia: "",
+    grado: "",
+    seccion: "",
+    //columnas de la tabla
+    headers: [
+      {
+        text: "Codigo",
+        align: "start",
+        sortable: false,
+        value: "_id"
+      },
+      {
+        text: "Fecha Inscripcion",
+        sortable: false,
+        value: "fecha_inscripcion"
+      },
+      {
+        text: "Docente",
+        sortable: false,
+        value: "user"
+      },
+      {
+        text: "Grado",
+        sortable: false,
+        value: "grado"
+      },
+      {
+        text: "Seccion",
+        sortable: false,
+        value: "seccion"
+      },
+      {
+        text: "Materia",
+        sortable: false,
+        value: "materia"
+      },
+      { text: "Actions", value: "actions", sortable: false }
+    ],
+
+    //datos para la tabla
+    desserts: [],
+    listaGrado: [
+      "Primer Grado",
+      "Segundo Grado",
+      "Tercer Grado",
+      "Cuarto Grado",
+      "Quinto Grado",
+      "Sexto Grado",
+      "Septimo Grado",
+      "Octavo Grado",
+      "Noveno Grado"
+    ],
+    editedIndex: -1,
+    //inicializa vacio
+    inscripcion: {
+      _id: "",
+      fecha_inscripcion: moment().format("YYYY-MM-DD"),
+      user: "",
+      grado: "",
+      seccion: "",
+      materia: ""
+    },
+    defaultItem: {
+      _id: "",
+      fecha_inscripcion: "",
+      user: "",
+      grado: "",
+      seccion: "",
+      materia: ""
+    },
+    grados: []
+  }),
+
+  created() {
+    this.initialize();
+    //this.cargarMaterias();
+    //this.cargarGrados();
+  },
+  computed: {
+    formTitle() {
+      return this.editedIndex === -1
+        ? "Nueva Inscripcion"
+        : "Modificar Inscripcion";
+    },
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  mounted() {
+    this.vehiculoSeleccionado(this.vehiculos_usuario[0].id);
+  },
+
+  methods: {
+    vehiculoSeleccionado(val) {
+      console.log("Vehiculo Seleccionado");
+      console.log(this.vehiculos_usuario);
+      console.log(this.inscripcion.seccion)
+      console.log(val);
+    },
+    // ___________________________________mostraar ________________________
+    initialize() {
+      inscripcionDService
+        .index()
+        .then(res => {
+          this.desserts = Object.assign(
+            [this.editedIndex],
+            res.data.inscripcion
+          );
+          //console.log(Object.assign([this.editedIndex],res.data.inscripcion))
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+    // ___________________________________ materias ________________________
+    cargarMaterias() {
+      inscripcionDService
+        .materias()
+        .then(res => {
+          // console.log(Object.assign([this.editedIndex],res.data.materia))
+          /*console.log(Object.assign(res.data.materia));
+          console.log(res.data.materia)
+          this.inscripcion.grado = Object.assign(res.data.materia[0]);*/
+        })
+        .catch(e => {
+          console.log(e);
+          console.log("neles");
+        });
+    },
+
+    // ___________________________________ grados ________________________
+    /*
+    },*/ cargarGrados() {
+      var grado = this.inscripcion.grado;
+      var i = "";
+      inscripcionDService
+        .generarGrado(grado)
+        .then(res => {
+          i = res.data.grados;
+          console.log(i);
+
+          this.grados = i;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //__________________________________________
+    //metdo editar
+    editItem(item) {
+      this.editedIndex = this.desserts.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      this.dialog = true;
+    },
+    //metdo eliminar
+    deleteItem(item) {
+      const index = this.desserts.indexOf(item);
+      confirm("Estas seguro de querer eliminar el registro?") &&
+        this.desserts.splice(index, 1);
+    },
+    //metdo cerrar dialog
+    close() {
+      this.dialog = false;
+      this.$refs.form.reset();
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+    //metodo guardar
+    save() {
+      this.$refs.form.reset();
+      if (this.editedIndex > 0) {
+        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+      } else {
+        this.desserts.push(this.editedItem);
+      }
+      this.close();
+    }
+  }
+};
+</script>
+
+// ____________________________________________________________________________________________________________________--------
+{
+    "_id": {
+        "$oid": "5ee1572aecff010178e95beb"
+    },
+    "grado": "Primer Grado",
+    "seccion": "A",
+    "codigo": "xyzan",
+    "__v": 0
+}
+
+
+{
+    "_id": {
+        "$oid": "5ee152ccecff010178e95bdf"
+    },
+    "nombre": "Ciencias",
+    "__v": 0
+}
+
+
+
+
+{
+    "_id": {
+        "$oid": "5ee1411960df1d2bb0cb1602"
+    },
+    "roles": [...],
+    "nombres": "Julio",
+    "apellidos": "Monge",
+    "email": "jc@gamil.com",
+    "password": "$2a$08$VRE6MX4873k4MF0jHYwuOe4LNDGNR9x8sdy2uW/5ZwIPagIOtjZni",
+    "__v": 1
+}
+
+
+
+{
+    "_id": {
+        "$oid": "5ee4a9dd89a9480300c4b25f"
+    },
+    "fecha_asignada": {
+        "$date": "2020-06-13T00:37:56.235Z"
+    },
+    "fecha_entrega": {
+        "$date": "2020-01-01T06:00:00.000Z"
+    },
+    "descripcion": "TAREA DE TRABAJO y APRENDIZAJE  1. PROBLEMA: En el tanque elevado se producen derrames de agua. El encargado de la limpieza no sabe a que se debe e informa al taller de electricidad para solucionar el problema. Después del diagnóstico se encontró que el CONTROL DE NIVEL DEL TANQUE ELEVADO ES MANUAL.  2. Tarea de Aprendizaje y Trabajo: Para mejorar la instalación y darle seguridad se requiere el diseño de: CIRCUITO LÓGICO COMMBINACIONAL PARA CONTROL DE NIVEL DE TANQUE ELEVADO Construir, instalar y verificar funcionamiento de circuito de control de nivel electrónico combinacional de acuerdo al plan de trabajo seleccionado. Realizar el autocontrol del trabajo por los participantes, comparando con la tabla de funcionamiento. 3. TIEMPO: 8 Horas. 4. PLANEAMIENTO DEL TRABAJO: a. Organización de los grupos de trabajo. b. Características técnicas y seguridad en el funcionamiento del circuito. c. Buscar información tecnológica. d. Los equipos de trabajo deben diseñar circuito, entregar lista de materiales, merramientas e instrumentos de medición. e. Elaborar hoja de tarea y de operaciones. f. Exposición de los resultados. g. Elección de la mejor alternativa de solución. 5. PRODUCTO: CIRCUITO LÓGICO COMMBINACIONAL PARA CONTROL DE NIVEL DE TANQUE ELEVADO. 6. EVALUACIÓN: Establecer y aplicar criterios de evaluación. Exposición de los resultados del trabajo. La evaluación será por grupos de trabajo teniendo en cuenta los siguiente criterios de evaluación: a. Funcionabilidad b. Tiempo de ejecución c. Seguridad, higiene industrial y ambiental. d. Presentación del trabajo. e. Orden en la ejecución del trabajo 7. PREGUNTAS ORIENTADORAS. a. ¿Qué otra vía de solución puede utilizar en la implementación del circuito? b. ¿Qué diferencias encuentra entre el álgebra de Boole y el mapa de Karnaugh?",
+    "__v": 0
+}
+
+
+
+
+
+{
+    "_id": {
+        "$oid": "5ee2e4bf79d15835889e2993"
+    },
+    "fecha_inscripcion": {...},
+    "grado": {...},
+    "user": {...},
+    "__v": 0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+     rray.forEach(element => {
+       console.log("tu",element._id);
+       detalleService.show(element._id).then(res => {this.detalles = res.data.detalle;}).catch(e => {console.log(e);});
+     });
+    for (const iterator of this.ins) {
+      console.log(iterator._id);
+      detalleService.show(iterator._id).then(res => {this.detalles = res.data.detalle;}).catch(e => {console.log(e);});
+    }
+    rray.forEach(element => {
+        detalleService
+          .show(element._id)
+          .then(res => {
+            this.detalles = res.data.detalle;
+            console.log("detallesOne", res.data.detalle);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      });
+
+      if (this.currentUser.roles == "ROLE_DOCENTE" || this.currentUser.roles == "ROLE_ADMIN") {}
+      // _________________- ver todos los detalles _________________________________ 
+      detalleService
+      .index()
+      .then(res => {
+        this.detalles =res.data.detalle;
+        console.log("detallesAll",res.data.detalle);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+      // _________________- ver por inscripcion _________________________________
+       var inscripcion_id = JSON.parse(localStorage.getItem("id_inscripcion"));
+      detalleService
+        .show(inscripcion_id)
+        .then(res => {
+          this.detalles = res.data.inscripcion;
+          console.log("detallesOne", res.data.inscripcion);
+        })
+        .catch(e => {
+          console.log(e);
+        }); */
