@@ -41,5 +41,7 @@ git log
 ```
 git remote add origin https://github.com/JcMonge98/SchoolRoom_v1.1.git  solo una vez
 
-git push -u origin master   despues de hacer los commit locales
+git push -u origin master   despues de hacer los commit locales 
+
+git push para subir nuevos cambios, antes hacer commit locales
 ```
