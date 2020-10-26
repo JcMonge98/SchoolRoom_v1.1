@@ -49,7 +49,7 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list-item>
         <v-list-item-icon>
-          <v-icon>mdi-home</v-icon>
+          <v-icon>mdi-home-city</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>SchoolRoom</v-list-item-title>
@@ -58,18 +58,28 @@
       <v-divider></v-divider>
 
       <v-list dense>
+
         <v-list-item link :to="{name:'Home'}">
           <v-list-item-icon>
-            <v-icon class="pb-4 pt-6">mdi-apps</v-icon>
+            <v-icon class="pb-4 pt-6">mdi-home</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="pb-4 pt-4">Inicio</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item link :to="{name:'profile'}">
+          <v-list-item-icon>
+            <v-icon class="pb-4 pt-6">mdi-account-cog</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="pb-4 pt-4">Ver Perfil</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item link :to="{name:'ListadoGrado'}" v-if="showAdminBoard">
           <v-list-item-icon>
-            <v-icon class="pb-4 pt-6">mdi-database</v-icon>
+            <v-icon class="pb-4 pt-6">mdi-order-bool-ascending</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="pb-4 pt-4">Grados y Secciones</v-list-item-title>
@@ -95,7 +105,7 @@
         </v-list-item>
         <v-list-item link :to="{name:'ListadoEncargados'}" v-if="showAdminBoard">
           <v-list-item-icon>
-            <v-icon class="pb-4 pt-6">mdi-account-multiple</v-icon>
+            <v-icon class="pb-4 pt-6">mdi-account-child</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="pb-4 pt-4">Encargados</v-list-item-title>
@@ -103,7 +113,7 @@
         </v-list-item>
         <v-list-item link :to="{name:'ListadoInscripciones'}" v-if="showEncargadoBoard || showAdminBoard || showDocenteBoard">
           <v-list-item-icon>
-            <v-icon class="pb-4 pt-6">mdi-clipboard-text</v-icon>
+            <v-icon class="pb-4 pt-6">mdi-badge-account</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="pb-4 pt-4">Inscripciones</v-list-item-title>

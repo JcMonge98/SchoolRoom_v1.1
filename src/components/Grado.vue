@@ -92,11 +92,41 @@
         </v-hover>
       </v-col>
     </v-row>
+
+
+    <v-row>
+      <v-col cols="12" sm="12">
+        <v-data-table
+    :headers="headers"
+    :items="desserts"
+    class="elevation-5 mr-12 ml-12 mt-8"
+  >
+    <template v-slot:top>
+      <!-- encabezado de la tabla -->
+      <v-toolbar flat color>
+        <v-toolbar-title>
+          <h3 class="text-center">Personas</h3>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </template>
+    <!-- Datos de la tabla -->
+    <template v-slot:item.actions="{ item }">
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="VerPersonas">Ver Personas</v-btn>
+    </template>
+  </v-data-table>
+      </v-col>
+    </v-row>
+
   </v-content>
 </template>
 <script>
 import detalleService from "../services/detalleService";
 import gradosService from "../services/gradosService";
+
+import inscripcionService from "../services/inscripcionService";
 
 export default {
   data: () => ({
@@ -112,6 +142,40 @@ export default {
     detalles: [],
     detalles2: [],
     ins: [],
+
+    headers: [
+      {
+        text: "Nombre",
+        sortable: false,
+        value: "usuario.nombres"
+      },
+      {
+        text: "Apellidos",
+        sortable: false,
+        value: "usuario.apellidos"
+      },
+      {
+        text: "Aula",
+        sortable: false,
+        value: "aula.numero"
+      },
+      {
+        text: "Grado",
+        sortable: false,
+        value: "aula.grado.nombre"
+      },
+      {
+        text: "Seccion",
+        sortable: false,
+        value: "aula.seccion.nombre"
+      },
+      {
+        text: "Rol",
+        sortable: false,
+        value: "usuario.role.nombre"
+      },
+    ],
+    desserts: [],
   }),
   created() {
     this.cargarMaterias();
@@ -264,7 +328,26 @@ export default {
     close() {
       this.$refs.form.reset();
       this.dialog = false;
-    }
+    },
+
+    VerPersonas(){
+      var aula = JSON.parse(localStorage.getItem("aula"));
+          inscripcionService
+          .showAdmin(aula)
+          .then(res => {
+            this.desserts = Object.assign(
+              [this.editedIndex],
+              res.data.inscripcion
+            );
+            console.log(
+              Object.assign([this.editedIndex], res.data.inscripcion)
+            );
+          })
+          .catch(e => {
+            console.log(e);
+            console.log("neles");
+          });
+    },
   },
   computed: {
     currentUser() {

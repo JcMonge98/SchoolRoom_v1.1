@@ -309,6 +309,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("Error al modificar Grado");
             console.log(e);
           });
       } else {//___________________________guardar____________________
@@ -322,6 +323,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("Error || Ya existe este Grado");
             console.log(e);
           });
         }
@@ -348,6 +350,7 @@ export default {
             this.initializeS();
           })
           .catch(e => {
+            alert("Error al modificar Seccion");
             console.log(e);
           });
       } else {//___________________________guardar____________________
@@ -361,6 +364,7 @@ export default {
             this.initializeS();
           })
           .catch(e => {
+            alert("Error || Ya existe esta Seccion");
             console.log(e);
           });
         }
@@ -380,6 +384,7 @@ export default {
           this.initialize();
         })
         .catch(e => {
+          alert("Error al eliminar");
           console.log(e);
         });
     },
@@ -395,6 +400,7 @@ export default {
           this.initializeS();
         })
         .catch(e => {
+          alert("Error al eliminar");
           console.log(e);
         });
     },

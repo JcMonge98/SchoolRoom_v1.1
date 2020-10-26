@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row no-gutters>
+   <!-- <v-row no-gutters>
       <v-col cols="6">
         <v-data-table
           :headers="headersG"
@@ -8,7 +8,6 @@
           class="elevation-5 mr-1 ml-1 mt-8"
         >
           <template v-slot:top>
-            <!-- encabezado de la tabla -->
             <v-toolbar flat color>
               <v-toolbar-title>
                 <h3 class="text-center">Listado de Grados</h3>
@@ -16,7 +15,6 @@
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
 
-              <!-- formulario temporal -->
               <v-dialog
                 v-model="dialogG"
                 max-width="500px"
@@ -39,7 +37,7 @@
                             <v-select
                               v-model="grado.nombre"
                               :rules="RolTexto"
-                              :items="items2G"
+                              :items="items2"
                               label="Grado"
                               required
                             ></v-select>
@@ -49,12 +47,6 @@
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <!-- <v-btn
-                  color="green darken-1"
-                  text
-                  @click="generar"
-                  v-if="grado.grado !='' && grado.seccion != '' && grado.codigo ==''"
-                >Generar Codigo</v-btn> -->
                       <v-btn color="red darken-1" text @click="closeG"
                         >Cancelar</v-btn
                       >
@@ -68,11 +60,9 @@
                     </v-card-actions>
                   </v-form>
                 </v-card>
-                <!-- Cierre formulario temporal -->
               </v-dialog>
             </v-toolbar>
           </template>
-          <!-- Datos de la tabla -->
           <template v-slot:item.actions="{ item }">
             <v-icon small color="orange" class="mr-2" @click="editItemG(item)"
               >mdi-pencil</v-icon
@@ -93,7 +83,6 @@
           class="elevation-5 mr-1 ml-6 mt-8"
         >
           <template v-slot:top>
-            <!-- encabezado de la tabla -->
             <v-toolbar flat color>
               <v-toolbar-title>
                 <h3 class="text-center">Listado de Secciones</h3>
@@ -101,7 +90,6 @@
               <v-spacer></v-spacer>
               <v-spacer></v-spacer>
 
-              <!-- formulario temporal -->
               <v-dialog
                 v-model="dialogS"
                 max-width="500px"
@@ -147,12 +135,10 @@
                     </v-card-actions>
                   </v-form>
                 </v-card>
-                <!-- Cierre formulario temporal -->
               </v-dialog>
             </v-toolbar>
           </template>
 
-          <!-- Datos de la tabla -->
           <template v-slot:item.actions="{ item }">
             <v-icon small color="orange" class="mr-2" @click="editItemS(item)"
               >mdi-pencil</v-icon
@@ -167,7 +153,7 @@
         </v-data-table>
         <br />
       </v-col>
-    </v-row>
+    </v-row>   -->
     <v-row no-gutters>
       <v-col cols="12">
         <v-data-table
@@ -249,6 +235,8 @@
                               :rules="RolTexto"
                               label="Codigo"
                               required
+                              disabled
+                              v-if="aula.numero != '' && aula.turno != ''"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -296,7 +284,7 @@
                         color="blue darken-1"
                         text
                         @click="save"
-                        v-if="aula.codigo != ''"
+                        v-if="aula.codigo != '' && aula.numero != '' && aula.turno != '' && aula.grado != '' && aula.seccion != ''"
                         >Guardar</v-btn
                       >
                     </v-card-actions>
@@ -327,15 +315,15 @@
 
 <script>
 import aulasService from "../services/aulasService";
-import gradosService from "../services/gradosService";
-import seccionesService from "../services/seccionesService";
+//import gradosService from "../services/gradosService";
+//import seccionesService from "../services/seccionesService";
 
 export default {
   data: () => ({
-    //datos de grados
+    /*//datos de grados
     nombre: "",
     dialogG: false,
-    items2G: [
+    items2: [
       "Primer Grado",
       "Segundo Grado",
       "Tercer Grado",
@@ -360,8 +348,12 @@ export default {
       _id: null,
       nombre: "",
     },
+     defaultItemG: {
+      _id: null,
+      nombre: "",
+    },
+
     //datos de secciones
-    //nombreS: "",
     dialogS: false,
     itemsS: ["A", "B", "C", "D"],
     headersS: [
@@ -378,11 +370,11 @@ export default {
       _id: null,
       nombre: "",
     },
-    defaultItemG: {
+    defaultItemS: {
       _id: null,
       nombre: "",
     },
-
+    */
     //datos d3l aula
     lazy: "",
     buscar: "",
@@ -464,35 +456,33 @@ export default {
     },
   }),
 
-  // titulo de ventana de Dialogo
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "Nueva Aula" : "Modificar Aula";
     },
-    formTitleG() {
+   /* formTitleG() {
       return this.editedIndexG === -1 ? "Nuevo Grado" : "Modificar Grado";
     },
     formTitleS() {
       return this.editedIndexS === -1 ? "Nueva Seccion" : "Modificar Seccion";
-    },
+    },*/
   },
 
-  // llama el dialog
   watch: {
     dialog(val) {
       val || this.close();
     },
-    dialogG(val) {
+   /* dialogG(val) {
       val || this.closeG();
     },
     dialogS(val) {
       val || this.closeS();
-    },
+    },*/
   },
 
   created() {
-    this.initializeG();
-    this.initializeS();
+    //this.initializeG();
+   // this.initializeS();
 
     this.initialize();
     this.cargarGrados();
@@ -500,7 +490,7 @@ export default {
   },
 
   methods: {
-    //_________________   GRADOS _________________________
+   /* //_________________   GRADOS _________________________
 
     initializeG() {
       gradosService
@@ -547,6 +537,7 @@ export default {
             this.initializeG();
           })
           .catch((e) => {
+            alert("No se creo el Grado");
             console.log(e);
           });
       }
@@ -655,7 +646,7 @@ export default {
         this.seccion = Object.assign({}, this.defaultItemS);
         this.editedIndexS = -1;
       });
-    },
+    }, */
 
     //_________________  AULAS _________________________
 
@@ -682,6 +673,7 @@ export default {
           this.aula.codigo = res.data.codigo;
         })
         .catch((e) => {
+          alert("Error al generar codigo");
           console.log(e);
         });
     },
@@ -711,6 +703,7 @@ export default {
             this.initialize();
           })
           .catch((e) => {
+            alert("Error al modificar Aula");
             console.log(e);
           });
       } else {
@@ -725,6 +718,7 @@ export default {
             this.initialize();
           })
           .catch((e) => {
+            alert("Error || Ya existe esta Seccion");
             console.log(e);
           });
       }
@@ -744,6 +738,7 @@ export default {
           this.initialize();
         })
         .catch((e) => {
+          alert("Error al eliminar Aula");
           console.log(e);
         });
     },

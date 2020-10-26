@@ -281,6 +281,7 @@ export default {
           this.usuario.email = res.data.correo;
         })
         .catch(e => {
+          alert("Error al generar correo");
           console.log(e);
         });
     },
@@ -297,6 +298,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("Error al eliminar");
             console.log(e);
           });
       } else {
@@ -306,8 +308,14 @@ export default {
     //__________________________________________
     //metdo editar
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+     /*this.editedIndex = this.desserts.indexOf(item);
       this.usuario = Object.assign({}, item);
+      this.dialog = true;
+      */
+      this.editedIndex = this.desserts.indexOf(item);
+      this.usuario.nombres = item.nombres;
+      this.usuario.apellidos = item.apellidos;
+      this.usuario.email = item.email;
       this.dialog = true;
     },
     //metdo cerrar dialog
@@ -343,6 +351,8 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("Error al modificar");
+            this.dialog = false;
             console.log(e);
           });
       } else {
@@ -357,6 +367,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("Error || Ya existe este Docente");
             console.log(e);
           });
       }

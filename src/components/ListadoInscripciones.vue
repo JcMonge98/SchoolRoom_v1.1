@@ -1,6 +1,6 @@
 <template>
 <v-content>
-  <v-row v-if="currentUser.role == 'ROLE_ADMIN'">
+ <!--  <v-row v-if="currentUser.role == 'ROLE_ADMIN'">
     <v-col cols=4 class="offset-4">
   <v-text-field
           class="text-xs-center"
@@ -15,7 +15,7 @@
         <v-col cols="2">
           <v-btn color="cyan" dark class="mb-2" @click="buscarGrado()">Buscar por Aula</v-btn>
         </v-col>
-  </v-row>
+  </v-row> -->
   <v-data-table
     :headers="headers"
     :items="desserts"
@@ -44,7 +44,7 @@
         <!-- formulario temporal -->
         <v-dialog v-model="dialog" max-width="900">
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_DOCENTE' || currentUser.role == 'ROLE_ADMIN'">Inscribir Grado</v-btn>
+            <v-btn color="purple" dark class="mb-2" v-on="on" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_DOCENTE' || currentUser.role == 'ROLE_ADMIN'">Inscribirse</v-btn>
           </template>
           <v-card>
             <v-form ref="form" :lazy-validation="lazy">
@@ -387,7 +387,7 @@ export default {
   methods: {
     
     initialize() {
-      if (this.currentUser.role == "ROLE_ADMIN") {
+      /*if (this.currentUser.role == "ROLE_ADMIN") {
            
           var aula = JSON.parse(localStorage.getItem("buscarAula"));
           inscripcionService
@@ -405,7 +405,7 @@ export default {
             console.log(e);
             console.log("neles");
           });
-      } else {
+      } else {*/
         var usuario = this.currentUser.id;
         console.log("usuario logeado => ",usuario);
         inscripcionService
@@ -420,7 +420,7 @@ export default {
             console.log(e);
             console.log("neles");
           });
-      } 
+     // } 
     },
 
     save() {
