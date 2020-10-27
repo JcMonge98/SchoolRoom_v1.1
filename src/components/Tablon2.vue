@@ -15,10 +15,10 @@
               <h5>
                 {{
                   detalle.aula.grado.nombre +
-                  " Seccion: " +
-                  detalle.aula.seccion.nombre +
-                  " Aula: " +
-                  detalle.aula.numero
+                    " Seccion: " +
+                    detalle.aula.seccion.nombre +
+                    " Aula: " +
+                    detalle.aula.numero
                 }}
               </h5>
             </v-col>
@@ -43,7 +43,7 @@
             @click="borrarStorage2()"
             v-if="
               currentUser.role == 'ROLE_ENCARGADO' ||
-              currentUser.role == 'ROLE_ADMIN'
+                currentUser.role == 'ROLE_ADMIN'
             "
           >
             <v-icon left>mdi-folder-plus</v-icon>Volver
@@ -60,8 +60,8 @@
                 v-on="on"
                 v-if="
                   currentUser.role == 'ROLE_ENCARGADO' ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  currentUser.role == 'ROLE_DOCENTE'
+                    currentUser.role == 'ROLE_ADMIN' ||
+                    currentUser.role == 'ROLE_DOCENTE'
                 "
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
@@ -98,7 +98,7 @@
               </v-form>
             </v-card>
           </v-dialog>
-           <!-- **********************************  showDialog EDITAR **************************************** -->
+          <!-- **********************************  showDialog EDITAR **************************************** -->
           <v-dialog v-model="dialog2" max-width="500px">
             <v-card>
               <v-form ref="nuevaP" :lazy-validation="lazy">
@@ -188,7 +188,6 @@
         <v-card-subtitle class="mt-0"></v-card-subtitle>
       </v-card>
     </v-col>
-
     <!-- _______________________________  Esto se debe mostrar por cada tarea _________________________________________________________ -->
     <v-col
       cols="12"
@@ -212,51 +211,55 @@
             <h5 class="ml-2">
               {{
                 card.inscripcion.usuario.nombres +
-                " " +
-                card.inscripcion.usuario.apellidos
+                  " " +
+                  card.inscripcion.usuario.apellidos
               }}
             </h5>
-            <br>
+            <br />
             <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
           </v-row>
           <v-row>
             <v-col cols="12">
               <v-btn
-              style="border-radius: 20px"
+                style="border-radius: 20px"
                 class="mr-2 ml-8"
                 tile
                 outlined
                 color="success"
                 @click="editItem(card)"
                 v-if="
-                  currentUser.role == 'ROLE_DOCENTE' && currentUser.nombres == card.inscripcion.usuario.nombres ||
-                  currentUser.role == 'ROLE_ADMIN' && currentUser.nombres == card.inscripcion.usuario.nombres
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                    (currentUser.role == 'ROLE_ADMIN' &&
+                      currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon small class>mdi-pencil</v-icon>Editar
               </v-btn>
               <v-btn
-              style="border-radius: 20px"
+                style="border-radius: 20px"
                 class="ml-7"
                 tile
                 outlined
                 color="red"
                 @click="deleteItem(card)"
                 v-if="
-                  currentUser.role == 'ROLE_DOCENTE' && currentUser.nombres == card.inscripcion.usuario.nombres ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  currentUser.role == 'ROLE_ENCARGADO' && currentUser.nombres == card.inscripcion.usuario.nombres
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                    currentUser.role == 'ROLE_ADMIN' ||
+                    (currentUser.role == 'ROLE_ENCARGADO' &&
+                      currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon rigth>mdi-delete</v-icon>Eliminar
               </v-btn>
-              </v-col>
+            </v-col>
           </v-row>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text class="mt-0">
           <h3>{{ card.descripcion }}</h3>
-        <!-- </v-card-text> 
+          <!-- </v-card-text> 
         <v-card-text class="mt-0"> -->
           <!-- <v-row align="center">
             <v-col class="text-center" cols="12" sm="12">
@@ -290,13 +293,22 @@
                   <h4 class="ml-2">
                     <strong>{{
                       comentario.inscripcion.usuario.nombres +
-                      " " +
-                      comentario.inscripcion.usuario.apellidos
+                        " " +
+                        comentario.inscripcion.usuario.apellidos
                     }}</strong
                     >&nbsp;
                     <small>{{ comentario.fecha_comentario }}</small>
                     <br />{{ comentario.descripcion }}
                   </h4>
+                  <v-icon class="ml-2" small color="red" @click="deleteComentario(comentario,card)"
+                    v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == comentario.inscripcion.usuario.nombres) ||
+                    currentUser.role == 'ROLE_ADMIN' ||
+                    (currentUser.role == 'ROLE_ENCARGADO' &&
+                      currentUser.nombres == comentario.inscripcion.usuario.nombres)
+                ">mdi-delete</v-icon
+                  >
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -326,8 +338,6 @@
         </v-card-text>
       </v-card>
     </v-col>
-
-    <!-- _______________________________ CIERRE Esto se debe mostrar por cada tarea _________________________________________________________ -->
   </v-row>
 </template>
 <script>
@@ -460,6 +470,22 @@ export default {
           console.log(e);
         });
     },
+    
+    deleteComentario(comentario,card) {
+      const index = this.comentarios.indexOf(comentario);
+      confirm("Estas seguro de querer eliminar el comentario?");
+      publicacionService
+        .removeComentario(comentario._id)
+        .then((response) => {
+          alert("Se elimino con éxito");
+          this.initialize();
+          this.verComentarios(card);
+        })
+        .catch((e) => {
+          alert("No se pudo eliminar");
+          console.log(e);
+        });
+    },
 
     /*editItem(card) {
       this.tarea = Object.assign({}, card);
@@ -474,15 +500,15 @@ export default {
     },
     close1() {
       this.dialog = false;
-      this.publicacion.descripcion = '';
-      this.publicacion._id = '';
-      this.publicacion.fecha_entrega = '';
+      this.publicacion.descripcion = "";
+      this.publicacion._id = "";
+      this.publicacion.fecha_entrega = "";
     },
     close2() {
       this.dialog2 = false;
-      this.publicacion.descripcion = '';
-      this.publicacion._id = '';
-      this.publicacion.fecha_entrega = '';
+      this.publicacion.descripcion = "";
+      this.publicacion._id = "";
+      this.publicacion.fecha_entrega = "";
     },
     editar() {
       var data = {
@@ -495,7 +521,7 @@ export default {
         .then((response) => {
           data._id = response.data._id;
           console.log(response.data);
-          this.close2()
+          this.close2();
           alert("Publicacion modificada con éxito");
           this.initialize();
         })
