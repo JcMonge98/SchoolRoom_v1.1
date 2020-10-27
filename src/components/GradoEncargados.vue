@@ -60,7 +60,7 @@
         <v-data-table
     :headers="headers"
     :items="desserts"
-    class="elevation-5 mr-12 ml-12 mt-8"
+    class="elevation-5 mr-12 ml-12 mt-2 mb-12"
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->

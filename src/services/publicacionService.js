@@ -44,6 +44,10 @@ class publicacionService {
         return http.post("/publicaciones", data);
     }
 
+    update(_id, data) {
+        return http.put(`/publicaciones/_id/${_id}`, data);
+    }
+
     remove(_id) {
         return http.delete(`/publicaciones/_id/${_id}`);
     }

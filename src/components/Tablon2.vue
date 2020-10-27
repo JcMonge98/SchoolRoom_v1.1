@@ -60,7 +60,8 @@
                 v-on="on"
                 v-if="
                   currentUser.role == 'ROLE_ENCARGADO' ||
-                  currentUser.role == 'ROLE_ADMIN'
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  currentUser.role == 'ROLE_DOCENTE'
                 "
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
@@ -97,7 +98,40 @@
               </v-form>
             </v-card>
           </v-dialog>
-          <!-- **********************************  showDialog Para docente **************************************** -->
+           <!-- **********************************  showDialog EDITAR **************************************** -->
+          <v-dialog v-model="dialog2" max-width="500px">
+            <v-card>
+              <v-form ref="nuevaP" :lazy-validation="lazy">
+                <v-card-title>
+                  <span class="headline">Editar Publicación</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-textarea
+                      v-model="publicacion.descripcion"
+                      :rules="RolTexto"
+                      outlined
+                      label="Descripcion de tu publicación"
+                    ></v-textarea>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="red darken-1" text @click="close2"
+                    >Cancelar</v-btn
+                  >
+                  <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="editar"
+                    v-if="publicacion.descripcion.length > 10"
+                    >Editar</v-btn
+                  >
+                </v-card-actions>
+              </v-form>
+            </v-card>
+          </v-dialog>
+          <!-- **********************************  showDialog Para docente **************************************** 
           <v-dialog v-model="dialog2" max-width="900px">
             <template v-slot:activator="{ on }">
               <v-btn
@@ -107,7 +141,7 @@
                 dark
                 color="white"
                 v-on="on"
-                v-if="currentUser.role == 'ROLE_DOCENTE'"
+                v-if="currentUser.role == 'ROLE_ENCARGADO'"
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
               </v-btn>
@@ -118,7 +152,6 @@
               </v-toolbar>
               <v-tabs vertical>
                 <v-tab> <v-icon left>mdi-animation</v-icon>Publicación </v-tab>
-                <v-tab> <v-icon left>mdi-calendar-clock</v-icon>Tarea </v-tab>
 
                 <v-tab-item>
                   <v-card flat>
@@ -149,7 +182,7 @@
                 </v-tab-item>
               </v-tabs>
             </v-card>
-          </v-dialog>
+          </v-dialog> -->
         </v-card-title>
         <h4 class="ml-4"></h4>
         <v-card-subtitle class="mt-0"></v-card-subtitle>
@@ -223,8 +256,8 @@
         <v-divider></v-divider>
         <v-card-text class="mt-0">
           <h3>{{ card.descripcion }}</h3>
-        </v-card-text>
-        <v-card-text class="mt-0">
+        <!-- </v-card-text> 
+        <v-card-text class="mt-0"> -->
           <!-- <v-row align="center">
             <v-col class="text-center" cols="12" sm="12">
               <v-btn text small color="cyan" @click="verComentarios(card)">Ver Comentarios</v-btn>||
@@ -241,7 +274,7 @@
               <br />{{comentario.descripcion}}
             </h4>
           </v-row>-->
-          <v-expansion-panels>
+          <v-expansion-panels class="mt-2">
             <v-expansion-panel>
               <v-expansion-panel-header @click="verComentarios(card)"
                 >Ver comentarios</v-expansion-panel-header
@@ -421,44 +454,53 @@ export default {
           //alert("Publicacion realizada con éxito");
           this.message = "";
           this.initialize();
-          this.verComentarios();
+          this.verComentarios(card);
         })
         .catch((e) => {
           console.log(e);
         });
     },
 
-    editItem(card) {
+    /*editItem(card) {
       this.tarea = Object.assign({}, card);
       this.tarea.fecha_entrega = moment(this.tarea.fecha_entrega)
         .add(1, "d")
         .format("YYYY-MM-DD");
       this.dialog2 = true;
+    },*/
+    editItem(card) {
+      this.publicacion = Object.assign({}, card);
+      this.dialog2 = true;
     },
     close1() {
       this.dialog = false;
-      this.$refs.form.reset();
+      this.publicacion.descripcion = '';
+      this.publicacion._id = '';
+      this.publicacion.fecha_entrega = '';
     },
     close2() {
       this.dialog2 = false;
-      this.$refs.form.reset();
+      this.publicacion.descripcion = '';
+      this.publicacion._id = '';
+      this.publicacion.fecha_entrega = '';
     },
     editar() {
       var data = {
-        _id: this.tarea._id,
-        descripcion: this.tarea.descripcion,
-        fecha_entrega: this.tarea.fecha_entrega,
+        _id: this.publicacion._id,
+        descripcion: this.publicacion.descripcion,
+        fecha_entrega: this.publicacion.fecha_entrega,
       };
-      tareasService
+      publicacionService
         .update(data._id, data)
         .then((response) => {
           data._id = response.data._id;
           console.log(response.data);
-          this.$refs.form.reset();
-          this.dialog2 = false;
+          this.close2()
+          alert("Publicacion modificada con éxito");
           this.initialize();
         })
         .catch((e) => {
+          alert("Error al modificar Publicacion");
           console.log(e);
         });
     },

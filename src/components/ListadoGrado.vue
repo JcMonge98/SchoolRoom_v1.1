@@ -13,7 +13,7 @@
           <h3 class="text-center">Listado de Grados</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- input de busqueda(filtro) -->
+        <!-- input de busqueda(filtro) 
         <v-text-field
           class="text-xs-center"
           v-model="buscar"
@@ -23,7 +23,7 @@
           hide-details
           color="cyan"
         ></v-text-field>
-        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>-->
 
         <!-- formulario temporal -->
         <v-dialog v-model="dialog" max-width="500px" style="color:purple">
@@ -74,8 +74,8 @@
     </template>
     <!-- Datos de la tabla -->
     <template v-slot:item.actions="{ item }">
-      <v-icon small color="orange" class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
-      <v-icon small color="red" @click="deleteItem(item)">mdi-delete</v-icon>
+     <!-- <v-icon small color="orange" class="mr-2" @click="editItem(item)">mdi-pencil</v-icon> 
+      <v-icon small color="red" @click="deleteItem(item)">mdi-delete</v-icon>-->
     </template>
     <template v-slot:no-data>
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
@@ -97,7 +97,7 @@
           <h3 class="text-center">Listado de Secciones</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- input de busqueda(filtro) -->
+        <!-- input de busqueda(filtro) 
         <v-text-field
           class="text-xs-center"
           v-model="buscar2"
@@ -107,7 +107,7 @@
           hide-details
           color="cyan"
         ></v-text-field>
-        <v-spacer></v-spacer>
+        <v-spacer></v-spacer>-->
 
         <!-- formulario temporal -->
         <v-dialog v-model="dialogS" max-width="500px" style="color:purple">
@@ -153,7 +153,7 @@
 
     <!-- Datos de la tabla -->
     <template v-slot:item.actions="{ item }">
-      <v-icon small color="orange" class="mr-2" @click="editItemS(item)">mdi-pencil</v-icon>
+      <!-- <v-icon small color="orange" class="mr-2" @click="editItemS(item)">mdi-pencil</v-icon> -->
       <v-icon small color="red" @click="deleteItemS(item)">mdi-delete</v-icon>
     </template>
     <template v-slot:no-data>
@@ -192,7 +192,7 @@ export default {
         sortable: false,
         value: "nombre"
       },
-      { text: "Acciones", value: "actions", sortable: false }
+     // { text: "Acciones", value: "actions", sortable: false }
     ],
 
     //datos para la tabla
