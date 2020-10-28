@@ -45,3 +45,20 @@ git push -u origin master   despues de hacer los commit locales
 
 git push para subir nuevos cambios, antes hacer commit locales
 ```
+
+### pasos para heroku
+```
+elimine la carpeta dist y luego ejecuto el build 
+
+heroku login
+
+elimine la carpeta schoolroomforeducation
+
+heroku git:clone -a schoolroomforeducation
+
+git add .
+
+git commit -am "subi a heroku"
+
+git push heroku master
+```
