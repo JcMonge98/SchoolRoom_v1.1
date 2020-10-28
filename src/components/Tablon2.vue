@@ -15,10 +15,10 @@
               <h5>
                 {{
                   detalle.aula.grado.nombre +
-                    " Seccion: " +
-                    detalle.aula.seccion.nombre +
-                    " Aula: " +
-                    detalle.aula.numero
+                  " Seccion: " +
+                  detalle.aula.seccion.nombre +
+                  " Aula: " +
+                  detalle.aula.numero
                 }}
               </h5>
             </v-col>
@@ -43,7 +43,7 @@
             @click="borrarStorage2()"
             v-if="
               currentUser.role == 'ROLE_ENCARGADO' ||
-                currentUser.role == 'ROLE_ADMIN'
+              currentUser.role == 'ROLE_ADMIN'
             "
           >
             <v-icon left>mdi-folder-plus</v-icon>Volver
@@ -60,8 +60,8 @@
                 v-on="on"
                 v-if="
                   currentUser.role == 'ROLE_ENCARGADO' ||
-                    currentUser.role == 'ROLE_ADMIN' ||
-                    currentUser.role == 'ROLE_DOCENTE'
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  currentUser.role == 'ROLE_DOCENTE'
                 "
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
@@ -211,8 +211,8 @@
             <h5 class="ml-2">
               {{
                 card.inscripcion.usuario.nombres +
-                  " " +
-                  card.inscripcion.usuario.apellidos
+                " " +
+                card.inscripcion.usuario.apellidos
               }}
             </h5>
             <br />
@@ -230,8 +230,8 @@
                 v-if="
                   (currentUser.role == 'ROLE_DOCENTE' &&
                     currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                    (currentUser.role == 'ROLE_ADMIN' &&
-                      currentUser.nombres == card.inscripcion.usuario.nombres)
+                  (currentUser.role == 'ROLE_ADMIN' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon small class>mdi-pencil</v-icon>Editar
@@ -246,9 +246,9 @@
                 v-if="
                   (currentUser.role == 'ROLE_DOCENTE' &&
                     currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                    currentUser.role == 'ROLE_ADMIN' ||
-                    (currentUser.role == 'ROLE_ENCARGADO' &&
-                      currentUser.nombres == card.inscripcion.usuario.nombres)
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  (currentUser.role == 'ROLE_ENCARGADO' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon rigth>mdi-delete</v-icon>Eliminar
@@ -293,21 +293,28 @@
                   <h4 class="ml-2">
                     <strong>{{
                       comentario.inscripcion.usuario.nombres +
-                        " " +
-                        comentario.inscripcion.usuario.apellidos
+                      " " +
+                      comentario.inscripcion.usuario.apellidos
                     }}</strong
                     >&nbsp;
                     <small>{{ comentario.fecha_comentario }}</small>
                     <br />{{ comentario.descripcion }}
                   </h4>
-                  <v-icon class="ml-2" small color="red" @click="deleteComentario(comentario,card)"
+                  <v-icon
+                    class="ml-2"
+                    small
+                    color="red"
+                    @click="deleteComentario(comentario, card)"
                     v-if="
-                  (currentUser.role == 'ROLE_DOCENTE' &&
-                    currentUser.nombres == comentario.inscripcion.usuario.nombres) ||
-                    currentUser.role == 'ROLE_ADMIN' ||
-                    (currentUser.role == 'ROLE_ENCARGADO' &&
-                      currentUser.nombres == comentario.inscripcion.usuario.nombres)
-                ">mdi-delete</v-icon
+                      (currentUser.role == 'ROLE_DOCENTE' &&
+                        currentUser.nombres ==
+                          comentario.inscripcion.usuario.nombres) ||
+                      currentUser.role == 'ROLE_ADMIN' ||
+                      (currentUser.role == 'ROLE_ENCARGADO' &&
+                        currentUser.nombres ==
+                          comentario.inscripcion.usuario.nombres)
+                    "
+                    >mdi-delete</v-icon
                   >
                 </v-row>
               </v-expansion-panel-content>
@@ -395,12 +402,34 @@ export default {
         });
     },
     initialize() {
-      var ca = [];
+     /* var ca = [];
       var detalle = JSON.parse(localStorage.getItem("id_detalle"));
       publicacionService
         .verPublicaciones(detalle)
         .then((res) => {
           ca = res.data.publicacion;
+          this.cards = ca.reverse();
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        }); */
+
+      var ca = [];
+      var detalle = JSON.parse(localStorage.getItem("id_detalle"));
+      publicacionService
+        .verPublicaciones(detalle)
+        .then((res) => {
+          let date = new Date();
+          ca = res.data.publicacion;
+          ca.map((card) => {
+            let date = new Date(card.fecha_publicacion);
+            console.log(card.fecha_publicacion);
+            console.log(date);
+            //card.fecha_publicacion = moment(date).local()
+            card.fecha_publicacion = moment(date).format('DD/MM/YYYY - HH:mm A');
+          });
+          console.log(res.data.publicacion);
+          //this.ca.fecha_publicacion = ;
           this.cards = ca.reverse();
         })
         .catch((e) => {
@@ -439,12 +468,29 @@ export default {
         });
     },
     verComentarios(card) {
-      var publicacion = card._id;
+      /*var publicacion = card._id;
       publicacionService
         .verComentarios(publicacion)
         .then((res) => {
           if (publicacion == res.data.comentario[0].publicacion) {
             this.comentarios = res.data.comentario;
+          }
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        }); */
+        var publicacion = card._id;
+      var ca = [];
+      publicacionService
+        .verComentarios(publicacion)
+        .then((res) => {
+          if (publicacion == res.data.comentario[0].publicacion) {
+            ca = res.data.comentario;
+            ca.map((c) => {
+              let date = new Date(c.fecha_comentario);
+              c.fecha_comentario = moment(date).format('DD/MM/YYYY - HH:mm A');
+            });
+            this.comentarios = ca;
           }
         })
         .catch((e) => {

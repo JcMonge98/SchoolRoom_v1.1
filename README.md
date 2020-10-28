@@ -46,7 +46,7 @@ git push -u origin master   despues de hacer los commit locales
 git push para subir nuevos cambios, antes hacer commit locales
 ```
 
-### pasos para heroku
+### pasos para heroku NO FUNCIONA
 ```
 elimine la carpeta dist y luego ejecuto el build 
 

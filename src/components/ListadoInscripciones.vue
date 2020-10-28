@@ -406,7 +406,7 @@ export default {
             console.log("neles");
           });
       } else {*/
-        var usuario = this.currentUser.id;
+      /*  var usuario = this.currentUser.id;
         console.log("usuario logeado => ",usuario);
         inscripcionService
           .show(usuario)
@@ -415,6 +415,26 @@ export default {
               [this.editedIndex],
               res.data.inscripcion
             );
+          })
+          .catch(e => {
+            console.log(e);
+            console.log("neles");
+          });
+     // } 
+    },*/ 
+    var usuario = this.currentUser.id;
+        console.log("usuario logeado => ",usuario);
+        inscripcionService
+          .show(usuario)
+          .then(res => {
+            this.desserts = Object.assign(
+              [this.editedIndex],
+              res.data.inscripcion
+            );
+            this.desserts.map((i) => {
+              let date = new Date(i.fecha_inscripcion);
+              i.fecha_inscripcion = moment(date).format('DD/MM/YYYY - HH:mm A');
+            })
           })
           .catch(e => {
             console.log(e);
