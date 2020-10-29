@@ -193,11 +193,11 @@ export default {
         sortable: false,
         value: "email",
       },
-      {
+      /*{
         text: "Password",
         sortable: false,
         value: "password",
-      },
+      },*/
       {
         text: "Rol",
         sortable: false,

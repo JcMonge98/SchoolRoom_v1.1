@@ -153,8 +153,8 @@
 
     <!-- Datos de la tabla -->
     <template v-slot:item.actions="{ item }">
-      <!-- <v-icon small color="orange" class="mr-2" @click="editItemS(item)">mdi-pencil</v-icon> -->
-      <v-icon small color="red" @click="deleteItemS(item)">mdi-delete</v-icon>
+      <!-- <v-icon small color="orange" class="mr-2" @click="editItemS(item)">mdi-pencil</v-icon> 
+      <v-icon small color="red" @click="deleteItemS(item)">mdi-delete</v-icon> -->
     </template>
     <template v-slot:no-data>
       <v-btn color="accent" @click="initializeS">Refrescar</v-btn>
@@ -218,7 +218,7 @@ export default {
         sortable: false,
         value: "nombre"
       },
-      { text: "Acciones", value: "actions", sortable: false }
+      //{ text: "Acciones", value: "actions", sortable: false }
     ],
     dessertsS: [],
     seccion: {
@@ -324,6 +324,7 @@ export default {
           })
           .catch(e => {
             alert("Error || Ya existe este Grado");
+            this.dialog = false;
             console.log(e);
           });
         }
@@ -351,6 +352,7 @@ export default {
           })
           .catch(e => {
             alert("Error al modificar Seccion");
+            this.dialogS = false;
             console.log(e);
           });
       } else {//___________________________guardar____________________

@@ -472,7 +472,8 @@ export default {
     editar() {
       var data = {
         _id: this.inscripcion._id,
-        usuario: this.inscripcion.usuario
+        usuario: this.inscripcion.usuario,
+        aula: this.inscripcion.aula
       };
       console.log(data);
         inscripcionService
@@ -486,6 +487,7 @@ export default {
             this.$refs.form.reset();
           })
           .catch(e => {
+            alert("No se pudo modificar");
             console.log(e);
           });
     },

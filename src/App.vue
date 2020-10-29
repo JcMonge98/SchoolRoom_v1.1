@@ -68,7 +68,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link :to="{name:'profile'}">
+        <v-list-item link :to="{name:'profile'}" v-if="showEncargadoBoard || showAdminBoard || showDocenteBoard">
           <v-list-item-icon>
             <v-icon class="pb-4 pt-6">mdi-account-cog</v-icon>
           </v-list-item-icon>

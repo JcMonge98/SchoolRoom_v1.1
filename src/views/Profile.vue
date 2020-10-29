@@ -44,7 +44,7 @@
     </v-card-title>
     <v-form class="mr-5 ml-5  mb-10" name="form" >
       <v-row>
-        <v-col cols="12" sm="2">
+        <v-col cols="12" sm="6">
           <v-text-field
             v-model="id"
             name="Codigo"
@@ -86,22 +86,38 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
+          <v-text-field
+            v-model="lastpassword"
+            label="Contraseña anterior"
+            type="password"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="4">
           <v-text-field
             v-model="password"
             name="password"
             :rules="Rolpassword"
-            label="Contraseña"
+            label="Nueva Contraseña"
             type="password"
           ></v-text-field>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
           <v-text-field
             v-model="confirmar"
+            name="confirmar"
+            :rules="RolconPassword.concat(RolConfirmarPassword)"
+            label="Confirme Contraseña"
+            type="password"
+          ></v-text-field>
+        </v-col>
+       <!-- <v-col cols="12" sm="6">
+          <v-text-field
+            v-model="lastpassword"
             label="Confirmar Contraseña"
             type="password"
           ></v-text-field>
-        </v-col>
+        </v-col> -->
       </v-row>
       <v-row align="center"
       justify="center">
@@ -109,7 +125,7 @@
       dark
         class="mr-4 mb-8 mt-8"
         color="purple"
-        outlined @click="save">Actualizar</v-btn>
+        outlined @click="save" v-if="password != '' && password === confirmar && lastpassword != ''">Actualizar</v-btn>
       <v-btn class="mr-4 mb-8 mt-8 ml-12" color="green" outlined :to="{name:'Home'}" @click="ena2" >Ir a Inicio</v-btn>
       </v-row>
     </v-form>
@@ -128,6 +144,7 @@ export default {
     apellidos: "",
     email: "",
     password: "",
+    lastpassword: "",
     confirmar: "",
     role: "",
     
@@ -172,16 +189,14 @@ export default {
       }
     }, 
 
-
-
-
     //__________________________________________
     save() {
       var _id = this.id
       var data = {
         nombres: this.nombres,
         apellidos: this.apellidos,
-        password: this.password
+        password: this.password,
+        lastpassword: this.lastpassword
       };
         //_______________________________actualizar________________________
         UserService.update(_id, data)
@@ -194,15 +209,10 @@ export default {
             this.initialize();
           })
           .catch(e => {
+            alert("No se pudo modificar");
             console.log(e);
           });
     },
-
-
-
-
-
-
 
     //__________________________________________ñ
     initialize() {

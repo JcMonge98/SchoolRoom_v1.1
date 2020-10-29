@@ -6,7 +6,7 @@
     <v-form class="mr-5 ml-5 mt-5 mb-12" name="form" @submit.prevent="handleRegister">
       <v-row>
         <v-col cols="4" sm="4"></v-col>
-        <v-col cols="3" sm="3">
+        <v-col cols="4" sm="4">
           <v-text-field
             v-model="codigoVerificacion"
             name="codigo"
@@ -17,6 +17,7 @@
         <v-col cols="4" sm="4">
           <v-btn
             color="green darken-1"
+            outlined
             text
             @click="verificar()"
             v-if="codigoVerificacion.length > 3"
@@ -95,7 +96,7 @@
         type="submit"
         v-if="user.nombres !='' && user.apellidos !='' && user.email !='' && user.password == confirmar"
       >Registrar</v-btn>
-      <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'Home'}" v-if="this.verificado == true">Cancelar</v-btn>
+      <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'Home'}" v-if="this.verificado == true" dark outlined>Cancelar</v-btn>
     </v-form>
     <!-- agrege aqui -->
     <div
@@ -151,7 +152,7 @@ export default {
   methods: {
     verificar() {
       var codigo = this.codigoVerificacion;
-      gradosService
+      /*gradosService
         .verificar(codigo)
         .then(res => {
           //console.log("si entre",res.data.v[0].codigo);
@@ -159,11 +160,20 @@ export default {
             console.log("si entre x2");
             this.verificado = true;
           }
-          //this.verificado = true;
+          
+          
         })
         .catch(e => {
+          alert("codigo no valido")
           console.log(e);
-        });
+        });*/
+        if (codigo == 'v3r1f1') {
+            this.verificado = true;
+          }
+          else{
+            alert("codigo no valido")
+            this.verificado = false;
+          }
     },
 
     generarCorreo() {
@@ -176,6 +186,7 @@ export default {
           this.user.email = res.data.correo;
         })
         .catch(e => {
+          alert("Error al generar")
           console.log(e);
         });
     },

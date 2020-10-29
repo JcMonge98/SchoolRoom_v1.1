@@ -46,19 +46,22 @@ git push -u origin master   despues de hacer los commit locales
 git push para subir nuevos cambios, antes hacer commit locales
 ```
 
-### pasos para heroku NO FUNCIONA
+### DATOS DEL SISTEMA
 ```
-elimine la carpeta dist y luego ejecuto el build 
+*************************** DATOS **************************************
+///////Docentes ///////////
+XA63a2072020@example.edu.sv 1234
 
-heroku login
+HP63a3072020@example.edu.sv 1234
 
-elimine la carpeta schoolroomforeducation
+JG63a5072020@example.edu.sv 1234
 
-heroku git:clone -a schoolroomforeducation
 
-git add .
+///////////// Encargados ///////////
+prueba@gmail.com	    1234
 
-git commit -am "subi a heroku"
+JS63a4072020@example.edu.sv 1234
 
-git push heroku master
+
+https://schoolroomforeducation.herokuapp.com/login   sitio
 ```
