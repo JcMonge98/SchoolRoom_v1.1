@@ -136,6 +136,7 @@ const routes = [{
         name: 'GradoEncargados',
         component: GradoEncargados
     },
+
     {
         path: '/Tablon2',
         name: 'Tablon2',

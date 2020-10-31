@@ -131,6 +131,93 @@
           </v-card>
           <!-- Cierre formulario temporal -->
         </v-dialog>
+        <v-dialog v-model="dialog2" max-width="1000px">
+          <v-card>
+            <v-form ref="form" :lazy-validation="lazy">
+              <v-card-title>
+                <span class="headline">Editar Docente</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.nombres"
+                        :rules="RolTexto"
+                        label="Nombres de Usuario"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.apellidos"
+                        :rules="RolTexto"
+                        label="Apellidos de usuario"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                 <!-- <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.email"
+                        :rules="Rolemail"
+                        label="E-mail"
+                        required
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.roles"
+                        :rules="RolTexto"
+                        label="Rol"
+                        type="text"
+                        disabled
+                      ></v-text-field>
+                    </v-col> 
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.password"
+                        :rules="Rolpassword"
+                        label="Contraseña"
+                        type="password"
+                        v-if="usuario.email != ''"
+                        enabled
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="confirmar"
+                        :rules="RolconPassword.concat(RolConfirmarPassword)"
+                        label="Confirmar Contraseña"
+                        type="password"
+                        v-if="usuario.email != ''"
+                        enabled
+                      ></v-text-field>
+                    </v-col> 
+                  </v-row> -->
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
+                <v-btn
+                  color="orange darken-1"
+                  text
+                  @click="editar"
+                  v-if="
+                      usuario.nombres.length != '' &&
+                      usuario.apellidos.length != '' "
+                  >Modificar</v-btn
+                >
+              </v-card-actions>
+            </v-form>
+          </v-card>
+          <!-- Cierre formulario temporal -->
+        </v-dialog>
       </v-toolbar>
     </template>
     <!-- ******************************************* tabla  Encargados **************************************************** -->
@@ -154,6 +241,7 @@ export default {
     buscar: "",
     buscar2: "",
     dialog: "",
+    dialog2: "",
     lazy: "",
     nombres: "",
     apellidos: "",
@@ -338,7 +426,7 @@ export default {
         role: this.usuario.roles,
       };
       this.$refs.form.reset();
-      if (this.editedIndex >= 0) {
+      /*if (this.editedIndex >= 0) {
         Object.assign(this.desserts[this.editedIndex], this.grado);
 
         //_______________________________actualizar________________________
@@ -355,7 +443,7 @@ export default {
             alert("Error al modificar");
             console.log(e);
           });
-      } else {
+      } else { */
         //___________________________guardar____________________
         console.log(data);
         UserService.create(data)
@@ -370,15 +458,37 @@ export default {
             alert("Error || Ya existe este Docente");
             console.log(e);
           });
-      }
+      //}
     },
     //__________________________________________
-
+    editar(){
+      var data = {
+        _id: this.usuario._id,
+        nombres: this.usuario.nombres,
+        apellidos: this.usuario.apellidos,
+        //email: this.usuario.email,
+        //password: this.usuario.password,
+        //role: this.usuario.roles,
+      };
+      UserService.update(data._id, data)
+        .then((response) => {
+          data._id = response.data._id;
+          console.log(response.data);
+          this.dialog2 = false;
+          alert("Usuario modificado con éxito");
+          this.initialize();
+        })
+        .catch((e) => {
+          this.dialog2 = false;
+          alert("Error al modificar");
+          console.log(e);
+        });
+    },
     //metdo editar
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.usuario = Object.assign({}, item);
-      this.dialog = true;
+      this.dialog2 = true;
       console.log(this.usuario)
       /*
       this.editedIndex = this.desserts.indexOf(item);
@@ -392,6 +502,7 @@ export default {
     //metdo cerrar dialog
     close() {
       this.dialog = false;
+      this.dialog2 = false;
       this.$refs.form.reset();
       this.$nextTick(() => {
         this.usuario = Object.assign({}, this.defaultItem);
