@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #9e9e9e42">
     <!-- Encabezado-->
     <v-card color="purple lighten-1" flat height="50px" tile>
       <v-toolbar dense>

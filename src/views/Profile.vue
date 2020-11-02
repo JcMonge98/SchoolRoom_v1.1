@@ -1,44 +1,70 @@
 <template> 
 <v-content>
-  <v-parallax
+  <v-parallax 
     dark
-    src="https://media.gettyimages.com/videos/soft-background-4k-video-id1190067375?s=640x640"
+    style="height: 500px;margin-left: 343px;
+    margin-right: 343px;
+    margin-top: 100px;
+    border-radius: 10px"
+  
+    src="../assets/11.jpg"
+    
   >
-    <v-row
+
+    <v-row 
       align="center"
       justify="center"
+      
     >
-      <v-col class="text-center" cols="12">
-        <h1 class="display-1 font-weight-thin mb-4">Bienvenid@ a SchoolRoom</h1>
-        <p>
+    
+      <v-img cols="10" style="border-radius: 10px"
+            src="../assets/perfil.jpg"
+            max-height="170"
+            max-width="170"
+          ></v-img> 
+
+      <v-col class="text-center" cols="6">
+
+        
+        <h1 class=" font-weight-medium text-left" style = "padding-left: 10px"
+        >Bienvenid@ a SchoolRoom</h1>  
+        <br> 
+    
+        <p class="font-weight-regular text-left " style = "padding-left: 80px;">
       <strong>Codigo:</strong>
       {{currentUser.id}}
-    </p>
-    <p>
+      </p>
+      <p class="font-weight-regular text-left" style = "padding-left: 80px">
       <strong>Nombres:</strong>
       {{currentUser.nombres}}
-    </p>
-    <p>
-      <strong>Apellidos:</strong>
-      {{currentUser.apellidos}}
-    </p>
-    <p>
-      <strong>Correo de Usuario:</strong>
-      {{currentUser.email}}
-    </p>
+      </p>
+      <p class="font-weight-regular text-left" style = "padding-left: 80px">
+        <strong>Apellidos:</strong>
+        {{currentUser.apellidos}}
+      </p>
+      <p class="font-weight-regular text-left" style = "padding-left: 80px">
+        <strong>Correo de Usuario:</strong>
+        {{currentUser.email}}
+      </p>
+      <p class="text-left" style = "padding-left: 80px">
     <ul>
       <!-- <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li> -->
       <li>{{currentUser.role}}</li>
     </ul>
-    <v-btn class tile outlined dark color="white" @click="ena">
-        <v-icon left>mdi-folder-plus</v-icon>Modificar Datos
+      </p>
+      <br>
+      <p class="text-left" style = "padding-left: 50px">
+    <v-btn class tile outlined dark style="border-radius: 10px" color="white" @click="ena">
+        <v-icon center  >mdi-folder-plus</v-icon>Modificar Datos
     </v-btn>  
+      </p>
       </v-col>
     </v-row>
+
   </v-parallax>
 
   <template v-if="this.si == true">
-    <v-card class="mx-auto mt-1" max-width="1000">
+    <v-card class="mx-auto mt-12" max-width="1000">
     <v-card-title>
       <h2 class="text-center">Modificar Datos</h2>
     </v-card-title>

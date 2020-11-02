@@ -1,21 +1,27 @@
 <template>
-  <v-container id="signinup-form" class="fill-height">
+  <v-container id="signinup-form" class="fill-height" >
     <v-row align="center" justify="center" no-gutters>
-      <v-col cols="12" sm="8" md="8" class="">
-        <v-card class="evelation-12 card">
+      <v-col cols="12" sm="8" md="8" class="" >
+        <v-card class="evelation-12 card" >
           <v-window v-model="step">
             <!--SignIn-->
-            <v-window-item :value="1">
-              <v-row class="">
-                <v-col cols="12" md="8" class="pt-6 pb-6">
+            
+            <v-window-item :value="1" style="border-radius: 50px">
+              
+              <v-row class="" style=" background-color: #82b1ff2e">
+                
+                <v-col cols="12" md="8" class="pt-6 pb-6" >
                   <v-card-text>
                     <v-form class="signup-form-form" name="form" @submit.prevent="handleLogin">
-                      <h1
-                        class="text-center display-1 mb-10"
-                        :class="`${bgColor}--text`"
+                      <h6
+                        class="text-center display-1 mb-10"                        
+                        style="color: #4A148C"
                       >
-                        Iniciar Sesion
-                      </h1>
+                       <p class="font-weight-medium">
+                      Iniciar Sesion
+                      </p>
+                      
+                      </h6>
                       <!-- cambie aqui -->
                       <v-text-field
                         v-model="user.email"
@@ -37,9 +43,8 @@
                         :color="bgColor"
                       />
                       <div class="text-center mt-6">
-                        <v-btn type="submit" large :color="bgColor" dark
-                          >Entrar</v-btn
-                        >
+                        <v-btn type="submit" large color="#4A148C" dark
+                          >Entrar</v-btn >
                       </div>
                       <br>
                   <v-alert color="red lighten-3" v-if="this.message != ''"><h3 class="text-center">{{message}}</h3></v-alert>
@@ -48,27 +53,35 @@
                     </v-form>
                   </v-card-text>
                 </v-col>
+                
                 <v-col
                   cols="12"
                   md="4"
                   class="darken-2 vcenter"
-                  :class="`${bgColor}`"
+                  style="
+                  border-radius: 20px;
+                  padding-bottom: 0px;
+                  padding-top: 0px;
+                  0px;padding-left: 0px"
+
                 >
-                  <div>
-                    <v-card-text :class="`${fgColor}--text`">
-                      <!-- <h1 class="text-center headline mb-3">SchoolRoom</h1>
+                 <v-img class="white--text align-end" style="border-radius: 5px" height="386px" width="214.8px" src="../assets/44.jpg"></v-img>
+                 <!-- <div>                                        
+                      <v-card-text :class="`${fgColor}--text`">
+                      <h1 class="text-center headline mb-3">SchoolRoom</h1>
                       <h4 class="text-center overline mb-3">
                         Bienvenid@
-                      </h4> -->
-                      <v-img class="white--text align-end" height="250px" width="250px" src="../assets/7.png"></v-img>
+                      </h4>
                       <h4 class="text-center overline mb-3" black>
                         Bienvenid@
-                      </h4>
-                    </v-card-text>
+                      </h4>                       
+                       </v-card-text>                                            
+                    
                     <div class="text-center mb-6">
-                      <!--  <v-btn dark outlined @click="step = 2">Sign Up</v-btn> -->
+                        <v-btn dark outlined @click="step = 2">Sign Up</v-btn> 
                     </div> 
-                  </div>
+                  </div> -->
+
                 </v-col>
               </v-row>
             </v-window-item>
