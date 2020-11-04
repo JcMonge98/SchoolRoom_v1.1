@@ -1,3 +1,4 @@
+///nuevo
 cargarGrados() {
       var grado = this.inscripcion.grado;
       var i = "";
