@@ -1,5 +1,5 @@
 <template>
-  <v-data-table
+  <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     :search="buscar"
@@ -7,7 +7,7 @@
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
           <h3 class="text-center">Listado de Docentes</h3>
         </v-toolbar-title>

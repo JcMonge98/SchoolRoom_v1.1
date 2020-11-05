@@ -154,9 +154,9 @@
         <br />
       </v-col>
     </v-row>   -->
-    <v-row no-gutters>
-      <v-col cols="12">
-        <v-data-table
+    <v-row no-gutters >
+      <v-col cols="12" >
+        <v-data-table style="border-radius: 15px;margin-top: 4px;"
           :headers="headers"
           :items="desserts"
           :search="buscar"
@@ -164,7 +164,7 @@
         >
           <template v-slot:top>
             <!-- encabezado de la tabla -->
-            <v-toolbar flat color>
+            <v-toolbar flat color style="border-radius: 15px">
               <v-toolbar-title>
                 <h3 class="text-center">Listado de Aulas</h3>
               </v-toolbar-title>

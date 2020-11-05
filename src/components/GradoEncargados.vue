@@ -57,14 +57,14 @@
 
     <v-row>
       <v-col cols="12" sm="12">
-        <v-data-table
+        <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     class="elevation-5 mr-12 ml-12 mt-2 mb-12"
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
           <h3 class="text-center">Personas</h3>
         </v-toolbar-title>

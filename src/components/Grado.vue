@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-row>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" sm="12" >
         <!-- __________________________________________________ formulario temporal ____________________________________________________-->
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">

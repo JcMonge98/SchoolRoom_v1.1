@@ -1,13 +1,14 @@
 <template>
-  <v-card class="mx-auto mt-12" max-width="1000">
+  <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px; background-color: #82b1ff2e">
     <v-card-title>
-      <h2 class="text-center">Fomulario Registrar Usuarios</h2>
+      <h2 class="text-center font-weight-medium" style="color: #4A148C">Fomulario Registrar Usuarios</h2>
     </v-card-title>
     <v-form class="mr-5 ml-5 mt-5 mb-12" name="form" @submit.prevent="handleRegister">
       <v-row>
         <v-col cols="4" sm="4"></v-col>
         <v-col cols="4" sm="4">
           <v-text-field
+            color="purple"
             v-model="codigoVerificacion"
             name="codigo"
             :rules="RolTexto"
@@ -16,7 +17,7 @@
         </v-col>
         <v-col cols="4" sm="4">
           <v-btn
-            color="green darken-1"
+            color="#4A148C"
             outlined
             text
             @click="verificar()"

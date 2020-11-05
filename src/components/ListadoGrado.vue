@@ -1,14 +1,14 @@
 <template>
-<v-container>
-  <v-data-table
+<v-container  >
+  <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     :search="buscar"
     class="elevation-5 mr-12 ml-12 mt-8"
   >
-    <template v-slot:top>
+    <template v-slot:top  >
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px" >
         <v-toolbar-title>
           <h3 class="text-center">Listado de Grados</h3>
         </v-toolbar-title>
@@ -84,15 +84,15 @@
   <br><br>
   <!-- T____________________________________abla Secciones _______________________________________________- -->
   
-  <v-data-table
+  <v-data-table style="border-radius: 15px"
     :headers="headersS"
     :items="dessertsS"
     :search="buscar2"
     class="elevation-5 mr-12 ml-12 mt-4"
   >
-    <template v-slot:top>
+    <template v-slot:top >
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
           <h3 class="text-center">Listado de Secciones</h3>
         </v-toolbar-title>

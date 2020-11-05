@@ -1,12 +1,12 @@
 <template>
-  <v-container id="signinup-form" class="fill-height" >
-    <v-row align="center" justify="center" no-gutters>
-      <v-col cols="12" sm="8" md="8" class="" >
-        <v-card class="evelation-12 card" >
-          <v-window v-model="step">
+  <v-container id="signinup-form" class="fill-height"  >
+    <v-row align="center" justify="center" no-gutters >
+      <v-col cols="12" sm="8" md="8" class=""  >
+        <v-card class="evelation-12 card" style="border-radius: 20px" >
+          <v-window v-model="step" >
             <!--SignIn-->
             
-            <v-window-item :value="1" style="border-radius: 50px">
+            <v-window-item :value="1" >
               
               <v-row class="" style=" background-color: #82b1ff2e">
                 
@@ -44,6 +44,7 @@
                       />
                       <div class="text-center mt-6">
                         <v-btn type="submit" large color="#4A148C" dark
+                         style="border-radius: 5px"
                           >Entrar</v-btn >
                       </div>
                       <br>
@@ -58,14 +59,15 @@
                   cols="12"
                   md="4"
                   class="darken-2 vcenter"
-                  style="
-                  border-radius: 20px;
+                  style="                  
                   padding-bottom: 0px;
                   padding-top: 0px;
-                  0px;padding-left: 0px"
+                  0px;padding-left: 0px;
+                 padding-right: 0px;"
+                  
 
                 >
-                 <v-img class="white--text align-end" style="border-radius: 5px" height="386px" width="214.8px" src="../assets/44.jpg"></v-img>
+                 <v-img class="white--text align-end" style="border-radius: 20px" height="386px" width="214.8px" src="../assets/44.jpg"></v-img>
                  <!-- <div>                                        
                       <v-card-text :class="`${fgColor}--text`">
                       <h1 class="text-center headline mb-3">SchoolRoom</h1>

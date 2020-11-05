@@ -88,7 +88,7 @@
         
         <v-list-item link :to="{name:'ListadoAula'}" v-if="showAdminBoard">
           <v-list-item-icon>
-            <v-icon class="pb-4 pt-6">mdi-sitemap</v-icon>
+            <v-icon class="pb-4 pt-6">meeting_room</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title class="pb-4 pt-4">Aulas</v-list-item-title>
