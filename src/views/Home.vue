@@ -9,9 +9,18 @@
         transition="fade-transition"
       ></v-carousel-item>
     </v-carousel>
+    <div class="container">
+      <div v-row>
+        <div v-col cols="12" sm="">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading"></h2>
+        </div>
+      </div>
+    </div>
     <v-row>
       <v-col cols="12" sm="6">
-        <h3 class="ml-8 mt-4 ">
+        <!--<h3 class="ml-8 mt-4 ">
           ***Siempre positivas
           Ante la adversidad, una actitud positiva es siempre la mejor respuesta.
           Descárgate gratis la Guía práctica #YoMeQuedoEnCasa con todo lo que necesitas
@@ -28,31 +37,81 @@
           <br><br>
           Es posible recuperarse de una derrota, pero cuesta más perdonarse a uno mismo por no haberlo intentado (George Edward Woodberry)
           <br><br>
-        </h3>
+        </h3>-->
+        <div class="container">
+          <h1 p class="text-center"><br>¿Qué es SchoolRoom?</h1>
+        <p class="text-md-center font-italic">
+          <br>
+          <br>
+          Es una herramienta desarrollada para mejorar la comunicación por y para los docentes y padres de familia
+        </p>
+        </div>
       </v-col>
       <v-col cols="12" sm="6">
-         <v-img src="https://s1.significados.com/foto/online-3412473-640_bg.jpg" width="600" aspect-ratio="1.7" class="ml-12 mt-12" style="border-radius: 28px; padding-rigth:100px"></v-img>
+         <v-img src="https://images.assetsdelivery.com/compings_v2/stockasso/stockasso1507/stockasso150700266.jpg" width="600" aspect-ratio="1.7" class="ml-12 mt-12" style="border-radius: 28px; padding-rigth:100px"></v-img>
       </v-col>
     </v-row>
     <v-row>
+      <div class="container">
+      <div v-row>
+        <div v-col cols="12" sm="">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading"></h2>
+        </div>
+      </div>
+       </div>
       <v-col cols="12" sm="6">
-        <v-img src="https://www.doctorponce.com/wp-content/uploads/2019/06/doctor-ponce-1024x678.jpg" class="ml-12" style="border-radius: 28px; padding-rigth:100px" width="600" aspect-ratio="1.7"></v-img>
+        <v-img src="https://i0.wp.com/braibook.com/wp-content/uploads/2018/10/Sugerencias-para-maestros-que-atienden-alumnos-ciegos-a-nivel-licenciatura.png?fit=615%2C290&ssl=1" class="ml-12" style="border-radius: 28px; padding-rigth:100px" width="600" aspect-ratio="1.7"></v-img>
       </v-col>
       <v-col cols="12" sm="6">
-         <h3 class="mr-8 mt-4 mb-12">
-          ***Momentos de crisis nos ayudan a tomar consciencia de lo pequeño que es el 
-          ser humano y la importancia de disfrutar al máximo cada día.
-          <br><br>
-          ***Los libros son peligrosos. Los mejores deberían ser etiquetados con un "Esto podría cambiar tu vida" (Helen Exley)
-          <br><br>
-          ***La juventud es el momento de estudiar la sabiduría; la vejez, el de practicarla (Jean Jacques Rousseau)
-          <br><br>
-          ***Aprender sin pensar es inútil. Pensar sin aprender, peligroso (Confucio)
-          <br><br>
-          ***Emplea todos tus esfuerzos, incluso cuando las posibilidades jueguen en tu contra (Arnold Palmer)
-          <br><br>
-          ***Ponte objetivos arduos y no pares hasta llegar ahí (Bo Jackson)
-        </h3>
+         <v-row>
+            <div class="container">
+              <h1 p class="text-center"><br>¿Cómo funciona?</h1>
+            <p class="text-md-left font-italic">
+              <br>
+              <br>
+              Los profesores publicaran las tareas o actividades que lleven tus hijos a casa, podrás estar al pediente de su vida academica 
+              y además, puedes consultar en caso de 
+              dudas dejando un comentario al respecto.
+            </p>
+            </div>
+         </v-row>
+      </v-col>
+    </v-row>
+        <div class="container">
+      <div v-row>
+        <div v-col cols="12" sm="">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading"></h2>
+        </div>
+      </div>
+    </div>
+
+    <v-row>
+      <v-col cols="12" sm="6">
+        <div class="container">
+          <h1 p class="text-center"><br>¡Ayuda extra!</h1>
+        <p class="text-md-center font-italic">
+              <br>
+              <br>
+              1-  Solo tienes que ingresar el correo que te fue entregado y la contraseña por default que te etregaron 
+              en el centro escolar Carlos Arnulfo Crespín (recuerda no compartir esto con nadie que no sea de tu confianza)
+              <br>
+              <br>
+              2- Personaliza con colocar tus datos personales
+              <br>
+              <br>
+              3- Ahora inscribe el código del grado actual de tu hijo o hija
+              <br>
+              <br>
+              4- ¡¡¡LISTO!!! Ahora 
+        </p>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="6">
+         <v-img src="https://resources.news.e.abb.com/images/2019/2/20/0/small-ABB_EB_KAMILA_IT_19.jpg" width="600" aspect-ratio="1.7" class="ml-12 mt-12" style="border-radius: 28px; padding-rigth:100px"></v-img>
       </v-col>
     </v-row>
   </v-content>

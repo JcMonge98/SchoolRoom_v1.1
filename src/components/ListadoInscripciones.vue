@@ -16,7 +16,7 @@
           <v-btn color="cyan" dark class="mb-2" @click="buscarGrado()">Buscar por Aula</v-btn>
         </v-col>
   </v-row> -->
-  <v-data-table
+  <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     :search="buscar"
@@ -24,7 +24,7 @@
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
           <h3 class="text-center">Inscripciones de Aulas</h3>
         </v-toolbar-title>

@@ -5,7 +5,7 @@
     style="height: 500px;margin-left: 343px;
     margin-right: 343px;
     margin-top: 100px;
-    border-radius: 10px"
+    border-radius: 15px"
   
     src="../assets/11.jpg"
     
@@ -53,7 +53,7 @@
     </ul>
       </p>
       <br>
-      <p class="text-left" style = "padding-left: 50px">
+      <p class="text-left" style = "padding-left: 50px" >
     <v-btn class tile outlined dark style="border-radius: 10px" color="white" @click="ena">
         <v-icon center  >mdi-folder-plus</v-icon>Modificar Datos
     </v-btn>  
@@ -64,9 +64,9 @@
   </v-parallax>
 
   <template v-if="this.si == true">
-    <v-card class="mx-auto mt-12" max-width="1000">
+    <v-card class="mx-auto mt-12" max-width="1000" style="background-color: #82b1ff2e; border-radius: 15px">
     <v-card-title>
-      <h2 class="text-center">Modificar Datos</h2>
+      <h2 class="text-center font-weight-medium" style="color: #4A148C">Modificar Datos</h2>
     </v-card-title>
     <v-form class="mr-5 ml-5  mb-10" name="form" >
       <v-row>
@@ -151,8 +151,9 @@
       dark
         class="mr-4 mb-8 mt-8"
         color="purple"
+        style="border-radius: 5px"
         outlined @click="save" v-if="password != '' && password === confirmar && lastpassword != ''">Actualizar</v-btn>
-      <v-btn class="mr-4 mb-8 mt-8 ml-12" color="green" outlined :to="{name:'Home'}" @click="ena2" >Ir a Inicio</v-btn>
+      <v-btn class="mr-4 mb-8 mt-8 ml-12" style="border-radius: 5px" color="green" outlined :to="{name:'Home'}" @click="ena2" >Ir a Inicio</v-btn>
       </v-row>
     </v-form>
   </v-card>
