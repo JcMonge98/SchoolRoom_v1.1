@@ -1,11 +1,11 @@
 <template>
-  <v-content>
+  <v-content >
     <v-row>
-      <v-col cols="12" sm="12" >
+      <v-col cols="12" sm="12"  >
         <!-- __________________________________________________ formulario temporal ____________________________________________________-->
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="500px" >
           <template v-slot:activator="{ on }">
-            <div class="offset-1">
+            <div class="offset-1" >
               <v-btn
                 @click="llenarCombo"
                 color="cyan lighten-1"
@@ -56,7 +56,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="12" v-for="(gradi, index) in grados" :key="index">
-        <div cols="12" sm="12" class="text-center">
+        <div cols="12" sm="12" class="text-center" >
           <v-chip class="ma-2" color="purple lighten-1" outlined x-large>
             <v-icon left>mdi-server-plus</v-icon>
             <strong>{{ gradi.grado.nombre }} "{{ gradi.seccion.nombre }}" Aula: {{ gradi.numero }}</strong>
@@ -95,15 +95,16 @@
 
 
     <v-row>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" sm="12" >
         <v-data-table
     :headers="headers"
     :items="desserts"
     class="elevation-5 mr-12 ml-12 mt-8"
+    style="border-radius: 15px"
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px" >
         <v-toolbar-title>
           <h3 class="text-center">Personas</h3>
         </v-toolbar-title>

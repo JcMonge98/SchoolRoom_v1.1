@@ -1,4 +1,5 @@
 <template>
+<v-img src="https://thumbs.dreamstime.com/b/libros-de-texto-con-una-manzana-roja-delante-un-tablero-tiza-en-blanco-128713770.jpg" gradient="to top right, rgba(100,125,205,.37), rgba(27,35,72,.7)"  max-height="720">
   <v-container id="signinup-form" class="fill-height"  >
     <v-row align="center" justify="center" no-gutters >
       <v-col cols="12" sm="8" md="8" class=""  >
@@ -92,6 +93,7 @@
       </v-col>
     </v-row>
   </v-container>
+  </v-img>
 </template>
 
 <script>
