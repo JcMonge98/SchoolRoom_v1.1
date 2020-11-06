@@ -259,7 +259,7 @@ export default {
     }, 
     //_________________ver_________________________
     initialize() {
-      var roles = Object.assign("5efb6e28cc97240017ce786e");
+      var roles = Object.assign("5fa4e914955045001760eb70");
       console.log(roles);
       UserService.getEncargados(roles)
         .then(res => {

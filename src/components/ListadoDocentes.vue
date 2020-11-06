@@ -360,7 +360,7 @@ export default {
     }, 
     //_________________ver_________________________
     initialize() {
-      var roles = Object.assign("5efb6e28cc97240017ce786f");
+      var roles = Object.assign("5fa4e914955045001760eb71");
       console.log(roles);
       UserService.getDocentes(roles)
         .then((res) => {
