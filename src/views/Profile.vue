@@ -1,15 +1,18 @@
 <template> 
-<v-content>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
+<v-content >
   <v-parallax 
     dark
     style="height: 500px;margin-left: 343px;
     margin-right: 343px;
     margin-top: 100px;
-    border-radius: 15px"
+    border-radius: 20px;
+    opacacity: 80px"
+    src="../assets/33.jpg"
   
-    src="../assets/11.jpg"
+   
     
-  >
+  > 
 
     <v-row 
       align="center"
@@ -19,8 +22,8 @@
     
       <v-img cols="10" style="border-radius: 10px"
             src="../assets/perfil.jpg"
-            max-height="170"
-            max-width="170"
+            max-height="170px"
+            max-width="170px"
           ></v-img> 
 
       <v-col class="text-center" cols="6">
@@ -30,23 +33,23 @@
         >Bienvenid@ a SchoolRoom</h1>  
         <br> 
     
-        <p class="font-weight-regular text-left " style = "padding-left: 80px;">
+        <p class="font-weight-regular text-left " style = "padding-left: 50px;">
       <strong>Codigo:</strong>
       {{currentUser.id}}
       </p>
-      <p class="font-weight-regular text-left" style = "padding-left: 80px">
+      <p class="font-weight-regular text-left" style = "padding-left: 50px">
       <strong>Nombres:</strong>
       {{currentUser.nombres}}
       </p>
-      <p class="font-weight-regular text-left" style = "padding-left: 80px">
+      <p class="font-weight-regular text-left" style = "padding-left: 50px">
         <strong>Apellidos:</strong>
         {{currentUser.apellidos}}
       </p>
-      <p class="font-weight-regular text-left" style = "padding-left: 80px">
+      <p class="font-weight-regular text-left" style = "padding-left: 50px">
         <strong>Correo de Usuario:</strong>
         {{currentUser.email}}
       </p>
-      <p class="text-left" style = "padding-left: 80px">
+      <p class="text-left" style = "padding-left: 50px">
     <ul>
       <!-- <li v-for="(role,index) in currentUser.roles" :key="index">{{role}}</li> -->
       <li>{{currentUser.role}}</li>
@@ -62,9 +65,10 @@
     </v-row>
 
   </v-parallax>
-
+ 
   <template v-if="this.si == true">
-    <v-card class="mx-auto mt-12" max-width="1000" style="background-color: #82b1ff2e; border-radius: 15px">
+    
+    <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px">
     <v-card-title>
       <h2 class="text-center font-weight-medium" style="color: #4A148C">Modificar Datos</h2>
     </v-card-title>
@@ -161,8 +165,11 @@
       </v-row>
     </v-form>
   </v-card>
+    
   </template>
+  
   </v-content>
+</v-img>
 </template>
 <script>
 import UserService from "../services/user.service";

@@ -1,4 +1,5 @@
 <template>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
   <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
@@ -9,7 +10,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center">Listado de Encargados</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Encargados</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -20,15 +21,15 @@
           label="Busqueda"
           single-line
           hide-details
-          color="cyan"
+          color="purple"
         ></v-text-field>
         <v-spacer></v-spacer>
         <!-- formulario temporal -->
-        <v-dialog v-model="dialog" max-width="1000px">
+        <v-dialog v-model="dialog" max-width="1000px" >
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on">Nuevo Encargado</v-btn>
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on">Nuevo Encargado</v-btn>
           </template>
-          <v-card>
+          <v-card style="border-radius: 15px">
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
@@ -129,6 +130,7 @@
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
     </template>
   </v-data-table>
+</v-img>
 </template>
 
 <script>

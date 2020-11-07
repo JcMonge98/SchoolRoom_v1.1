@@ -1,5 +1,6 @@
 <template>
-  <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px; background-color: #82b1ff2e">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+  <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px">
     <v-card-title>
       <h2 class="text-center font-weight-medium" style="color: #4A148C">Fomulario Registrar Usuarios</h2>
     </v-card-title>
@@ -110,6 +111,7 @@
     </v-alert>
     <!-- <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'ListadoEncargados'}">Cancelar</v-btn> -->
   </v-card>
+</v-img>
 </template>
 
 <script>
