@@ -110,8 +110,12 @@
             label="Apellidos"
           ></v-text-field>
         </v-col>
-      </v-row>
-      <v-row>
+      </v-row><v-checkbox
+              v-model="v0"
+              label="Cambiar Contraseña"
+              @click="verComentarios(card)"
+            ></v-checkbox>
+      <v-row v-if="v0==true">
         <v-col cols="12" sm="4">
           <v-text-field
             v-model="lastpassword"
@@ -165,6 +169,7 @@ import UserService from "../services/user.service";
 
 export default {
   data: () => ({
+    v0:false,
     si: false,
     nombres: "",
     id:"",
