@@ -1,4 +1,5 @@
 <template>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
 <v-content>
  <!--  <v-row v-if="currentUser.role == 'ROLE_ADMIN'">
     <v-col cols=4 class="offset-4">
@@ -26,7 +27,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center">Inscripciones de Aulas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Inscripciones de Aulas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -37,16 +38,16 @@
           label="Filtro"
           single-line
           hide-details
-          color="danger"
+          color="purple"
         ></v-text-field>
         <v-spacer></v-spacer>
 
         <!-- formulario temporal -->
         <v-dialog v-model="dialog" max-width="900">
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_DOCENTE' || currentUser.role == 'ROLE_ADMIN'">Inscribirse</v-btn>
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_DOCENTE' || currentUser.role == 'ROLE_ADMIN'">Inscribirse</v-btn>
           </template>
-          <v-card>
+          <v-card style="border-radius: 10px">
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
@@ -267,6 +268,7 @@
     </template>
   </v-data-table>
 </v-content>
+</v-img>
 </template>
 
 <script>

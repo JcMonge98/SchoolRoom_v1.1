@@ -1,9 +1,10 @@
 <template>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
   <v-content>
     <v-row>
       <div class="offset-1 pt-8">
         <v-btn
-          color="purple lighten-1"
+          color="#3F51B5"
           dark
           class="mb-2 mx-auto ml-8"
           @click="borrarStorage()"
@@ -19,7 +20,7 @@
     <v-row>
       <v-col cols="12" sm="12" v-for="(gradi, index) in grados" :key="index">
         <div cols="12" sm="12" class="text-center">
-          <v-chip class="ma-2" color="purple lighten-1" outlined x-large>
+          <v-chip class="ma-2" color="blue lighten-5" outlined x-large>
             <v-icon left>mdi-server-plus</v-icon>
             <strong>{{ gradi.grado.nombre }} "{{ gradi.seccion.nombre }}" Aula: {{ gradi.numero }}</strong>
           </v-chip>
@@ -43,8 +44,8 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <div class="text-center">
-                    <v-btn color="purple" text @click="llevarDetalle(detalle)">Entrar</v-btn>
+                  <div class="text-center font-weight-bold">
+                    <v-btn color="#4A148C" text @click="llevarDetalle(detalle)">Entrar</v-btn>
                   </div>
                 </v-card-actions>
               </v-card>
@@ -66,7 +67,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center">Personas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Personas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
@@ -81,6 +82,7 @@
       </v-col>
     </v-row>
   </v-content>
+</v-img>
 </template>
 <script>
 import detalleService from "../services/detalleService";

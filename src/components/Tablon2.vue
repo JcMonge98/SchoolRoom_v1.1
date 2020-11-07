@@ -1,12 +1,16 @@
 <template v-slot:top>
+
   <v-row dense>
-    <v-col cols="12">
+    <v-col cols="12" >
       
-        <v-card  class="mr-5 ml-5 mt-8">
+        <v-card  class="mr-5 ml-5 mt-8" style="border-radius: 15px"> 
+          <v-img style="border-radius: 15px" height="240px" width="1644.4px" src="../assets/111.jpg">
+
           <v-card-title
             class="headline"
             v-for="(detalle, index) in detalles"
             :key="index"
+            
           >
             <v-row>
               <v-col cols="12" sm="12">
@@ -24,7 +28,9 @@
                 </h5>
               </v-col>
             </v-row>
+            
             <v-btn
+            style="border-radius: 10px"
               class="offset-md-10"
               tile
               outlined
@@ -33,9 +39,10 @@
               @click="borrarStorage()"
               v-if="currentUser.role == 'ROLE_DOCENTE'"
             >
-              <v-icon left>mdi-arrow-left-bold</v-icon>Volver
+              <v-icon left >mdi-arrow-left-bold</v-icon>Volver
             </v-btn>
             <v-btn
+            style="border-radius: 10px"
               class="offset-md-10"
               tile
               outlined
@@ -47,12 +54,13 @@
                   currentUser.role == 'ROLE_ADMIN'
               "
             >
-              <v-icon left>mdi-folder-plus</v-icon>Volver
+              <v-icon left >mdi-folder-plus</v-icon>Volver
             </v-btn>
             <!-- **********************************  showDialog Nuevo **************************************** -->
-            <v-dialog v-model="dialog" max-width="500px">
+            <v-dialog v-model="dialog" max-width="500px" >
               <template v-slot:activator="{ on }">
                 <v-btn
+                style="border-radius: 10px"
                   class
                   tile
                   outlined
@@ -68,14 +76,14 @@
                   <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
                 </v-btn>
               </template>
-              <v-card>
-                <v-form ref="nuevaP" :lazy-validation="lazy">
-                  <v-card-title>
+              <v-card style="border-radius: 10px">
+                <v-form ref="nuevaP" :lazy-validation="lazy" >
+                  <v-card-title  >
                     <span class="headline">Nueva Publicación</span>
                   </v-card-title>
                   <v-card-text>
-                    <v-container>
-                      <v-textarea
+                    <v-container  >
+                      <v-textarea style="border-radius: 5px"
                         v-model="publicacion.descripcion"
                         :rules="RolTexto"
                         outlined
@@ -188,6 +196,7 @@
           </v-card-title>
           <h4 class="ml-4"></h4>
           <v-card-subtitle class="mt-0"></v-card-subtitle>
+          </v-img>
         </v-card>
     
     </v-col>

@@ -1,4 +1,5 @@
 <template>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
 <v-container  >
   <v-data-table style="border-radius: 15px"
     :headers="headers"
@@ -10,7 +11,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px" >
         <v-toolbar-title>
-          <h3 class="text-center">Listado de Grados</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Grados</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) 
@@ -28,11 +29,11 @@
         <!-- formulario temporal -->
         <v-dialog v-model="dialog" max-width="500px" style="color:purple">
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on">Nuevo Grado</v-btn>
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on">Nuevo Grado</v-btn>
           </template>
-          <v-card>
+          <v-card style="border-radius: 10px">
             <v-form ref="form" :lazy-validation="lazy">
-              <v-card-title>
+              <v-card-title >
                 <span class="headline">{{ formTitle }}</span>
               </v-card-title>
               <v-card-text>
@@ -94,7 +95,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center">Listado de Secciones</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Secciones</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) 
@@ -112,9 +113,9 @@
         <!-- formulario temporal -->
         <v-dialog v-model="dialogS" max-width="500px" style="color:purple">
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on">Nueva Seccion</v-btn>
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on">Nueva Seccion</v-btn>
           </template>
-          <v-card>
+          <v-card style="border-radius: 10px">
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
                 <span class="headline">{{ formTitleS }}</span>
@@ -162,6 +163,7 @@
   </v-data-table>
   <br>
   </v-container>
+</v-img>
 </template>
 
 <script>

@@ -1,15 +1,17 @@
 <template>
   <v-app style="background-color: #9e9e9e42">
     <!-- Encabezado-->
-    <v-card color="purple lighten-1" flat height="50px" tile>
-      <v-toolbar dense>
+    <v-card color="blue lighten-1" flat height="50px" tile>
+      <v-toolbar dense color="#E8EAF6">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>SchoolRoom</v-toolbar-title>
+        <v-toolbar-title>
+          <h3 class="text-center font-weight-bold">SchoolRoom</h3>
+          </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- menu de sesion-->
         
           <v-btn v-if="!currentUser" color="cyan" text to="/register">Registrarse</v-btn>
-          <v-btn v-if="!currentUser" color="purple" text to="/login">Iniciar Sesion</v-btn>
+          <v-btn v-if="!currentUser" color="#3F51B5" text to="/login">Iniciar Sesion</v-btn>
               
         <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="270" offset-x>
           <template v-slot:activator="{ on }">
@@ -46,13 +48,15 @@
 
     <!-- Menu desplegable izquierdo-->
     <!-- ***************************** Opciones de menu, del administrador ********************************** -->
-    <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list-item>
+    <v-navigation-drawer v-model="drawer" absolute temporary >
+      <v-list-item >
         <v-list-item-icon>
           <v-icon>mdi-home-city</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>SchoolRoom</v-list-item-title>
+          <v-list-item-title>
+            <h3 class="font-weight-black">SchoolRoom</h3>
+            </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-divider></v-divider>
