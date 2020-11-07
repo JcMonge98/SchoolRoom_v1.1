@@ -1,11 +1,13 @@
 <template>
 <v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
 <v-container  >
-  <v-data-table style="border-radius: 15px"
+  <v-row>
+    <v-col cols="6">
+      <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     :search="buscar"
-    class="elevation-5 mr-12 ml-12 mt-8"
+    class="elevation-5 mr-2 ml-2 mt-8"
   >
     <template v-slot:top  >
       <!-- encabezado de la tabla -->
@@ -82,14 +84,13 @@
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
     </template>
   </v-data-table>
-  <br><br>
-  <!-- T____________________________________abla Secciones _______________________________________________- -->
-  
-  <v-data-table style="border-radius: 15px"
+    </v-col>
+    <v-col cols="6">
+      <v-data-table style="border-radius: 15px"
     :headers="headersS"
     :items="dessertsS"
     :search="buscar2"
-    class="elevation-5 mr-12 ml-12 mt-4"
+    class="elevation-5 mr-2 ml-2 mt-8"
   >
     <template v-slot:top >
       <!-- encabezado de la tabla -->
@@ -161,6 +162,12 @@
       <v-btn color="accent" @click="initializeS">Refrescar</v-btn>
     </template>
   </v-data-table>
+    </v-col>
+  </v-row>
+  
+  <!-- T____________________________________abla Secciones _______________________________________________- -->
+  
+  
   <br>
   </v-container>
 </v-img>

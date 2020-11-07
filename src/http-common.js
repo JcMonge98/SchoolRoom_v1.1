@@ -11,15 +11,6 @@ export default axios.create({
 });
 
 
-
-
-
-
-
-
-
-
-
 /*import axios from "axios";
 
 let user = JSON.parse(localStorage.getItem('user'));

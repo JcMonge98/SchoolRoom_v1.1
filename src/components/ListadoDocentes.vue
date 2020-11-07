@@ -132,6 +132,7 @@
           </v-card>
           <!-- Cierre formulario temporal -->
         </v-dialog>
+
         <v-dialog v-model="dialog2" max-width="1000px">
           <v-card>
             <v-form ref="form" :lazy-validation="lazy">
@@ -158,7 +159,17 @@
                       ></v-text-field>
                     </v-col>
                   </v-row>
-                 <!-- <v-row>
+                  <v-row align="center" justify="center">
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="lastpassword"
+                        :rules="Rolpassword"
+                        label="Contraseña Administrador"
+                        type="password"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                <!--  <v-row>
                     <v-col cols="12" sm="6">
                       <v-text-field
                         v-model="usuario.email"
@@ -211,7 +222,8 @@
                   @click="editar"
                   v-if="
                       usuario.nombres.length != '' &&
-                      usuario.apellidos.length != '' "
+                      usuario.apellidos.length != '' &&
+                      lastpassword.length != '' "
                   >Modificar</v-btn
                 >
               </v-card-actions>
@@ -240,6 +252,7 @@ import UserService from "../services/user.service";
 export default {
   data: () => ({
     correo: { nombres: "junito", apellidos: "perez" },
+    lastpassword:"",
     buscar: "",
     buscar2: "",
     dialog: "",
@@ -362,7 +375,7 @@ export default {
     }, 
     //_________________ver_________________________
     initialize() {
-      var roles = Object.assign("5efb6e28cc97240017ce786f");
+      var roles = Object.assign("5fa4e914955045001760eb71");
       console.log(roles);
       UserService.getDocentes(roles)
         .then((res) => {
@@ -372,15 +385,6 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-      /*
-      UserService.getDocentes()
-        .then(res => {
-          this.desserts = Object.assign([this.editedIndex], res.data.usuario);
-          console.log(Object.assign([this.editedIndex], res.data.usuario));
-        })
-        .catch(e => {
-          console.log(e);
-        });*/
     },
     //__________________generar correo
     generarCorreo() {
@@ -468,6 +472,7 @@ export default {
         _id: this.usuario._id,
         nombres: this.usuario.nombres,
         apellidos: this.usuario.apellidos,
+        lastpassword: this.lastpassword,
         //email: this.usuario.email,
         //password: this.usuario.password,
         //role: this.usuario.roles,

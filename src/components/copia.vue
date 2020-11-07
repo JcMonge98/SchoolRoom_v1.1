@@ -1,206 +1,5 @@
 <template v-slot:top>
-
   <v-row dense>
-<<<<<<< HEAD
-    <v-col cols="12" >
-      
-        <v-card  class="mr-5 ml-5 mt-8" style="border-radius: 15px"> 
-          <v-img style="border-radius: 15px" height="240px" width="1644.4px" src="../assets/111.jpg">
-
-          <v-card-title
-            class="headline"
-            v-for="(detalle, index) in detalles"
-            :key="index"
-            
-          >
-            <v-row>
-              <v-col cols="12" sm="12">
-                <h2>{{ detalle.materia.nombre }}</h2>
-              </v-col>
-              <v-col cols="12" sm="12">
-                <h5>
-                  {{
-                    detalle.aula.grado.nombre +
-                      " Seccion: " +
-                      detalle.aula.seccion.nombre +
-                      " Aula: " +
-                      detalle.aula.numero
-                  }}
-                </h5>
-              </v-col>
-            </v-row>
-            
-            <v-btn
-            style="border-radius: 10px"
-              class="offset-md-10"
-              tile
-              outlined
-              dark
-              color="white"
-              @click="borrarStorage()"
-              v-if="currentUser.role == 'ROLE_DOCENTE'"
-            >
-              <v-icon left >mdi-arrow-left-bold</v-icon>Volver
-            </v-btn>
-            <v-btn
-            style="border-radius: 10px"
-              class="offset-md-10"
-              tile
-              outlined
-              dark
-              color="white"
-              @click="borrarStorage2()"
-              v-if="
-                currentUser.role == 'ROLE_ENCARGADO' ||
-                  currentUser.role == 'ROLE_ADMIN'
-              "
-            >
-              <v-icon left >mdi-folder-plus</v-icon>Volver
-            </v-btn>
-            <!-- **********************************  showDialog Nuevo **************************************** -->
-            <v-dialog v-model="dialog" max-width="500px" >
-              <template v-slot:activator="{ on }">
-                <v-btn
-                style="border-radius: 10px"
-                  class
-                  tile
-                  outlined
-                  dark
-                  color="white"
-                  v-on="on"
-                  v-if="
-                    currentUser.role == 'ROLE_ENCARGADO' ||
-                      currentUser.role == 'ROLE_ADMIN' ||
-                      currentUser.role == 'ROLE_DOCENTE'
-                  "
-                >
-                  <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
-                </v-btn>
-              </template>
-              <v-card style="border-radius: 10px">
-                <v-form ref="nuevaP" :lazy-validation="lazy" >
-                  <v-card-title  >
-                    <span class="headline">Nueva Publicación</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container  >
-                      <v-textarea style="border-radius: 5px"
-                        v-model="publicacion.descripcion"
-                        :rules="RolTexto"
-                        outlined
-                        label="Descripcion de tu publicación"
-                      ></v-textarea>
-                    </v-container>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" text @click="close1"
-                      >Cancelar</v-btn
-                    >
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="guardarPublicacion"
-                      v-if="publicacion.descripcion.length > 10"
-                      >Publicar</v-btn
-                    >
-                  </v-card-actions>
-                </v-form>
-              </v-card>
-            </v-dialog>
-          
-            <!-- **********************************  showDialog EDITAR **************************************** -->
-            <v-dialog v-model="dialog2" max-width="500px">
-              <v-card>
-                <v-form ref="nuevaP" :lazy-validation="lazy">
-                  <v-card-title>
-                    <span class="headline">Editar Publicación</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-container>
-                      <v-textarea
-                        v-model="publicacion.descripcion"
-                        :rules="RolTexto"
-                        outlined
-                        label="Descripcion de tu publicación"
-                      ></v-textarea>
-                    </v-container>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" text @click="close2"
-                      >Cancelar</v-btn
-                    >
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="editar"
-                      v-if="publicacion.descripcion.length > 10"
-                      >Editar</v-btn
-                    >
-                  </v-card-actions>
-                </v-form>
-              </v-card>
-            </v-dialog>
-            <!-- **********************************  showDialog Para docente **************************************** 
-            <v-dialog v-model="dialog2" max-width="900px">
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  class
-                  tile
-                  outlined
-                  dark
-                  color="white"
-                  v-on="on"
-                  v-if="currentUser.role == 'ROLE_ENCARGADO'"
-                >
-                  <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
-                </v-btn>
-              </template>
-              <v-card>
-                <v-toolbar flat color="cyan" dark>
-                  <v-toolbar-title>Publicar</v-toolbar-title>
-                </v-toolbar>
-                <v-tabs vertical>
-                  <v-tab> <v-icon left>mdi-animation</v-icon>Publicación </v-tab>
-
-                  <v-tab-item>
-                    <v-card flat>
-                      <v-form ref="form" :lazy-validation="lazy">
-                        <v-container>
-                          <v-textarea
-                            v-model="publicacion.descripcion"
-                            :rules="RolTexto"
-                            outlined
-                            label="Descripcion de tu publicación"
-                          ></v-textarea>
-                        </v-container>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                          color="blue darken-1"
-                          text
-                          @click="guardarPublicacion"
-                          v-if="publicacion.descripcion.length > 10"
-                          >Publicar</v-btn
-                        >
-                      </v-form>
-                    </v-card>
-                  </v-tab-item>
-                  <v-tab-item>
-                    <v-card flat>
-                      <v-card-text></v-card-text>
-                    </v-card>
-                  </v-tab-item>
-                </v-tabs>
-              </v-card>
-            </v-dialog> -->
-          </v-card-title>
-          <h4 class="ml-4"></h4>
-          <v-card-subtitle class="mt-0"></v-card-subtitle>
-          </v-img>
-        </v-card>
-    
-=======
     <v-col cols="12">
       <v-card color="#1F7087" dark class="mr-5 ml-5 mt-8">
         <v-card-title
@@ -336,7 +135,6 @@
         <h4 class="ml-4"></h4>
         <v-card-subtitle class="mt-0"></v-card-subtitle>
       </v-card>
->>>>>>> 992bb3893d3556d75aeec056afb616f88f1cded4
     </v-col>
     <!-- _______________________________  Esto se debe mostrar por cada tarea _________________________________________________________ -->
     <v-col
@@ -345,7 +143,7 @@
       md="8"
       class="offset-md-2"
       v-for="(card, index) in cards"
-      v-bind:key="index"
+      :key="index"
     >
       <v-card
         color
@@ -406,12 +204,14 @@
             </v-col>
           </v-row>
         </v-card-title>
+
         <v-divider></v-divider>
+
         <v-card-text class="mt-0">
           <h3>{{ card.descripcion }}</h3>
 
           <v-row class="ml-4 mt-3">
-            <v-btn tile text dark color="purple" @click="verComentarios(card)">
+            <v-btn tile text dark color="red" @click="verComentarios(card)">
               <v-icon left>mdi-share</v-icon>Ver Comentarios
             </v-btn>
 
@@ -503,64 +303,64 @@
   >
 </template>
 
-      <!-- <v-checkbox
-        v-model="v0"
-        label="Ver Comentarios"
-        @click="verComentarios(card)"
-      ></v-checkbox> -->
-    <!-- <v-banner  v-model="v0" single-line transition="slide-y-transition">
-        <div v-for="(comentario, index) in comentarios" :key="index">
-          <v-row dense v-if="card._id == comentario.publicacion" class="mb-2">
-            <v-avatar color="cyan" size="24" class="ml-6">
-              <v-icon dark small>mdi-account-circle</v-icon>
-            </v-avatar>
-            <h4 class="ml-2">
-              <strong>{{
-                comentario.inscripcion.usuario.nombres +
-                  " " +
-                  comentario.inscripcion.usuario.apellidos
-              }}</strong
-              >&nbsp;
-              <small>{{ comentario.fecha_comentario }}</small>
-              {{ comentario.descripcion }}
-            </h4>
-            <v-icon
-              class="ml-2"
-              small
-              color="red"
-              @click="deleteComentario(comentario, card)"
-              v-if="
-                (currentUser.role == 'ROLE_DOCENTE' &&
-                  currentUser.nombres ==
-                    comentario.inscripcion.usuario.nombres) ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  (currentUser.role == 'ROLE_ENCARGADO' &&
-                    currentUser.nombres ==
-                      comentario.inscripcion.usuario.nombres)
-              "
-              >mdi-delete</v-icon
-            >
-          </v-row>
-        </div>
-        <v-row dense>
-          <v-col cols="12" md="12" sm="12">
-            <v-textarea
-              auto-grow
-              rows="1"
-              row-height="15"
-              v-model="message"
-              :append-outer-icon="'mdi-send'"
-              clear-icon="mdi-close-circle"
-              clearable
-              label="Añadir Comentario"
-              type="text"
-              @click:append="toggleMarker"
-              @click:append-outer="guardarComentario(card)"
-              @click:clear="clearMessage"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-      </v-banner> -->
+            <!-- <v-checkbox
+              v-model="v0"
+              label="Ver Comentarios"
+              @click="verComentarios(card)"
+            ></v-checkbox> -->
+          <!-- <v-banner  v-model="v0" single-line transition="slide-y-transition">
+              <div v-for="(comentario, index) in comentarios" :key="index">
+                <v-row dense v-if="card._id == comentario.publicacion" class="mb-2">
+                  <v-avatar color="cyan" size="24" class="ml-6">
+                    <v-icon dark small>mdi-account-circle</v-icon>
+                  </v-avatar>
+                  <h4 class="ml-2">
+                    <strong>{{
+                      comentario.inscripcion.usuario.nombres +
+                        " " +
+                        comentario.inscripcion.usuario.apellidos
+                    }}</strong
+                    >&nbsp;
+                    <small>{{ comentario.fecha_comentario }}</small>
+                    {{ comentario.descripcion }}
+                  </h4>
+                  <v-icon
+                    class="ml-2"
+                    small
+                    color="red"
+                    @click="deleteComentario(comentario, card)"
+                    v-if="
+                      (currentUser.role == 'ROLE_DOCENTE' &&
+                        currentUser.nombres ==
+                          comentario.inscripcion.usuario.nombres) ||
+                        currentUser.role == 'ROLE_ADMIN' ||
+                        (currentUser.role == 'ROLE_ENCARGADO' &&
+                          currentUser.nombres ==
+                            comentario.inscripcion.usuario.nombres)
+                    "
+                    >mdi-delete</v-icon
+                  >
+                </v-row>
+              </div>
+              <v-row dense>
+                <v-col cols="12" md="12" sm="12">
+                  <v-textarea
+                    auto-grow
+                    rows="1"
+                    row-height="15"
+                    v-model="message"
+                    :append-outer-icon="'mdi-send'"
+                    clear-icon="mdi-close-circle"
+                    clearable
+                    label="Añadir Comentario"
+                    type="text"
+                    @click:append="toggleMarker"
+                    @click:append-outer="guardarComentario(card)"
+                    @click:clear="clearMessage"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+            </v-banner> -->
 <script>
 import moment from "moment"; //para fecha
 import publicacionService from "../services/publicacionService";
@@ -619,6 +419,18 @@ export default {
         });
     },
     initialize() {
+      /* var ca = [];
+      var detalle = JSON.parse(localStorage.getItem("id_detalle"));
+      publicacionService
+        .verPublicaciones(detalle)
+        .then((res) => {
+          ca = res.data.publicacion;
+          this.cards = ca.reverse();
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        }); */
+
       var ca = [];
       var detalle = JSON.parse(localStorage.getItem("id_detalle"));
       publicacionService
@@ -675,7 +487,17 @@ export default {
         });
     },
     verComentarios(card) {
-      
+      /*var publicacion = card._id;
+      publicacionService
+        .verComentarios(publicacion)
+        .then((res) => {
+          if (publicacion == res.data.comentario[0].publicacion) {
+            this.comentarios = res.data.comentario;
+          }
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        }); */
       this.dialogC = true;
       var publicacion = card._id;
       var ca = [];
@@ -689,6 +511,7 @@ export default {
               c.fecha_comentario = moment(date).format("DD/MM/YYYY - HH:mm A");
             });
             this.comentarios = ca;
+            this.dialogC = true;
           }
         })
         .catch((e) => {
@@ -754,12 +577,6 @@ export default {
       this.publicacion._id = "";
       this.publicacion.fecha_entrega = "";
     },
-    close3() {
-      this.dialog3 = false;
-      this.publicacion.descripcion = "";
-      this.publicacion._id = "";
-      this.publicacion.fecha_entrega = "";
-    },
     editar() {
       var data = {
         _id: this.publicacion._id,
@@ -815,9 +632,6 @@ export default {
     },
     dialog2(val) {
       val || this.close2();
-    },
-    dialogC(val) {
-      val || this.close3();
     },
   },
 };
