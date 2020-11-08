@@ -1,5 +1,6 @@
 <template>
-  <v-data-table
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+  <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
     :search="buscar"
@@ -7,9 +8,9 @@
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center">Listado de Materias</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Materias</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -20,18 +21,18 @@
           label="Busqueda"
           single-line
           hide-details
-          color="danger"
+          color="purple"
         ></v-text-field>
         <v-spacer></v-spacer>
 
         <!-- formulario temporal -->
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on }">
-            <v-btn color="purple" dark class="mb-2" v-on="on"
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on"
               >Nueva Materia</v-btn
             >
           </template>
-          <v-card>
+          <v-card style="border-radius: 10px">
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>
@@ -78,6 +79,7 @@
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
     </template>
   </v-data-table>
+</v-img>
 </template>
 
 <script>

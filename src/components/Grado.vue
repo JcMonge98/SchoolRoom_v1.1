@@ -1,11 +1,12 @@
 <template>
-  <v-content>
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
+  <v-content >
     <v-row>
-      <v-col cols="12" sm="12" >
+      <v-col cols="12" sm="12"  >
         <!-- __________________________________________________ formulario temporal ____________________________________________________-->
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="500px" >
           <template v-slot:activator="{ on }">
-            <div class="offset-1">
+            <div class="offset-1" >
               <v-btn
                 @click="llenarCombo"
                 color="cyan lighten-1"
@@ -17,7 +18,7 @@
                 "
               >Inscribir Materia</v-btn>
               <v-btn
-                color="purple lighten-1"
+                color="#3F51B5"
                 dark
                 class="mb-2 mx-auto ml-8"
                 @click="borrarStorage()"
@@ -56,8 +57,8 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="12" v-for="(gradi, index) in grados" :key="index">
-        <div cols="12" sm="12" class="text-center">
-          <v-chip class="ma-2" color="purple lighten-1" outlined x-large>
+        <div cols="12" sm="12" class="text-center" >
+          <v-chip class="ma-2" color="blue lighten-5" outlined x-large>
             <v-icon left>mdi-server-plus</v-icon>
             <strong>{{ gradi.grado.nombre }} "{{ gradi.seccion.nombre }}" Aula: {{ gradi.numero }}</strong>
           </v-chip>
@@ -95,17 +96,18 @@
 
 
     <v-row>
-      <v-col cols="12" sm="12">
+      <v-col cols="12" sm="12" >
         <v-data-table
     :headers="headers"
     :items="desserts"
     class="elevation-5 mr-12 ml-12 mt-8"
+    style="border-radius: 15px"
   >
     <template v-slot:top>
       <!-- encabezado de la tabla -->
-      <v-toolbar flat color>
+      <v-toolbar flat color style="border-radius: 15px" >
         <v-toolbar-title>
-          <h3 class="text-center">Personas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #4A148C">Personas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
@@ -121,6 +123,7 @@
     </v-row>
 
   </v-content>
+</v-img>
 </template>
 <script>
 import detalleService from "../services/detalleService";
