@@ -211,7 +211,7 @@
           <h3 class="ml-3 mr-6">{{ card.descripcion }}</h3>
           <v-row>
             <v-col cols="12" sm="12" md="12">
-              <v-checkbox v-model="card.index" label="Ver Comentarios"></v-checkbox> 
+              <v-checkbox v-model="card.index" label="Ver Comentarios" @click="verComentarios2()"></v-checkbox> 
             <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> -->
             </v-col><v-divider></v-divider>
             <v-col cols="12" sm="12" md="12">
@@ -324,7 +324,7 @@ export default {
   created() {
     this.initialize();
     this.mostrarDetalle();
-    this.verComentarios2();
+    //this.verComentarios2();
   },
 
   methods: {
@@ -357,6 +357,7 @@ export default {
             card.fecha_publicacion = moment(date).format(
               "DD/MM/YYYY - HH:mm A"
             );
+            card.index=false;
           });
           console.log(res.data.publicacion);
           //this.ca.fecha_publicacion = ;
@@ -397,7 +398,7 @@ export default {
           console.log(e);
         });
     },
-    verComentarios(card) {
+    /*verComentarios(card) {
       this.dialogC = true;
       var publicacion = card._id;
       var ca = [];
@@ -417,7 +418,7 @@ export default {
         .catch((e) => {
           console.log("neles", e);
         }); 
-    },
+    },*/
     verComentarios2() {
       var ca = [];
       publicacionService
