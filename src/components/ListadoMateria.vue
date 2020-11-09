@@ -1,5 +1,5 @@
 <template>
-<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
   <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
@@ -10,7 +10,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Materias</h3>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Listado de Materias</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -32,7 +32,7 @@
               >Nueva Materia</v-btn
             >
           </template>
-          <v-card style="border-radius: 10px">
+          <v-card style="border-radius: 15px">
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
                 <span class="headline">{{ formTitle }}</span>

@@ -1,5 +1,5 @@
 <template>
-<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
   <v-data-table style="border-radius: 15px"
     :headers="headers"
     :items="desserts"
@@ -10,7 +10,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Docentes</h3>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Listado de Docentes</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -21,7 +21,7 @@
           label="Busqueda"
           single-line
           hide-details
-          color="purple"
+          color="#1565C0"
         ></v-text-field>
         <v-spacer></v-spacer>
         <!-- formulario temporal -->
@@ -133,7 +133,7 @@
           <!-- Cierre formulario temporal -->
         </v-dialog>
 
-        <v-dialog v-model="dialog2" max-width="1000px">
+        <v-dialog v-model="dialog2" max-width="1000px" style="border-radius: 15px">
           <v-card>
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
@@ -217,7 +217,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
                 <v-btn
-                  color="orange darken-1"
+                  color="blue darken-1"
                   text
                   @click="editar"
                   v-if="

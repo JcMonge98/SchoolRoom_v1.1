@@ -1,5 +1,5 @@
 <template>
-<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
   <v-container>
    <!-- <v-row no-gutters>
       <v-col cols="6">
@@ -167,7 +167,7 @@
             <!-- encabezado de la tabla -->
             <v-toolbar flat color style="border-radius: 15px">
               <v-toolbar-title>
-                <h3 class="text-center font-weight-bold" style="color: #4A148C">Listado de Aulas</h3>
+                <h3 class="text-center font-weight-bold" style="color: #1A237E">Listado de Aulas</h3>
               </v-toolbar-title>
               <v-spacer></v-spacer>
               <!-- input de busqueda(filtro) -->
@@ -178,7 +178,7 @@
                 label="Busqueda"
                 single-line
                 hide-details
-                color="purple"
+                color="#1565C0"
               ></v-text-field>
               <v-spacer></v-spacer>
 
@@ -211,7 +211,7 @@
                     </v-col>
                   </v-row> -->
                         <v-row>
-                          <v-col cols="12" sm="4" md="4">
+                          <v-col cols="12" sm="4" md="4" >
                             <v-text-field
                               v-model="aula.numero"
                               :rules="RolTexto"

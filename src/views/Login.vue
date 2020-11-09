@@ -1,5 +1,5 @@
 <template>
-<v-img src="https://thumbs.dreamstime.com/b/libros-de-texto-con-una-manzana-roja-delante-un-tablero-tiza-en-blanco-128713770.jpg" gradient="to top right, rgba(100,125,205,.37), rgba(27,35,72,.7)"  max-height="720">
+<v-img src="https://thumbs.dreamstime.com/b/libros-de-texto-con-una-manzana-roja-delante-un-tablero-tiza-en-blanco-128713770.jpg" gradient="to top right, rgba(100,125,205,.37), rgba(27,35,72,.7)" >
   <v-container id="signinup-form" class="fill-height"  >
     <v-row align="center" justify="center" no-gutters >
       <v-col cols="12" sm="8" md="8" class=""  >
@@ -16,7 +16,7 @@
                     <v-form class="signup-form-form" name="form" @submit.prevent="handleLogin">
                       <h6
                         class="text-center display-1 mb-10"                        
-                        style="color: #4A148C"
+                        style="color: #1A237E"
                       >
                        <p class="font-weight-medium">
                       Iniciar Sesion
@@ -31,7 +31,7 @@
                         name="email"
                         append-icon="person"
                         type="text"
-                        :color="bgColor"
+                        color="#1565C0"
                       />
                       <!-- cambie aqui -->
                       <v-text-field
@@ -41,10 +41,10 @@
                         name="password"
                         append-icon="lock"
                         type="password"
-                        :color="bgColor"
+                        color="#1565C0"
                       />
                       <div class="text-center mt-6">
-                        <v-btn type="submit" large color="#4A148C" dark
+                        <v-btn type="submit" large color="#3F51B5" dark
                          style="border-radius: 5px"
                           >Entrar</v-btn >
                       </div>
