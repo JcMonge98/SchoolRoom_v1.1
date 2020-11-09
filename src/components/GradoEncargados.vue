@@ -33,19 +33,21 @@
           <template v-slot="{ hover }" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_ADMIN'">
             <v-form action>
               <v-card class="mx-auto" style="border-radius: 28px" :elevation="hover ? 24 : 2">
-                <v-img class="white--text align-end" height="200px" src="../assets/fondo.jpg">
-                   <v-card-title>
+                <v-img class="blanck--text center" height="200px" src="../assets/55.jpg">
+                   <br> <br> <br><v-card-title>
                     <h3>{{ detalle.materia.nombre }}</h3>
                   </v-card-title> 
-                  <v-card-subtitle class="pb-0 white--text mb-4">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
+                  <br>
+                  <v-card-subtitle class="pb-0 black--text ">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
                 </v-img>
+                <br>
                 <v-card-text class="text--primary">
                   <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia..!</div>
                 </v-card-text>
 
                 <v-card-actions>
                   <div class="text-center font-weight-bold">
-                    <v-btn color="#4A148C" text @click="llevarDetalle(detalle)">Entrar</v-btn>
+                    <v-btn color="#3F51B5"  text @click="llevarDetalle(detalle)">Entrar</v-btn>
                   </div>
                 </v-card-actions>
               </v-card>
@@ -67,7 +69,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #4A148C">Personas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Personas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>

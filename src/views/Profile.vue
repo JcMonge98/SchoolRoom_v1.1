@@ -8,8 +8,8 @@
     margin-top: 100px;
     border-radius: 20px;
     opacacity: 80px"
-    src="../assets/33.jpg"
-  
+
+    src="../assets/33.jpg" 
    
     
   > 
@@ -29,7 +29,7 @@
       <v-col class="text-center" cols="6">
 
         
-        <h1 class=" font-weight-medium text-left" style = "padding-left: 10px"
+        <h1 class=" font-weight-medium text-left" style = "padding-left: 1px"
         >Bienvenid@ a SchoolRoom</h1>  
         <br> 
     
@@ -70,7 +70,7 @@
     
     <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px">
     <v-card-title>
-      <h2 class="text-center font-weight-medium" style="color: #4A148C">Modificar Datos</h2>
+      <h2 class="text-center font-weight-medium" style="color: #1A237E">Modificar Datos</h2>
     </v-card-title>
     <v-form class="mr-5 ml-5  mb-10" name="form" >
       <v-row>
@@ -158,7 +158,7 @@
           <v-btn
       dark
         class="mr-4 mb-8 mt-8"
-        color="purple"
+        color="#3F51B5"
         style="border-radius: 5px"
         outlined @click="save" v-if="password != '' && password === confirmar && lastpassword != ''">Actualizar</v-btn>
       <v-btn class="mr-4 mb-8 mt-8 ml-12" style="border-radius: 5px" color="green" outlined :to="{name:'Home'}" @click="ena2" >Ir a Inicio</v-btn>

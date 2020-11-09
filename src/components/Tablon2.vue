@@ -1,7 +1,11 @@
 <template v-slot:top>
   <v-row dense>
     <v-col cols="12">
-      <v-card color="#1F7087" dark class="mr-5 ml-5 mt-8">
+      
+      <v-card class="mr-5 ml-5 mt-8" style="border-radius: 15px">
+        
+        <v-img style="border-radius: 15px" height="300px"  src="../assets/8.jpg">
+
         <v-card-title
           class="headline"
           v-for="(detalle, index) in detalles"
@@ -24,17 +28,19 @@
             </v-col>
           </v-row>
           <v-btn
+           style="border-radius: 10px"
             class="offset-md-10"
             tile
             outlined
             dark
-            color="white"
+            color="blue"
             @click="borrarStorage()"
             v-if="currentUser.role == 'ROLE_DOCENTE'"
           >
             <v-icon left>mdi-arrow-left-bold</v-icon>Volver
           </v-btn>
           <v-btn
+            style="border-radius: 10px"
             class="offset-md-10"
             tile
             outlined
@@ -52,6 +58,7 @@
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on }">
               <v-btn
+                style="border-radius: 10px"
                 class
                 tile
                 outlined
@@ -67,14 +74,14 @@
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
               </v-btn>
             </template>
-            <v-card>
+            <v-card style="border-radius: 10px">
               <v-form ref="nuevaP" :lazy-validation="lazy">
                 <v-card-title>
                   <span class="headline">Nueva Publicación</span>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
-                    <v-textarea
+                    <v-textarea style="border-radius: 5px"
                       v-model="publicacion.descripcion"
                       :rules="RolTexto"
                       outlined
@@ -88,6 +95,7 @@
                     >Cancelar</v-btn
                   >
                   <v-btn
+                    style="border-radius: 10px"
                     color="blue darken-1"
                     text
                     @click="guardarPublicacion"
@@ -100,6 +108,7 @@
           </v-dialog>
           <!-- **********************************  showDialog EDITAR **************************************** -->
           <v-dialog v-model="dialog2" max-width="500px">
+            
             <v-card>
               <v-form ref="nuevaP" :lazy-validation="lazy">
                 <v-card-title>
@@ -134,6 +143,7 @@
         </v-card-title>
         <h4 class="ml-4"></h4>
         <v-card-subtitle class="mt-0"></v-card-subtitle>
+        </v-img>
       </v-card>
     </v-col>
     <!-- _______________________________  Esto se debe mostrar por cada tarea _________________________________________________________ -->
