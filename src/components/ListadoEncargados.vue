@@ -123,8 +123,8 @@
     </template>
     <!-- Datos de la tabla -->
     <template v-slot:item.actions="{ item }">
-      <v-icon small color="orange" class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
-      <v-icon small color="red" @click="deleteItem(item)">mdi-delete</v-icon>
+      <v-icon  color="orange" class="mr-2" @click="AcualizarPassword(item)">mdi-refresh</v-icon>
+      <v-icon  color="red" @click="deleteItem(item)">mdi-delete</v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
@@ -319,6 +319,25 @@ export default {
       this.usuario.apellidos = item.apellidos;
       this.usuario.email = item.email;
       this.dialog = true;
+    },
+
+    AcualizarPassword(item){
+      this.editedIndex = this.desserts.indexOf(item);
+      var opcion = confirm("Estas seguro de querer Reestablecer contraseña de Usuario?");
+      if (opcion == true) {
+        UserService.reestablecerP(item._id)
+          .then((response) => {
+            console.log(response.data);
+            alert("Usuario reestablecido con éxito");
+            this.initialize();
+          })
+          .catch((e) => {
+            alert("Error al reestablecer");
+            console.log(e);
+          });
+      } else {
+        console.log("No se actualizo");
+      }
     },
     //metdo cerrar dialog
     close() {

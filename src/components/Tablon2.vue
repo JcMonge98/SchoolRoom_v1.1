@@ -1,5 +1,4 @@
 <template v-slot:top>
-  
   <v-row dense>
     <v-col cols="12">
       
@@ -20,10 +19,10 @@
               <h5>
                 {{
                   detalle.aula.grado.nombre +
-                  " Seccion: " +
-                  detalle.aula.seccion.nombre +
-                  " Aula: " +
-                  detalle.aula.numero
+                    " Seccion: " +
+                    detalle.aula.seccion.nombre +
+                    " Aula: " +
+                    detalle.aula.numero
                 }}
               </h5>
             </v-col>
@@ -50,7 +49,7 @@
             @click="borrarStorage2()"
             v-if="
               currentUser.role == 'ROLE_ENCARGADO' ||
-              currentUser.role == 'ROLE_ADMIN'
+                currentUser.role == 'ROLE_ADMIN'
             "
           >
             <v-icon left>mdi-folder-plus</v-icon>Volver
@@ -68,8 +67,8 @@
                 v-on="on"
                 v-if="
                   currentUser.role == 'ROLE_ENCARGADO' ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  currentUser.role == 'ROLE_DOCENTE'
+                    currentUser.role == 'ROLE_ADMIN' ||
+                    currentUser.role == 'ROLE_DOCENTE'
                 "
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
@@ -154,29 +153,36 @@
       md="8"
       class="offset-md-2"
       v-for="(card, index) in cards"
-      v-bind:key="index"
+      :key="card._id"
+      :item="card"
+      :index="index"
     >
       <v-card
         color
         elevation="5"
-        class="ml-12 mt-5 mr-12 mb-12"
+        class="ml-12 mt-2 mr-12 mb-3"
         style="border-radius: 20px"
-      > 
-        <v-card-title class="headline">
+      >
+        <v-card-title class="">
+          <v-avatar color="purple" size="32" class="ml-2">
+            <v-icon dark small>mdi-account-circle</v-icon>
+          </v-avatar>
+
           <v-row>
-            <v-avatar color="purple" size="32" class="ml-2">
-              <v-icon dark small>mdi-account-circle</v-icon>
-            </v-avatar>
-            <h5 class="ml-2">
-              {{
-                card.inscripcion.usuario.nombres +
-                " " +
-                card.inscripcion.usuario.apellidos
-              }}
-            </h5>
-            <br />
-            <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+            <v-col cols="12">
+              <h5 class="ml-2">
+                {{
+                  card.inscripcion.usuario.nombres +
+                    " " +
+                    card.inscripcion.usuario.apellidos
+                }}
+              </h5>
+            </v-col>
+            <v-col cols="12">
+              <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+            </v-col>
           </v-row>
+
           <v-row>
             <v-col cols="12">
               <v-btn
@@ -189,8 +195,8 @@
                 v-if="
                   (currentUser.role == 'ROLE_DOCENTE' &&
                     currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                  (currentUser.role == 'ROLE_ADMIN' &&
-                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                    (currentUser.role == 'ROLE_ADMIN' &&
+                      currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon small class>mdi-pencil</v-icon>Editar
@@ -205,9 +211,9 @@
                 v-if="
                   (currentUser.role == 'ROLE_DOCENTE' &&
                     currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  (currentUser.role == 'ROLE_ENCARGADO' &&
-                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                    currentUser.role == 'ROLE_ADMIN' ||
+                    (currentUser.role == 'ROLE_ENCARGADO' &&
+                      currentUser.nombres == card.inscripcion.usuario.nombres)
                 "
               >
                 <v-icon rigth>mdi-delete</v-icon>Eliminar
@@ -215,168 +221,95 @@
             </v-col>
           </v-row>
         </v-card-title>
-        <v-divider></v-divider>
-        <v-card-text class="mt-0">
-          <h3>{{ card.descripcion }}</h3>
-
-          <v-row class="ml-4 mt-3">
-            <v-btn tile text dark color="purple" @click="verComentarios(card)">
-              <v-icon left>mdi-share</v-icon>Ver Comentarios
-            </v-btn>
-
-            <template>
-              <v-row justify="center">
-                <v-dialog v-model="dialogC" width="600px">
-                  <v-card>
-                    <v-card-title>
-                      <span class="headline">Comentarios</span>
-                    </v-card-title>
-                    <v-card-text>
-                      <v-row
-                        v-for="(comentario, index) in comentarios"
-                        :key="index"
-                      >
-                        <v-col
-                          cols="12"
-                          dense
-                          v-if="card._id == comentario.publicacion"
-                          class="mb-1 mt-1"
-                        >
-                          <h4 class="ml-2">
-                            <v-avatar color="cyan" size="24" class="ml-2 mr-2">
-                              <v-icon dark small>mdi-account-circle</v-icon>
-                            </v-avatar>
-                            <strong>{{
-                              comentario.inscripcion.usuario.nombres +
-                              " " +
-                              comentario.inscripcion.usuario.apellidos
-                            }}</strong
-                            >&nbsp;
-                            <small>{{ comentario.fecha_comentario }}</small>
-                            {{ comentario.descripcion }}
-                            <v-icon
-                              class="ml-2"
-                              small
-                              color="red"
-                              @click="deleteComentario(comentario, card)"
-                              v-if="
-                                (currentUser.role == 'ROLE_DOCENTE' &&
-                                  currentUser.nombres ==
-                                    comentario.inscripcion.usuario.nombres) ||
-                                currentUser.role == 'ROLE_ADMIN' ||
-                                (currentUser.role == 'ROLE_ENCARGADO' &&
-                                  currentUser.nombres ==
-                                    comentario.inscripcion.usuario.nombres)
-                              "
-                              >mdi-delete</v-icon
-                            >
-                          </h4>
-                          <v-divider></v-divider>
-                        </v-col>
-                      </v-row>
-                      <v-row cols="12" md="12" sm="12">
-                        <v-textarea
-                          auto-grow
-                          rows="1"
-                          row-height="5"
-                          v-model="message"
-                          :append-outer-icon="'mdi-send'"
-                          clear-icon="mdi-close-circle"
-                          clearable
-                          label="Añadir Comentario"
-                          type="text"
-                          @click:append="toggleMarker"
-                          @click:append-outer="guardarComentario(card)"
-                          @click:clear="clearMessage"
-                        ></v-textarea>
-                      </v-row>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        color="orange darken-1"
-                        text
-                        @click="dialogC = false"
-                      >
-                        Cerrar
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-row>
-            </template></v-row
-          ></v-card-text
-        ></v-card
-      ></v-col
-    ></v-row>
-  
-</template>
-
-      <!-- <v-checkbox
-        v-model="v0"
-        label="Ver Comentarios"
-        @click="verComentarios(card)"
-      ></v-checkbox> -->
-    <!-- <v-banner  v-model="v0" single-line transition="slide-y-transition">
-        <div v-for="(comentario, index) in comentarios" :key="index">
-          <v-row dense v-if="card._id == comentario.publicacion" class="mb-2">
-            <v-avatar color="cyan" size="24" class="ml-6">
-              <v-icon dark small>mdi-account-circle</v-icon>
-            </v-avatar>
-            <h4 class="ml-2">
-              <strong>{{
-                comentario.inscripcion.usuario.nombres +
-                  " " +
-                  comentario.inscripcion.usuario.apellidos
-              }}</strong
-              >&nbsp;
-              <small>{{ comentario.fecha_comentario }}</small>
-              {{ comentario.descripcion }}
-            </h4>
-            <v-icon
-              class="ml-2"
-              small
-              color="red"
-              @click="deleteComentario(comentario, card)"
-              v-if="
-                (currentUser.role == 'ROLE_DOCENTE' &&
-                  currentUser.nombres ==
-                    comentario.inscripcion.usuario.nombres) ||
-                  currentUser.role == 'ROLE_ADMIN' ||
-                  (currentUser.role == 'ROLE_ENCARGADO' &&
-                    currentUser.nombres ==
-                      comentario.inscripcion.usuario.nombres)
-              "
-              >mdi-delete</v-icon
-            >
+        <v-card-text>
+          <h3 class="ml-3 mr-6">{{ card.descripcion }}</h3>
+          <v-row>
+            <v-col cols="12" sm="12" md="12">
+              <v-checkbox
+                v-model="card.index"
+                color="purple"
+                label="Ver Comentarios"
+                @click="verComentarios2(card)"
+              ></v-checkbox>
+              <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> --> </v-col
+            ><v-divider></v-divider>
+            <v-col cols="12" sm="12" md="12">
+              <v-banner
+                v-model="card.index"
+                single-line
+                transition="slide-y-transition"
+              >
+                <div v-for="(comentario, index) in comentarios" :key="index">
+                  <v-row
+                    dense
+                    v-if="card._id == comentario.publicacion"
+                    class="mb-4"
+                  >
+                    <v-avatar color="cyan" size="24" class="ml-1">
+                      <v-icon dark small>mdi-account-circle</v-icon>
+                    </v-avatar>
+                    <h4 class="ml-2">
+                      <strong>{{
+                        comentario.inscripcion.usuario.nombres +
+                          " " +
+                          comentario.inscripcion.usuario.apellidos
+                      }}</strong
+                      >&nbsp;
+                      <small>{{ comentario.fecha_comentario }}|</small>
+                    </h4>
+                    <h4 class="ml-3">
+                      {{ comentario.descripcion }}
+                    </h4>
+                    <v-icon
+                      class="ml-2"
+                      small
+                      color="red"
+                      @click="deleteComentario(comentario, card)"
+                      v-if="
+                        (currentUser.role == 'ROLE_DOCENTE' &&
+                          currentUser.nombres ==
+                            comentario.inscripcion.usuario.nombres) ||
+                          currentUser.role == 'ROLE_ADMIN' ||
+                          (currentUser.role == 'ROLE_ENCARGADO' &&
+                            currentUser.nombres ==
+                              comentario.inscripcion.usuario.nombres)
+                      "
+                      >mdi-delete</v-icon
+                    >
+                  </v-row>
+                </div>
+                <v-row>
+                  <v-col cols="12" md="12" sm="12">
+                    <v-textarea
+                      id="input"
+                      auto-grow
+                      rows="1"
+                      row-height="15"
+                      v-model="message"
+                      :append-outer-icon="'mdi-send'"
+                      clear-icon="mdi-close-circle"
+                      clearable
+                      label="Añadir Comentario"
+                      type="text"
+                      @click:append="toggleMarker"
+                      @click:append-outer="guardarComentario(card)"
+                      @click:clear="clearMessage"
+                    ></v-textarea>
+                  </v-col>
+                </v-row>
+              </v-banner>
+            </v-col>
           </v-row>
-        </div>
-        <v-row dense>
-          <v-col cols="12" md="12" sm="12">
-            <v-textarea
-              auto-grow
-              rows="1"
-              row-height="15"
-              v-model="message"
-              :append-outer-icon="'mdi-send'"
-              clear-icon="mdi-close-circle"
-              clearable
-              label="Añadir Comentario"
-              type="text"
-              @click:append="toggleMarker"
-              @click:append-outer="guardarComentario(card)"
-              @click:clear="clearMessage"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-      </v-banner> -->
+        </v-card-text>
+      </v-card> </v-col
+  ></v-row>
+</template>
 <script>
 import moment from "moment"; //para fecha
 import publicacionService from "../services/publicacionService";
 export default {
   data: () => ({
-    v0: false,
-
+    editedIndex: -1,
     message: "",
     marker: true,
     iconIndex: 0,
@@ -411,6 +344,7 @@ export default {
   created() {
     this.initialize();
     this.mostrarDetalle();
+    //this.verComentarios2();
   },
 
   methods: {
@@ -443,6 +377,7 @@ export default {
             card.fecha_publicacion = moment(date).format(
               "DD/MM/YYYY - HH:mm A"
             );
+            card.index = false;
           });
           console.log(res.data.publicacion);
           //this.ca.fecha_publicacion = ;
@@ -483,8 +418,7 @@ export default {
           console.log(e);
         });
     },
-    verComentarios(card) {
-      
+    /*verComentarios(card) {
       this.dialogC = true;
       var publicacion = card._id;
       var ca = [];
@@ -492,6 +426,7 @@ export default {
         .verComentarios(publicacion)
         .then((res) => {
           if (publicacion == res.data.comentario[0].publicacion) {
+            //this.dialogC = true;
             ca = res.data.comentario;
             ca.map((c) => {
               let date = new Date(c.fecha_comentario);
@@ -502,8 +437,33 @@ export default {
         })
         .catch((e) => {
           console.log("neles", e);
+        }); 
+    },*/
+    verComentarios2(card) {
+      var ca = [];
+      publicacionService
+        .verComentarios()
+        .then((res) => {
+          ca = res.data.comentario;
+          ca.map((c) => {
+            let date = new Date(c.fecha_comentario);
+            c.fecha_comentario = moment(date).format("DD/MM/YYYY - HH:mm A");
+          });
+          this.comentarios = ca;
+        })
+        .catch((e) => {
+          console.log("neles", e);
         });
     },
+    /* desplegar(card) {
+      if (card.id == this.comentarios.publicacion) {
+        this.v0 = true;
+      } 
+    },
+    ocultar(card) {
+      this.v0 = false;
+    },*/
+
     guardarComentario(card) {
       var data = {
         descripcion: this.message,
@@ -516,14 +476,15 @@ export default {
         .then((response) => {
           //alert("Publicacion realizada con éxito");
           this.message = "";
-          this.initialize();
-          this.verComentarios(card);
+          //this.initialize();
+          //this.verComentarios(card);
+          card.index = true;
+          this.verComentarios2();
         })
         .catch((e) => {
           console.log(e);
         });
     },
-
     deleteComentario(comentario, card) {
       const index = this.comentarios.indexOf(comentario);
       confirm("Estas seguro de querer eliminar el comentario?");
@@ -531,22 +492,16 @@ export default {
         .removeComentario(comentario._id)
         .then((response) => {
           alert("Se elimino con éxito");
-          this.initialize();
-          this.verComentarios(card);
+          //this.initialize();
+          //this.verComentarios(card);
+          card.index = true;
+          this.verComentarios2();
         })
         .catch((e) => {
           alert("No se pudo eliminar");
           console.log(e);
         });
     },
-
-    /*editItem(card) {
-      this.tarea = Object.assign({}, card);
-      this.tarea.fecha_entrega = moment(this.tarea.fecha_entrega)
-        .add(1, "d")
-        .format("YYYY-MM-DD");
-      this.dialog2 = true;
-    },*/
     editItem(card) {
       this.publicacion = Object.assign({}, card);
       this.dialog2 = true;

@@ -56,9 +56,13 @@ class publicacionService {
         return http.delete(`/comentarios/_id/${_id}`);
     }
 
-    verComentarios(publicacion) {
+    /* verComentarios(publicacion) {
         return http.get(`/comentarios/publicacion/${publicacion}`);
+    } */
+    verComentarios() {
+        return http.get("/comentarios");
     }
+
 
     createComentario(data) {
         return http.post("/comentarios", data);
