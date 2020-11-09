@@ -1,5 +1,4 @@
 <template v-slot:top>
-
   <v-row dense>
     <v-col cols="12">
       <v-card color="#1F7087" dark class="mr-5 ml-5 mt-8">
@@ -154,20 +153,26 @@
         class="ml-12 mt-2 mr-12 mb-3"
         style="border-radius: 20px"
       >
-        <v-card-title class="headline">
+        <v-card-title class="">
+          <v-avatar color="purple" size="32" class="ml-2">
+            <v-icon dark small>mdi-account-circle</v-icon>
+          </v-avatar>
+
           <v-row>
-            <v-avatar color="purple" size="32" class="ml-2">
-              <v-icon dark small>mdi-account-circle</v-icon>
-            </v-avatar>
-            <h5 class="ml-2">
-              {{
-                card.inscripcion.usuario.nombres +
-                  " " +
-                  card.inscripcion.usuario.apellidos
-              }}
-            </h5>
-            <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+            <v-col cols="12">
+              <h5 class="ml-2">
+                {{
+                  card.inscripcion.usuario.nombres +
+                    " " +
+                    card.inscripcion.usuario.apellidos
+                }}
+              </h5>
+            </v-col>
+            <v-col cols="12">
+              <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+            </v-col>
           </v-row>
+
           <v-row>
             <v-col cols="12">
               <v-btn
@@ -206,14 +211,18 @@
             </v-col>
           </v-row>
         </v-card-title>
-        
-        <v-card-text >
+        <v-card-text>
           <h3 class="ml-3 mr-6">{{ card.descripcion }}</h3>
           <v-row>
             <v-col cols="12" sm="12" md="12">
-              <v-checkbox v-model="card.index" label="Ver Comentarios" @click="verComentarios2()"></v-checkbox> 
-            <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> -->
-            </v-col><v-divider></v-divider>
+              <v-checkbox
+                v-model="card.index"
+                color="purple"
+                label="Ver Comentarios"
+                @click="verComentarios2(card)"
+              ></v-checkbox>
+              <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> --> </v-col
+            ><v-divider></v-divider>
             <v-col cols="12" sm="12" md="12">
               <v-banner
                 v-model="card.index"
@@ -259,9 +268,10 @@
                     >
                   </v-row>
                 </div>
-                <v-row >
+                <v-row>
                   <v-col cols="12" md="12" sm="12">
                     <v-textarea
+                      id="input"
                       auto-grow
                       rows="1"
                       row-height="15"
@@ -276,7 +286,7 @@
                       @click:clear="clearMessage"
                     ></v-textarea>
                   </v-col>
-                </v-row><v-btn text color="red" justify="center" @click="ocultar(card)">Ocultar Comentarios</v-btn>
+                </v-row>
               </v-banner>
             </v-col>
           </v-row>
@@ -357,7 +367,7 @@ export default {
             card.fecha_publicacion = moment(date).format(
               "DD/MM/YYYY - HH:mm A"
             );
-            card.index=false;
+            card.index = false;
           });
           console.log(res.data.publicacion);
           //this.ca.fecha_publicacion = ;
@@ -419,7 +429,7 @@ export default {
           console.log("neles", e);
         }); 
     },*/
-    verComentarios2() {
+    verComentarios2(card) {
       var ca = [];
       publicacionService
         .verComentarios()
@@ -456,8 +466,10 @@ export default {
         .then((response) => {
           //alert("Publicacion realizada con éxito");
           this.message = "";
-          this.initialize();
-          this.verComentarios(card);
+          //this.initialize();
+          //this.verComentarios(card);
+          card.index = true;
+          this.verComentarios2();
         })
         .catch((e) => {
           console.log(e);
@@ -470,8 +482,10 @@ export default {
         .removeComentario(comentario._id)
         .then((response) => {
           alert("Se elimino con éxito");
-          this.initialize();
-          this.verComentarios(card);
+          //this.initialize();
+          //this.verComentarios(card);
+          card.index = true;
+          this.verComentarios2();
         })
         .catch((e) => {
           alert("No se pudo eliminar");

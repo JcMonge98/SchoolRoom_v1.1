@@ -38,5 +38,8 @@ class UserService {
     show(_id) {
         return http.get(`/usuarios/_id/${_id}`);
     }
+    reestablecerP(_id) {
+        return http.put(`/usuarios/resetpassword/_id/${_id}`);
+    }
 }
 export default new UserService();

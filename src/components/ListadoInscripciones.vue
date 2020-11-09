@@ -144,15 +144,7 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="4" md="4">
-                      <v-text-field
-                        v-model="inscripcion._id"
-                        :rules="RolTexto"
-                        label="Id Incripcion"
-                        disabled
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="3" md="3">
+                   <!-- <v-col cols="12" sm="3" md="3">
                       <v-select
                         v-model="inscripcion.usuario"
                         :rules="RolTexto"
@@ -174,38 +166,15 @@
                         required
                         disabled
                       ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="2" md="2">
+                    </v-col> -->
+                    <v-col cols="12" sm="3" md="3">
                       <v-text-field
                         v-model="inscripcion.aula.codigo"
                         :rules="RolTexto"
                         label="Codigo de Aula"
                       ></v-text-field>
                     </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12" sm="4" md="4">
-                      <v-text-field
-                        v-model="inscripcion.aula._id"
-                        :rules="RolTexto"
-                        label="Id Aula"
-                        aria-disabled=""
-                        disabled
-                      ></v-text-field>
-                    </v-col>
                      <v-col cols="12" sm="3" md="3">
-                      <v-select
-                        v-model="inscripcion.aula.turno"
-                        :rules="RolTexto"
-                        :items="turnos"
-                        item-text="nombre"
-                        item-value="_id"
-                        label="Turno"
-                        required
-                        disabled
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="3" md="3">
                       <v-select
                         v-model="inscripcion.aula.grado"
                         :rules="RolTexto"
@@ -217,7 +186,7 @@
                         disabled
                       ></v-select>
                     </v-col> 
-                    <v-col cols="12" sm="2" md="2">
+                    <v-col cols="12" sm="3" md="3">
                       <v-select
                         v-model="inscripcion.aula.seccion"
                         :rules="RolTexto"
@@ -228,6 +197,37 @@
                         required
                         disabled
                       ></v-select>
+                    </v-col><v-col cols="12" sm="3" md="3">
+                      <v-select
+                        v-model="inscripcion.aula.turno"
+                        :rules="RolTexto"
+                        :items="turnos"
+                        item-text="nombre"
+                        item-value="_id"
+                        label="Turno"
+                        required
+                        disabled
+                      ></v-select>
+                    </v-col>
+                   
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-text-field
+                        v-model="inscripcion._id"
+                        :rules="RolTexto"
+                        label="Id Incripcion"
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                      <v-text-field
+                        v-model="inscripcion.aula._id"
+                        :rules="RolTexto"
+                        label="Id Aula"
+                        aria-disabled=""
+                        disabled
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                 </v-container>
