@@ -261,7 +261,7 @@
       <v-btn icon text @click="editItem(item)" class="mr-2 ml-8" color="orange darken-1" v-if="currentUser.role == 'ROLE_ADMIN'">
        <v-icon small>mdi-pencil</v-icon>Editar
       </v-btn>
-      <v-icon small color="red" class="ml-4" @click="deleteItem(item)">mdi-delete</v-icon>
+      <v-icon small color="red" class="ml-4" @click="deleteItem(item)" v-if="currentUser.role == 'ROLE_ADMIN' || currentUser.role == 'ROLE_ENCARGADO'">mdi-delete</v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize">Refrescar</v-btn>
@@ -604,7 +604,7 @@ export default {
         .traerGrados()
         .then(res => {
           this.grados = res.data.grados;
-          console.log(this.grados)
+          console.log("grados",this.grados)
         })
         .catch(e => {
           console.log(e);

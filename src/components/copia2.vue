@@ -153,72 +153,71 @@
         class="ml-12 mt-2 mr-12 mb-3"
         style="border-radius: 20px"
       >
-        <v-card-title class="">
-          <v-avatar color="cyan" size="32" class="ml-2">
-            <v-icon dark>mdi-account-circle</v-icon>
-          </v-avatar>
-          <div class="">
-            <div class="float-sm-left">
-              <h5 class="ml-2">
-                {{
-                  card.inscripcion.usuario.nombres +
-                    " " +
-                    card.inscripcion.usuario.apellidos
-                }}
-              </h5>
-            </div>
-            <br />
-            <div class="">
-              <h6 small class="ml-2">{{ card.fecha_publicacion }}</h6>
-            </div>
-          </div>
-          <v-btn
-            style="border-radius: 20px"
-            class="mr-2 ml-8"
-            tile
-            outlined
-            color="success"
-            @click="editItem(card)"
-            v-if="
-              (currentUser.role == 'ROLE_DOCENTE' &&
-                currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                (currentUser.role == 'ROLE_ADMIN' &&
-                  currentUser.nombres == card.inscripcion.usuario.nombres)
-            "
-          >
-            <v-icon small class>mdi-pencil</v-icon>Editar
-          </v-btn>
-          <v-btn
-            style="border-radius: 20px"
-            class="ml-7"
-            tile
-            outlined
-            color="red"
-            @click="deleteItem(card)"
-            v-if="
-              (currentUser.role == 'ROLE_DOCENTE' &&
-                currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                currentUser.role == 'ROLE_ADMIN' ||
-                (currentUser.role == 'ROLE_ENCARGADO' &&
-                  currentUser.nombres == card.inscripcion.usuario.nombres)
-            "
-          >
-            <v-icon rigth>mdi-delete</v-icon>Eliminar
-          </v-btn>
-        </v-card-title>
-        <v-divider></v-divider>
-        <v-card-text>
-          <div>
-            <h1 class="ml-4 mr-4">{{ card.descripcion }}</h1>
-          </div>
+        <v-card-title class="headline">
           <v-row>
-            <v-checkbox
-              class="ml-6"
-              v-model="card.index"
-              color="cyan"
-              label="Ver Comentarios"
-              @click="verComentarios2(card)"
-            ></v-checkbox>
+            <v-avatar color="purple" size="32" class="ml-2">
+              <v-icon dark small>mdi-account-circle</v-icon>
+            </v-avatar>
+            <h5 class="ml-2">
+              {{
+                card.inscripcion.usuario.nombres +
+                " " +
+                card.inscripcion.usuario.apellidos
+              }}
+            </h5>
+            <br />
+            <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-btn
+                style="border-radius: 20px"
+                class="mr-2 ml-8"
+                tile
+                outlined
+                color="success"
+                @click="editItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  (currentUser.role == 'ROLE_ADMIN' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon small class>mdi-pencil</v-icon>Editar
+              </v-btn>
+              <v-btn
+                style="border-radius: 20px"
+                class="ml-7"
+                tile
+                outlined
+                color="red"
+                @click="deleteItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  (currentUser.role == 'ROLE_ENCARGADO' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon rigth>mdi-delete</v-icon>Eliminar
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <h3 class="ml-3 mr-6">{{ card.descripcion }}</h3>
+          <v-row>
+            <v-col cols="12" sm="12" md="12">
+              <v-checkbox
+                v-model="card.index"
+                color="purple"
+                label="Ver Comentarios"
+                @click="verComentarios2(card)"
+              ></v-checkbox>
+              <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> --> </v-col
+            ><v-divider></v-divider>
             <v-col cols="12" sm="12" md="12">
               <v-banner
                 v-model="card.index"
@@ -243,13 +242,7 @@
                       >&nbsp;
                       <small>{{ comentario.fecha_comentario }}|</small>
                     </h4>
-                    <h4
-                      class="ml-3"
-                      style=" font-family:'Comic Sans MS' ;
-  font-size: 15px;
-  line-height : 18px;
-  color:   #566573;"
-                    >
+                    <h4 class="ml-3">
                       {{ comentario.descripcion }}
                     </h4>
                     <v-icon
@@ -578,11 +571,3 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-h1 {
-  font-family: "Comic Sans MS";
-  font-size: 20px;
-  line-height: 35px;
-  color: #1c2833;
-}
-</style>
