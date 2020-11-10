@@ -1,30 +1,31 @@
 <template>
-<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
   <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px">
     <v-card-title>
-      <h2 class="text-center font-weight-medium" style="color: #4A148C">Fomulario Registrar Usuarios</h2>
+      <h2 class="text-center font-weight-medium" style="color: #1A237E">Fomulario Registrar Usuarios</h2>
     </v-card-title>
     <v-form class="mr-5 ml-5 mt-5 mb-12" name="form" @submit.prevent="handleRegister">
       <v-row>
         <v-col cols="4" sm="4"></v-col>
         <v-col cols="4" sm="4">
           <v-text-field
-            color="purple"
+            color="#1565C0"
             v-model="codigoVerificacion"
             name="codigo"
             :rules="RolTexto"
             label="Inserte codigo de Verificación"
           ></v-text-field>
         </v-col>
-        <v-col cols="4" sm="4">
+        
+        <v-col cols="8" sm="4">
           <v-btn
-            color="#4A148C"
+            color="#1A237E"
             outlined
             text
             @click="verificar()"
             v-if="codigoVerificacion.length > 3"
             enabled
-          >Verificacion</v-btn>
+          >Verificar</v-btn>
         </v-col>
       </v-row>
       <v-row>

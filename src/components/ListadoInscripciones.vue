@@ -1,5 +1,5 @@
 <template>
-<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" max-height="720">
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
 <v-content>
  <!--  <v-row v-if="currentUser.role == 'ROLE_ADMIN'">
     <v-col cols=4 class="offset-4">
@@ -27,7 +27,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px">
         <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #4A148C">Inscripciones de Aulas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Inscripciones de Aulas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <!-- input de busqueda(filtro) -->
@@ -38,7 +38,7 @@
           label="Filtro"
           single-line
           hide-details
-          color="purple"
+          color="#1A237E"
         ></v-text-field>
         <v-spacer></v-spacer>
 
@@ -242,7 +242,7 @@
                   v-if="inscripcion.codigo !=''"
                 >Buscar Grado</v-btn>
                 <v-btn color="red darken-1" text @click="close2">Cancelar</v-btn>
-                <v-btn color="orange darken-1" text @click="editar" v-if="inscripcion.grado!=''">Editar</v-btn>
+                <v-btn color="blue darken-1" text @click="editar" v-if="inscripcion.grado!=''">Guardar</v-btn>
               </v-card-actions>
             </v-form>
           </v-card>

@@ -20,67 +20,24 @@
           @click="VerPersonas()"
         >Ver Personas</v-btn> -->
         </div>
-      </v-row>
-      <v-row>
-        <v-col cols="12" sm="12" v-for="(gradi, index) in grados" :key="index">
-          <div cols="12" sm="12" class="text-center">
-            <v-chip class="ma-2" color="blue lighten-5" outlined x-large>
-              <v-icon left>mdi-server-plus</v-icon>
-              <strong
-                >{{ gradi.grado.nombre }} "{{ gradi.seccion.nombre }}" Aula:
-                {{ gradi.numero }}</strong
-              >
-            </v-chip>
-          </div>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col
-          cols="12"
-          md="3"
-          sm="3"
-          v-for="(detalle, index) in detalles"
-          :key="index"
-          class="mb-4 mr-12 mt-8 ml-12"
-        >
-          <v-hover>
-            <template
-              v-slot="{ hover }"
-              v-if="
-                currentUser.role == 'ROLE_ENCARGADO' ||
-                  currentUser.role == 'ROLE_ADMIN'
-              "
-            >
-              <v-form action>
-                <v-card
-                  class="mx-auto"
-                  style="border-radius: 28px"
-                  :elevation="hover ? 24 : 2"
-                >
-                  <v-img
-                    class="white--text align-end"
-                    height="200px"
-                    src="../assets/fondo.jpg"
-                  >
-                    <v-card-title>
-                      <h3>{{ detalle.materia.nombre }}</h3>
-                    </v-card-title>
-                    <v-card-subtitle class="pb-0 white--text mb-4"
-                      >Prof:{{
-                        " " +
-                          detalle.inscripcion.usuario.nombres +
-                          " " +
-                          detalle.inscripcion.usuario.apellidos
-                      }}</v-card-subtitle
-                    >
-                  </v-img>
-                  <v-card-text class="text--primary">
-                    <div>
-                      Presiona entrar, para poder vizualizar todas las tareas de
-                      esta materia..!
-                    </div>
-                  </v-card-text>
-
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="3" sm="3" v-for="(detalle, index) in detalles" :key="index" class="mb-4 mr-12 mt-8 ml-12">
+        <v-hover>
+          <template v-slot="{ hover }" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_ADMIN'">
+            <v-form action>
+              <v-card class="mx-auto" style="border-radius: 28px" :elevation="hover ? 24 : 2">
+                <v-img class="blanck--text center" height="200px" src="../assets/55.jpg">
+                   <br> <br> <br><v-card-title>
+                    <h3>{{ detalle.materia.nombre }}</h3>
+                  </v-card-title> 
+                  <br>
+                  <v-card-subtitle class="pb-0 black--text ">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
+                </v-img>
+                <br>
+                <v-card-text class="text--primary">
+                  <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia..!</div>
+                </v-card-text>
                   <v-card-actions>
                     <div class="text-center font-weight-bold">
                       <v-btn

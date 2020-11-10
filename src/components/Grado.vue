@@ -107,7 +107,7 @@
       <!-- encabezado de la tabla -->
       <v-toolbar flat color style="border-radius: 15px" >
         <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #4A148C">Personas</h3>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Personas</h3>
         </v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>

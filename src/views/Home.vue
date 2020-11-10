@@ -126,15 +126,13 @@ export default {
           src: "https://fondosmil.com/fondo/17276.jpg"
         },
         {
-          src: "https://fondosmil.com/fondo/17300.jpg"
+            src: "https://st4.depositphotos.com/6530218/20580/i/450/depositphotos_205808004-stock-photo-isolated-turquoise-browed-motmot-eumomota.jpg"
         },
         {
-          src:
-            "http://3.bp.blogspot.com/-boSC713hY7Y/Ut_vW7dci3I/AAAAAAAAAH4/fOLwoBYDPFI/s1600/tics4.jpg"
+          src: "https://pbs.twimg.com/media/Eh939WtXkAAdCAy.jpg"
         },
         {
-          src:
-            "http://3.bp.blogspot.com/-hmzecyQYs44/Ut_vcyoS79I/AAAAAAAAAIA/CudN3nTin6c/s1600/tics5.jpg"
+            src: "https://3.bp.blogspot.com/-2HLugVK3Gcg/W0PznqmOyEI/AAAAAAAACBA/LUKxGbr2hWIU3THp4qfPWaJScD4sKQmIwCLcBGAs/s1600/maqui.jpg"
         }
       ]
     };

@@ -1,76 +1,69 @@
 <template>
-  <v-img
-    src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg"
-    gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-    max-height="720"
+<v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
+  <v-data-table style="border-radius: 15px"
+    :headers="headers"
+    :items="desserts"
+    :search="buscar"
+    class="elevation-5 mr-12 ml-12 mt-8"
   >
-    <v-data-table
-      style="border-radius: 15px"
-      :headers="headers"
-      :items="desserts"
-      :search="buscar"
-      class="elevation-5 mr-12 ml-12 mt-8"
-    >
-      <template v-slot:top>
-        <v-toolbar flat color style="border-radius: 15px">
-          <v-toolbar-title>
-            <h3 class="text-center font-weight-bold" style="color: #4A148C">
-              Listado de Docentes
-            </h3>
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-text-field
-            class="text-xs-center"
-            v-model="buscar"
-            append-icon="search"
-            label="Busqueda"
-            single-line
-            hide-details
-            color="purple"
-          ></v-text-field>
-          <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="1000px">
-            <template v-slot:activator="{ on }">
-              <v-btn color="#3F51B5" dark class="mb-2" v-on="on"
-                >Nuevo Docente</v-btn
-              >
-            </template>
-            <v-card style="border-radius: 10px">
-              <v-form ref="form" :lazy-validation="lazy">
-                <v-card-title>
-                  <span class="headline">{{ formTitle }}</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="usuario.nombres"
-                          :rules="RolTexto"
-                          label="Nombres de Usuario"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="usuario.apellidos"
-                          :rules="RolTexto"
-                          label="Apellidos de usuario"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
-                    <v-row>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="usuario.email"
-                          :rules="Rolemail"
-                          label="E-mail"
-                          required
-                          disabled
-                        ></v-text-field>
-                      </v-col>
-                      <!-- <v-col cols="12" sm="6">
+    <template v-slot:top>
+      <v-toolbar flat color style="border-radius: 15px">
+        <v-toolbar-title>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Listado de Docentes</h3>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-text-field
+          class="text-xs-center"
+          v-model="buscar"
+          append-icon="search"
+          label="Busqueda"
+          single-line
+          hide-details
+          color="#1565C0"
+        ></v-text-field>
+        <v-spacer></v-spacer>
+        <v-dialog v-model="dialog" max-width="1000px" >
+          <template v-slot:activator="{ on }">
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on"
+              >Nuevo Docente</v-btn
+            >
+          </template>
+          <v-card style="border-radius: 10px">
+            <v-form ref="form" :lazy-validation="lazy">
+              <v-card-title>
+                <span class="headline">{{ formTitle }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.nombres"
+                        :rules="RolTexto"
+                        label="Nombres de Usuario"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.apellidos"
+                        :rules="RolTexto"
+                        label="Apellidos de usuario"
+                        required
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="usuario.email"
+                        :rules="Rolemail"
+                        label="E-mail"
+                        required
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                   <!-- <v-col cols="12" sm="6">
                       <v-text-field
                         v-model="usuario.roles"
                         :rules="RolTexto"
@@ -223,7 +216,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
                 <v-btn
-                  color="orange darken-1"
+                  color="blue darken-1"
                   text
                   @click="editar"
                   v-if="
