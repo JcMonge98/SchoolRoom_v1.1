@@ -1,4 +1,5 @@
 <template v-slot:top>
+<v-img src="../assets/88.jpeg"  >
   <v-row dense>
     <v-col cols="12">
       
@@ -15,48 +16,21 @@
             <v-col cols="12" sm="12">
               <h2>{{ detalle.materia.nombre }}</h2>
             </v-col>
-            <v-col cols="12" sm="12">
-              <h5>
-                {{
-                  detalle.aula.grado.nombre +
-                    " Seccion: " +
-                    detalle.aula.seccion.nombre +
-                    " Aula: " +
-                    detalle.aula.numero
-                }}
-              </h5>
+
+            <v-col cols="10" sm="10">
+              <h5>  {{ detalle.aula.grado.nombre +
+                  " Seccion: " + detalle.aula.seccion.nombre }}</h5>
+              <h5>{{ " Aula: " + detalle.aula.numero }}</h5>
             </v-col>
           </v-row>
-          <v-btn
-           style="border-radius: 10px"
-            class="offset-md-10"
-            tile
-            outlined
-            dark
-            color="blue"
-            @click="borrarStorage()"
-            v-if="currentUser.role == 'ROLE_DOCENTE'"
-          >
-            <v-icon left>mdi-arrow-left-bold</v-icon>Volver
-          </v-btn>
-          <v-btn
-            style="border-radius: 10px"
-            class="offset-md-10"
-            tile
-            outlined
-            dark
-            color="white"
-            @click="borrarStorage2()"
-            v-if="
-              currentUser.role == 'ROLE_ENCARGADO' ||
-                currentUser.role == 'ROLE_ADMIN'
-            "
-          >
-            <v-icon left>mdi-folder-plus</v-icon>Volver
-          </v-btn>
+          
+                 
+          
           <!-- **********************************  showDialog Nuevo **************************************** -->
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on }">
+                                                   
+              <v-col cols="12" sm="12">
               <v-btn
                 style="border-radius: 10px"
                 class
@@ -73,6 +47,8 @@
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
               </v-btn>
+              </v-col>
+             
             </template>
             <v-card style="border-radius: 10px">
               <v-form ref="nuevaP" :lazy-validation="lazy">
@@ -106,11 +82,47 @@
               </v-form>
             </v-card>
           </v-dialog>
+
+<!-- **********************************  Botones Volver **************************************** -->
+          <v-col cols="6" sm="6">
+          <v-btn
+           style="border-radius: 10px"
+            class
+            tile
+            outlined
+            dark
+            color="blue"
+            @click="borrarStorage()"
+            v-if="currentUser.role == 'ROLE_DOCENTE'"
+          >
+            <v-icon left>keyboard_backspace</v-icon>Volver
+          </v-btn>
+        
+          
+          
+          <v-btn
+            style="border-radius: 10px"
+            class
+            tile
+            outlined
+            dark
+            color="white"
+            @click="borrarStorage2()"
+            v-if="
+              currentUser.role == 'ROLE_ENCARGADO' ||
+                currentUser.role == 'ROLE_ADMIN'
+            "
+          >
+            <v-icon left>keyboard_backspace</v-icon>Volver
+          </v-btn>
+          </v-col>
+        
+
           <!-- **********************************  showDialog EDITAR **************************************** -->
-          <v-dialog v-model="dialog2" max-width="500px">
+          <v-dialog v-model="dialog2" max-width="500px" >
             
-            <v-card>
-              <v-form ref="nuevaP" :lazy-validation="lazy">
+            <v-card style="border-radius: 15px">
+              <v-form ref="nuevaP" :lazy-validation="lazy"  >
                 <v-card-title>
                   <span class="headline">Editar Publicación</span>
                 </v-card-title>
@@ -303,6 +315,7 @@
         </v-card-text>
       </v-card> </v-col
   ></v-row>
+</v-img>
 </template>
 <script>
 import moment from "moment"; //para fecha
