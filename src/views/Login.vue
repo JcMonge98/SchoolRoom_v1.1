@@ -68,7 +68,7 @@
                   
 
                 >
-                 <v-img class="white--text align-end" style="border-radius: 20px" height="386px" width="214.8px" src="../assets/44.jpg"></v-img>
+                 <v-img class="white--text align-end" style="border-radius: 20px" height="auto" width="auto." src="../assets/44.jpg"></v-img>
                  <!-- <div>                                        
                       <v-card-text :class="`${fgColor}--text`">
                       <h1 class="text-center headline mb-3">SchoolRoom</h1>
