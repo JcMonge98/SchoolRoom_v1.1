@@ -72,65 +72,67 @@
                         disabled
                       ></v-text-field>
                     </v-col> -->
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        v-model="usuario.password"
-                        :rules="Rolpassword"
-                        label="Contraseña"
-                        type="password"
-                        v-if="usuario.email != ''"
-                        enabled
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        v-model="confirmar"
-                        :rules="RolconPassword.concat(RolConfirmarPassword)"
-                        label="Confirmar Contraseña"
-                        type="password"
-                        v-if="usuario.email != ''"
-                        enabled
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  color="green darken-1"
-                  text
-                  @click="validar"
-                  v-if="
-                    usuario.nombres.length > 3 &&
-                      usuario.apellidos.length > 3 &&
-                      usuario.email == ''
-                  "
-                  enabled
-                  >Generar Correo</v-btn
-                >
-                <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
-                <v-btn
-                  color="blue darken-1"
-                  text
-                  @click="save"
-                  v-if="
+                    </v-row>
+                    <v-row>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="usuario.password"
+                          :rules="Rolpassword"
+                          label="Contraseña"
+                          type="password"
+                          v-if="usuario.email != ''"
+                          enabled
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="confirmar"
+                          :rules="RolconPassword.concat(RolConfirmarPassword)"
+                          label="Confirmar Contraseña"
+                          type="password"
+                          v-if="usuario.email != ''"
+                          enabled
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="validar"
+                    v-if="
+                      usuario.nombres.length > 3 &&
+                        usuario.apellidos.length > 3 &&
+                        usuario.email == ''
+                    "
+                    enabled
+                    >Generar Correo</v-btn
+                  >
+                  <v-btn color="red darken-1" text @click="close"
+                    >Cancelar</v-btn
+                  >
+                  <v-btn
+                    color="blue darken-1"
+                    text
+                    @click="save"
+                    v-if="
                       usuario.nombres.length != '' &&
-                      usuario.apellidos.length != '' &&
-                      usuario.email != '' &&
-                      usuario.password == confirmar
-                  "
-                  >Guardar</v-btn
-                >
-              </v-card-actions>
-            </v-form>
-          </v-card>
-          <!-- Cierre formulario temporal -->
-        </v-dialog>
+                        usuario.apellidos.length != '' &&
+                        usuario.email != '' &&
+                        usuario.password == confirmar
+                    "
+                    >Guardar</v-btn
+                  >
+                </v-card-actions>
+              </v-form>
+            </v-card>
+            <!-- Cierre formulario temporal -->
+          </v-dialog>
 
-        <!-- <v-dialog v-model="dialog2" max-width="1000px">
+          <!-- <v-dialog v-model="dialog2" max-width="1000px">
           <v-card>
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
@@ -227,28 +229,35 @@
             </v-form>
           </v-card>
         </v-dialog> -->
-      </v-toolbar>
-    </template>
-    <!-- Datos de la tabla -->
-    <template v-slot:item.actions="{ item }">
-    <!--  <v-icon small color="orange" class="mr-2" @click="editItem(item)"
+        </v-toolbar>
+      </template>
+      <!-- Datos de la tabla -->
+      <template v-slot:item.actions="{ item }">
+        <!--  <v-icon small color="orange" class="mr-2" @click="editItem(item)"
         >mdi-pencil</v-icon
       >-->
-      <v-icon  color="orange" class="mr-2" @click="AcualizarPassword(item)">mdi-refresh</v-icon>
-      <v-icon  color="red" @click="deleteItem(item)">mdi-delete</v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="accent" @click="initialize">Refrescar</v-btn>
-    </template>
-  </v-data-table>
-</v-img>
+        <v-icon color="orange" class="mr-2" @click="AcualizarPassword(item)"
+          >mdi-refresh</v-icon
+        >
+
+        <v-icon color="red" @click="deleteItem(item)"
+          >mdi-delete</v-icon
+        >
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="accent" @click="initialize">Refrescar</v-btn>
+      </template>
+    </v-data-table>
+  </v-img>
 </template>
 <script>
 import UserService from "../services/user.service";
+import inscripcionService from "../services/inscripcionService";
 export default {
   data: () => ({
-    correo: { nombres: "junito", apellidos: "perez" },
-    lastpassword:"",
+    validarB: 0,
+    inscripciones: [],
+    lastpassword: "",
     buscar: "",
     buscar2: "",
     dialog: "",
@@ -260,7 +269,8 @@ export default {
     email: "",
     password: "",
     confirmar: "",
-    RolTexto: [(v) => !!v || "Este campo es requerido",
+    RolTexto: [
+      (v) => !!v || "Este campo es requerido",
       (v) => /[a-zA-Z]\d*/.test(v) || "No se permiten números",
     ],
     Rolemail: [
@@ -352,23 +362,24 @@ export default {
 
   created() {
     this.initialize();
+    this.BotonEliminar();
   },
 
   methods: {
-    validar(){
-      var numeros="0123456789";
-      for(var i=0; i<this.usuario.nombres.length; i++){
-          if (numeros.indexOf(this.usuario.nombres.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
-          }
+    validar() {
+      var numeros = "0123456789";
+      for (var i = 0; i < this.usuario.nombres.length; i++) {
+        if (numeros.indexOf(this.usuario.nombres.charAt(i), 0) != -1) {
+          return alert("No se permiten numeros");
+        }
       }
-      for(var i=0; i<this.usuario.apellidos.length; i++){
-          if (numeros.indexOf(this.usuario.apellidos.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
-          }
+      for (var i = 0; i < this.usuario.apellidos.length; i++) {
+        if (numeros.indexOf(this.usuario.apellidos.charAt(i), 0) != -1) {
+          return alert("No se permiten numeros");
+        }
       }
       return this.generarCorreo();
-    }, 
+    },
     //_________________ver_________________________
     initialize() {
       var roles = Object.assign("5fa4e914955045001760eb71");
@@ -399,23 +410,47 @@ export default {
     },
     //_______________________________eliminar___________________________
     deleteItem(item) {
-      const index = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer eliminar el registro?");
-      if (opcion == true) {
-        this.desserts.splice(index, 1);
-        UserService.remove(item._id)
-          .then((response) => {
-            console.log(response.data);
-            alert("Usuario eliminado con éxito");
-            this.initialize();
-          })
-          .catch((e) => {
-            alert("Error al eliminar");
-            console.log(e);
-          });
-      } else {
-        console.log("No se elemino");
-      }
+      /*for (let i = 0; i < this.inscripciones.length; i++) {
+
+        console.log("Inscripciones2",this.inscripciones[i]);
+
+        if (this.inscripciones[i]["usuario"]["_id"] == item._id) {
+          
+          alert("Nose puede eliminar, ya posee inscripciones");
+
+        } else { */
+          const index = this.desserts.indexOf(item);
+          var opcion = confirm("Estas seguro de querer eliminar el registro?");
+          if (opcion == true) {
+            this.desserts.splice(index, 1);
+            UserService.remove(item._id)
+              .then((response) => {
+                console.log(response.data);
+                alert("Usuario eliminado con éxito");
+                this.initialize();
+              })
+              .catch((e) => {
+                alert("Error al eliminar");
+                console.log(e);
+              });
+          } else {
+            console.log("No se elemino");
+          }
+      //  }
+     // }
+
+      /* for (let i = 0; i < this.inscripciones.length; i++) {
+            
+              for (let j = 0; j < this.desserts.length; j++) {
+                
+                  if (this.inscripciones[i]['usuario']['_id'] == this.desserts[j]['_id']) {
+                    this.validarB = 1;
+                  }
+                  else{
+                    this.validarB = 0;
+                  }
+              }
+            }*/
     },
     //__________________________________________
     save() {
@@ -446,24 +481,24 @@ export default {
             console.log(e);
           });
       } else { */
-        //___________________________guardar____________________
-        console.log(data);
-        UserService.create(data)
-          .then((response) => {
-            this.usuario._id = response.data._id;
-            console.log(response.data);
-            this.dialog = false;
-            alert("Usuario creado con éxito");
-            this.initialize();
-          })
-          .catch((e) => {
-            alert("Error || Ya existe este Docente");
-            console.log(e);
-          });
+      //___________________________guardar____________________
+      console.log(data);
+      UserService.create(data)
+        .then((response) => {
+          this.usuario._id = response.data._id;
+          console.log(response.data);
+          this.dialog = false;
+          alert("Usuario creado con éxito");
+          this.initialize();
+        })
+        .catch((e) => {
+          alert("Error || Ya existe este Docente");
+          console.log(e);
+        });
       //}
     },
     //__________________________________________
-    editar(){
+    editar() {
       var data = {
         _id: this.usuario._id,
         nombres: this.usuario.nombres,
@@ -492,7 +527,7 @@ export default {
       this.editedIndex = this.desserts.indexOf(item);
       this.usuario = Object.assign({}, item);
       this.dialog2 = true;
-      console.log(this.usuario)
+      console.log(this.usuario);
       /*
       this.editedIndex = this.desserts.indexOf(item);
       this._id = item._id;
@@ -501,9 +536,11 @@ export default {
       this.usuario.email = item.email;
       this.dialog = true; */
     },
-    AcualizarPassword(item){
+    AcualizarPassword(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer Reestablecer contraseña de Usuario?");
+      var opcion = confirm(
+        "Estas seguro de querer Reestablecer contraseña de Usuario?"
+      );
       if (opcion == true) {
         UserService.reestablecerP(item._id)
           .then((response) => {
@@ -528,6 +565,34 @@ export default {
         this.usuario = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+    },
+    BotonEliminar() {
+      inscripcionService
+        .index()
+        .then((res) => {
+          this.inscripciones = Object.assign(
+            [this.editedIndex],
+            res.data.inscripcion
+          );
+          console.log("inscripciones", this.inscripciones);
+
+          /* for (let i = 0; i < this.inscripciones.length; i++) {
+            
+              for (let j = 0; j < this.desserts.length; j++) {
+                
+                  if (this.inscripciones[i]['usuario']['_id'] == this.desserts[j]['_id']) {
+                    this.validarB = 1;
+                  }
+                  else{
+                    this.validarB = 0;
+                  }
+              }
+            }*/
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("neles");
+        });
     },
   },
 };

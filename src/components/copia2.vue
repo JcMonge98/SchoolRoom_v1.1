@@ -1,12 +1,7 @@
 <template v-slot:top>
-<v-img src="../assets/88.jpeg"  >
   <v-row dense>
     <v-col cols="12">
-      
-      <v-card class="mr-5 ml-5 mt-8" style="border-radius: 15px">
-        
-        <v-img style="border-radius: 15px" height="300px"  src="../assets/8.jpg">
-
+      <v-card color="#1F7087" dark class="mr-5 ml-5 mt-8">
         <v-card-title
           class="headline"
           v-for="(detalle, index) in detalles"
@@ -16,23 +11,47 @@
             <v-col cols="12" sm="12">
               <h2>{{ detalle.materia.nombre }}</h2>
             </v-col>
-
-            <v-col cols="10" sm="10">
-              <h5>  {{ detalle.aula.grado.nombre +
-                  " Seccion: " + detalle.aula.seccion.nombre }}</h5>
-              <h5>{{ " Aula: " + detalle.aula.numero }}</h5>
+            <v-col cols="12" sm="12">
+              <h5>
+                {{
+                  detalle.aula.grado.nombre +
+                    " Seccion: " +
+                    detalle.aula.seccion.nombre +
+                    " Aula: " +
+                    detalle.aula.numero
+                }}
+              </h5>
             </v-col>
           </v-row>
-          
-                 
-          
+          <v-btn
+            class="offset-md-10"
+            tile
+            outlined
+            dark
+            color="white"
+            @click="borrarStorage()"
+            v-if="currentUser.role == 'ROLE_DOCENTE'"
+          >
+            <v-icon left>mdi-arrow-left-bold</v-icon>Volver
+          </v-btn>
+          <v-btn
+            class="offset-md-10"
+            tile
+            outlined
+            dark
+            color="white"
+            @click="borrarStorage2()"
+            v-if="
+              currentUser.role == 'ROLE_ENCARGADO' ||
+                currentUser.role == 'ROLE_ADMIN'
+            "
+          >
+            <v-icon left>mdi-folder-plus</v-icon>Volver
+          </v-btn>
           <!-- **********************************  showDialog Nuevo **************************************** -->
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on }">
-                                                   
-              <v-col cols="12" sm="12">
               <v-btn
-                style="border-radius: 10px"
                 class
                 tile
                 outlined
@@ -47,17 +66,15 @@
               >
                 <v-icon left>mdi-folder-plus</v-icon>Nueva Publicación
               </v-btn>
-              </v-col>
-             
             </template>
-            <v-card style="border-radius: 10px">
+            <v-card>
               <v-form ref="nuevaP" :lazy-validation="lazy">
                 <v-card-title>
                   <span class="headline">Nueva Publicación</span>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
-                    <v-textarea style="border-radius: 5px"
+                    <v-textarea
                       v-model="publicacion.descripcion"
                       :rules="RolTexto"
                       outlined
@@ -71,7 +88,6 @@
                     >Cancelar</v-btn
                   >
                   <v-btn
-                    style="border-radius: 10px"
                     color="blue darken-1"
                     text
                     @click="guardarPublicacion"
@@ -82,47 +98,10 @@
               </v-form>
             </v-card>
           </v-dialog>
-
-<!-- **********************************  Botones Volver **************************************** -->
-          <v-col cols="6" sm="6">
-          <v-btn
-           style="border-radius: 10px"
-            class
-            tile
-            outlined
-            dark
-            color="blue"
-            @click="borrarStorage()"
-            v-if="currentUser.role == 'ROLE_DOCENTE'"
-          >
-            <v-icon left>keyboard_backspace</v-icon>Volver
-          </v-btn>
-        
-          
-          
-          <v-btn
-            style="border-radius: 10px"
-            class
-            tile
-            outlined
-            dark
-            color="white"
-            @click="borrarStorage2()"
-            v-if="
-              currentUser.role == 'ROLE_ENCARGADO' ||
-                currentUser.role == 'ROLE_ADMIN'
-            "
-          >
-            <v-icon left>keyboard_backspace</v-icon>Volver
-          </v-btn>
-          </v-col>
-        
-
           <!-- **********************************  showDialog EDITAR **************************************** -->
-          <v-dialog v-model="dialog2" max-width="500px" >
-            
-            <v-card style="border-radius: 15px">
-              <v-form ref="nuevaP" :lazy-validation="lazy"  >
+          <v-dialog v-model="dialog2" max-width="500px">
+            <v-card>
+              <v-form ref="nuevaP" :lazy-validation="lazy">
                 <v-card-title>
                   <span class="headline">Editar Publicación</span>
                 </v-card-title>
@@ -155,7 +134,6 @@
         </v-card-title>
         <h4 class="ml-4"></h4>
         <v-card-subtitle class="mt-0"></v-card-subtitle>
-        </v-img>
       </v-card>
     </v-col>
     <!-- _______________________________  Esto se debe mostrar por cada tarea _________________________________________________________ -->
@@ -175,72 +153,71 @@
         class="ml-12 mt-2 mr-12 mb-3"
         style="border-radius: 20px"
       >
-        <v-card-title class="">
-          <v-avatar color="cyan" size="32" class="ml-2">
-            <v-icon dark>mdi-account-circle</v-icon>
-          </v-avatar>
-          <div class="">
-            <div class="float-sm-left">
-              <h5 class="ml-2">
-                {{
-                  card.inscripcion.usuario.nombres +
-                    " " +
-                    card.inscripcion.usuario.apellidos
-                }}
-              </h5>
-            </div>
-            <br />
-            <div class="">
-              <h6 small class="ml-2">{{ card.fecha_publicacion }}</h6>
-            </div>
-          </div>
-          <v-btn
-            style="border-radius: 20px"
-            class="mr-2 ml-8"
-            tile
-            outlined
-            color="success"
-            @click="editItem(card)"
-            v-if="
-              (currentUser.role == 'ROLE_DOCENTE' &&
-                currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                (currentUser.role == 'ROLE_ADMIN' &&
-                  currentUser.nombres == card.inscripcion.usuario.nombres)
-            "
-          >
-            <v-icon small class>mdi-pencil</v-icon>Editar
-          </v-btn>
-          <v-btn
-            style="border-radius: 20px"
-            class="ml-7"
-            tile
-            outlined
-            color="red"
-            @click="deleteItem(card)"
-            v-if="
-              (currentUser.role == 'ROLE_DOCENTE' &&
-                currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                currentUser.role == 'ROLE_ADMIN' ||
-                (currentUser.role == 'ROLE_ENCARGADO' &&
-                  currentUser.nombres == card.inscripcion.usuario.nombres)
-            "
-          >
-            <v-icon rigth>mdi-delete</v-icon>Eliminar
-          </v-btn>
-        </v-card-title>
-        <v-divider></v-divider>
-        <v-card-text>
-          <div>
-            <h1 class="ml-4 mr-4">{{ card.descripcion }}</h1>
-          </div>
+        <v-card-title class="headline">
           <v-row>
-            <v-checkbox
-              class="ml-6"
-              v-model="card.index"
-              color="cyan"
-              label="Ver Comentarios"
-              @click="verComentarios2(card)"
-            ></v-checkbox>
+            <v-avatar color="purple" size="32" class="ml-2">
+              <v-icon dark small>mdi-account-circle</v-icon>
+            </v-avatar>
+            <h5 class="ml-2">
+              {{
+                card.inscripcion.usuario.nombres +
+                " " +
+                card.inscripcion.usuario.apellidos
+              }}
+            </h5>
+            <br />
+            <h6 class="ml-2">{{ card.fecha_publicacion }}</h6>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-btn
+                style="border-radius: 20px"
+                class="mr-2 ml-8"
+                tile
+                outlined
+                color="success"
+                @click="editItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  (currentUser.role == 'ROLE_ADMIN' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon small class>mdi-pencil</v-icon>Editar
+              </v-btn>
+              <v-btn
+                style="border-radius: 20px"
+                class="ml-7"
+                tile
+                outlined
+                color="red"
+                @click="deleteItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  (currentUser.role == 'ROLE_ENCARGADO' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon rigth>mdi-delete</v-icon>Eliminar
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <h3 class="ml-3 mr-6">{{ card.descripcion }}</h3>
+          <v-row>
+            <v-col cols="12" sm="12" md="12">
+              <v-checkbox
+                v-model="card.index"
+                color="purple"
+                label="Ver Comentarios"
+                @click="verComentarios2(card)"
+              ></v-checkbox>
+              <!-- <v-btn text color="primary" @click="desplegar(card)" :id="card._id">Ver Comentarios</v-btn> --> </v-col
+            ><v-divider></v-divider>
             <v-col cols="12" sm="12" md="12">
               <v-banner
                 v-model="card.index"
@@ -265,13 +242,7 @@
                       >&nbsp;
                       <small>{{ comentario.fecha_comentario }}|</small>
                     </h4>
-                    <h4
-                      class="ml-3"
-                      style=" font-family:'Comic Sans MS' ;
-  font-size: 15px;
-  line-height : 18px;
-  color:   #566573;"
-                    >
+                    <h4 class="ml-3">
                       {{ comentario.descripcion }}
                     </h4>
                     <v-icon
@@ -317,7 +288,6 @@
         </v-card-text>
       </v-card> </v-col
   ></v-row>
-</v-img>
 </template>
 <script>
 import moment from "moment"; //para fecha
@@ -601,11 +571,3 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-h1 {
-  font-family: "Comic Sans MS";
-  font-size: 20px;
-  line-height: 35px;
-  color: #1c2833;
-}
-</style>
