@@ -302,15 +302,16 @@ export default {
         sortable: false,
         value: "email",
       },
-      {
-        text: "Inscripciones",
-        sortable: false,
-        value: "cntr",
-      },
+      
       {
         text: "Rol",
         sortable: false,
         value: "role.nombre",
+      },
+      {
+        text: "Inscripciones",
+        sortable: false,
+        value: "cntr",
       },
       { text: "Acciones", value: "actions", sortable: false },
     ],
