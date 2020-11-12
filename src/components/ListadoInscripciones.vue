@@ -273,6 +273,7 @@
 
 <script>
 import inscripcionService from "../services/inscripcionService";
+import UserService from "../services/user.service";
 
 import moment from "moment"; 
 //para fecha
@@ -389,41 +390,6 @@ export default {
   methods: {
     
     initialize() {
-      /*if (this.currentUser.role == "ROLE_ADMIN") {
-           
-          var aula = JSON.parse(localStorage.getItem("buscarAula"));
-          inscripcionService
-          .showAdmin(aula)
-          .then(res => {
-            this.desserts = Object.assign(
-              [this.editedIndex],
-              res.data.inscripcion
-            );
-            console.log(
-              Object.assign([this.editedIndex], res.data.inscripcion)
-            );
-          })
-          .catch(e => {
-            console.log(e);
-            console.log("neles");
-          });
-      } else {*/
-      /*  var usuario = this.currentUser.id;
-        console.log("usuario logeado => ",usuario);
-        inscripcionService
-          .show(usuario)
-          .then(res => {
-            this.desserts = Object.assign(
-              [this.editedIndex],
-              res.data.inscripcion
-            );
-          })
-          .catch(e => {
-            console.log(e);
-            console.log("neles");
-          });
-     // } 
-    },*/ 
     var usuario = this.currentUser.id;
         console.log("usuario logeado => ",usuario);
         inscripcionService
@@ -436,7 +402,7 @@ export default {
             this.desserts.map((i) => {
               let date = new Date(i.fecha_inscripcion);
               i.fecha_inscripcion = moment(date).format('DD/MM/YYYY - HH:mm A');
-            })
+            });
           })
           .catch(e => {
             console.log(e);
@@ -446,9 +412,11 @@ export default {
     },
 
     save() {
+      
+            console.log("cntr",this.desserts.length);
       var data = {
        // _id: this.inscripcion._id,
-        fecha_inscripcion: "2020-01-01 00:00:00",
+        //fecha_inscripcion: "2020-01-01 00:00:00",
         aula: this.inscripcion.aula,
         usuario: this.currentUser.id
       };
@@ -462,12 +430,38 @@ export default {
             //this.dialog = false;
             this.initialize();
             alert("Inscripcion creada con éxito");
-            this.close();
             
+
+            // ____________ agregado ___________________
+
+            /* var contador = 0;
+            for (let j = 0; j < this.desserts.length; j++) {
+              contador += 1
+            } */
+            var contador = this.desserts.length;
+            var suma = contador + 1;
+            console.log(suma);
+            var data = {
+              _id: this.currentUser.id,
+              cntr: suma,
+            };
+            UserService.updateCntr(data._id, data)
+              .then((response) => {
+                data._id = response.data._id;
+                console.log("si funciono");
+                //alert("Usuario modificado con éxito");
+              })
+              .catch((e) => {
+                //alert("Error al modificar");
+                console.log("no guardo cntr");
+              });
+
+            this.close();
           })
           .catch(e => {
             console.log(e);
           });
+          // ____________ cierre agregado ___________________
       //}
     },
 

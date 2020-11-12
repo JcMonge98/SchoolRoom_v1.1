@@ -240,7 +240,7 @@
           >mdi-refresh</v-icon
         >
 
-        <v-icon color="red" @click="deleteItem(item)"
+        <v-icon color="red" @click="deleteItem(item)" v-if="item.cntr = 0"
           >mdi-delete</v-icon
         >
       </template>
@@ -256,7 +256,7 @@ import inscripcionService from "../services/inscripcionService";
 export default {
   data: () => ({
     validarB: 0,
-    inscripciones: [],
+    inscripcion: [],
     lastpassword: "",
     buscar: "",
     buscar2: "",
@@ -302,11 +302,11 @@ export default {
         sortable: false,
         value: "email",
       },
-      /*{
-        text: "Password",
+      {
+        text: "Inscripciones",
         sortable: false,
-        value: "password",
-      },*/
+        value: "cntr",
+      },
       {
         text: "Rol",
         sortable: false,
@@ -362,7 +362,7 @@ export default {
 
   created() {
     this.initialize();
-    this.BotonEliminar();
+    //this.BotonEliminar();
   },
 
   methods: {
@@ -388,6 +388,29 @@ export default {
         .then((res) => {
           this.desserts = Object.assign([this.editedIndex], res.data.usuario);
           console.log(Object.assign([this.editedIndex], res.data.usuario));
+         /* // ____________________ mapeo ___________________
+
+          this.desserts.map((i) => {
+            var tiene = 0;
+
+            inscripcionService
+            .show(i._id)
+            .then((res) => {
+              this.inscripcion = Object.assign(
+                [this.editedIndex],
+                res.data.inscripcion
+              );
+              if (this.inscripcion != null) {
+                 tiene = 1;
+              }
+              //this.desserts[i].push(tiene);
+              console.log("docnetes", this.desserts);
+            })
+
+            //console.log("yo",i._id); 
+          }); // ____________________ cierre mapeo ___________________ */
+
+
         })
         .catch((e) => {
           console.log(e);
@@ -567,6 +590,28 @@ export default {
       });
     },
     BotonEliminar() {
+      this.desserts.map((i) => {
+        console.log("yo",i._id);
+
+        inscripcionService
+        .show(i._id)
+        .then((res) => {
+          this.inscripcion = Object.assign(
+            [this.editedIndex],
+            res.data.inscripcion
+          );
+          
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("neles");
+        });
+
+      })
+
+      
+    },
+    /* BotonEliminar() {
       inscripcionService
         .index()
         .then((res) => {
@@ -576,9 +621,15 @@ export default {
           );
           console.log("inscripciones", this.inscripciones);
 
-          /* for (let i = 0; i < this.inscripciones.length; i++) {
+            for (let i = 0; i < this.inscripciones.length; i++) {
             
               for (let j = 0; j < this.desserts.length; j++) {
+
+                  var contador = 0;
+                  while (this.inscripciones[i]) {
+                    contador = contador+1;
+                  }
+                  
                 
                   if (this.inscripciones[i]['usuario']['_id'] == this.desserts[j]['_id']) {
                     this.validarB = 1;
@@ -587,13 +638,13 @@ export default {
                     this.validarB = 0;
                   }
               }
-            }*/
+            } 
         })
         .catch((e) => {
           console.log(e);
           console.log("neles");
         });
-    },
+    },*/
   },
 };
 </script>
