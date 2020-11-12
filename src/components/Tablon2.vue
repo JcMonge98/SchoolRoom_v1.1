@@ -50,7 +50,7 @@
               </v-col>
              
             </template>
-            <v-card style="border-radius: 10px">
+            <v-card style="border-radius: 15px">
               <v-form ref="nuevaP" :lazy-validation="lazy">
                 <v-card-title>
                   <span class="headline">Nueva Publicación</span>

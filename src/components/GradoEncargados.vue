@@ -41,6 +41,7 @@
                   <v-card-actions>
                     <div class="text-center font-weight-bold">
                       <v-btn
+                      style="border-radius: 10px"
                         color="#4A148C"
                         text
                         @click="llevarDetalle(detalle)"
