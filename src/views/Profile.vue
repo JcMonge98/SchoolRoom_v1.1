@@ -1,15 +1,15 @@
 <template> 
 <v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
-<v-content >
+<v-content  style="border-radius:50px ">
   <v-parallax 
     dark
-    style="height: 500px;margin-left: 343px;
+    style="margin-left: 343px;
     margin-right: 343px;
     margin-top: 100px;
-    border-radius: 20px;
-    opacacity: 80px"
+    border-radius: 30px "
+    
 
-    src="../assets/33.jpg" 
+    src="../assets/oo.jpg" 
    
     
   > 
