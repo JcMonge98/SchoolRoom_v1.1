@@ -85,11 +85,37 @@
                       <v-card-text>
                         <v-container>
                           <v-row>
+                            <v-col cols="12" sm="6" md="6">
+                              <v-select
+                                v-model="inscripcion.usuario._id"
+                                :rules="RolTexto"
+                                :items="docentes"
+                                item-text="nombres"
+                                item-value="_id"
+                                label="Docente"
+                                required
+                              ></v-select>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="6">
+                              <v-select
+                                v-model="inscripcion.usuario._id"
+                                :rules="RolTexto"
+                                :items="docentes"
+                                item-text="apellidos"
+                                item-value="_id"
+                                label="Apellidos"
+                                required
+                                disabled
+                              ></v-select>
+                            </v-col>
+                          </v-row>
+                          <v-row>
                             <v-col cols="12" sm="3" md="3">
                               <v-text-field
                                 v-model="inscripcion.aula.codigo"
                                 :rules="RolTexto"
                                 label="Codigo de Aula"
+                                disabled
                               ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="3" md="3">
@@ -151,14 +177,14 @@
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
+                      <!--  <v-btn
                           color="green darken-1"
                           text
                           @click="generar2"
                           enabled
                           v-if="inscripcion.codigo != ''"
-                          >Buscar Grado</v-btn
-                        >
+                          >Buscar Grado</v-btn 
+                        > -->
                         <v-btn color="red darken-1" text @click="close2"
                           >Cancelar</v-btn
                         >
@@ -185,7 +211,7 @@
                 @click="editItem(item)"
                 v-if="
                   currentUser.role == 'ROLE_ADMIN' &&
-                    item.usuario.role.nombre == 'docente' && item.cntr == 0
+                    item.usuario.role.nombre == 'docente'
                 "
                 >mdi-pencil</v-icon
               >
@@ -215,6 +241,7 @@ import detalleService from "../services/detalleService";
 import gradosService from "../services/gradosService";
 
 import inscripcionService from "../services/inscripcionService";
+import UserService from "../services/user.service";
 
 export default {
   data: () => ({
@@ -315,6 +342,8 @@ export default {
     this.initialize();
     this.ComboGrados();
     this.ComboSecciones();
+    this.ComboDocentes()
+    
   },
   methods: {
     initialize() {
@@ -417,7 +446,7 @@ export default {
       var data = {
         _id: this.inscripcion._id,
         usuario: this.inscripcion.usuario,
-        aula: this.inscripcion.aula,
+        //aula: this.inscripcion.aula,
       };
       console.log(data);
       inscripcionService
@@ -428,6 +457,7 @@ export default {
           this.dialog2 = false;
           alert("Inscripcion modificada con éxito");
           this.VerPersonas();
+          this.initialize();
           this.$refs.form.reset();
         })
         .catch((e) => {
@@ -480,6 +510,21 @@ export default {
           console.log(this.secciones2)
         })
         .catch(e => {
+          console.log(e);
+        });
+    },
+
+
+    ComboDocentes() {
+      var roles = Object.assign("5fa4e914955045001760eb71");
+      console.log(roles);
+      UserService.getDocentes(roles)
+        .then((res) => {
+          this.docentes = Array.from(res.data.usuario);
+          console.log("docentes",this.docentes);
+
+        })
+        .catch((e) => {
           console.log(e);
         });
     },
