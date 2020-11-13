@@ -9,7 +9,8 @@
             <div class="offset-1" >
               <v-btn
                 @click="llenarCombo"
-                color="cyan lighten-1"
+                style="border-radius: 10px"
+                color="purple"
                 dark
                 class="mb-2 mx-auto offset-md-2"
                 v-on="on"
@@ -18,6 +19,7 @@
                 "
               >Inscribir Materia</v-btn>
               <v-btn
+              style="border-radius: 10px"
                 color="#3F51B5"
                 dark
                 class="mb-2 mx-auto ml-8"
@@ -25,9 +27,9 @@
               >volver al listado</v-btn>
             </div>
           </template>
-          <v-card>
-            <v-form ref="form" :lazy-validation="lazy">
-              <v-card-title>
+          <v-card style="border-radius: 15px">
+            <v-form ref="form" :lazy-validation="lazy" >
+              <v-card-title >
                 <span class="headline">Inscribir Materia</span>
               </v-card-title>
               <v-card-text>
@@ -71,19 +73,20 @@
           <template v-slot="{ hover }" v-if="currentUser.role == 'ROLE_DOCENTE'">
             <v-form action>
               <v-card class="mx-auto" style="border-radius: 28px" :elevation="hover ? 24 : 2">
-                <v-img class="white--text align-end" height="200px" src="../assets/fondo.jpg">
-                   <v-card-title>
+                <v-img class="blanck--text center" height="200px" src="../assets/55.jpg">
+                   <br> <br> <br><v-card-title>
                     <h3>{{ detalle.materia.nombre }}</h3>
                   </v-card-title> 
-                  <v-card-subtitle class="pb-0 white--text mb-4">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
+                  <br>
+                  <v-card-subtitle class="pb-0 black--text">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
                 </v-img>
+                <br>
                 <v-card-text class="text--primary">
                   <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia..!</div>
                 </v-card-text>
-
                 <v-card-actions>
                   <div class="center">
-                    <v-btn color="purple" text @click="llevarDetalle(detalle)">Entrar</v-btn>
+                    <v-btn color="#4A148C" text @click="llevarDetalle(detalle)">Entrar</v-btn>
                     <v-btn color="red" text @click="eliminarDetalle(detalle)">Eliminar</v-btn>
                   </div>
                 </v-card-actions>

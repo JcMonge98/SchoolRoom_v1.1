@@ -32,7 +32,7 @@
                     <h3>{{ detalle.materia.nombre }}</h3>
                   </v-card-title> 
                   <br>
-                  <v-card-subtitle class="pb-0 black--text ">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
+                  <v-card-subtitle class="pb-0 black--text">Prof:{{' ' + detalle.inscripcion.usuario.nombres + ' ' + detalle.inscripcion.usuario.apellidos}}</v-card-subtitle>
                 </v-img>
                 <br>
                 <v-card-text class="text--primary">
