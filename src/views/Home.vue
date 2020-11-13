@@ -96,7 +96,7 @@
         <p class="text-md-center font-italic">
               <br>
               <br>
-              1-  Solo tienes que ingresar el correo que te fue entregado y la contraseña por default que te etregaron 
+              1-  Solo tienes que ingresar el correo que te fue entregado y la contraseña por defecto que te entregaron 
               en el centro escolar Carlos Arnulfo Crespín (recuerda no compartir esto con nadie que no sea de tu confianza)
               <br>
               <br>
