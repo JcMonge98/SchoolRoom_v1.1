@@ -41,5 +41,8 @@ class UserService {
     reestablecerP(_id) {
         return http.put(`/usuarios/resetpassword/_id/${_id}`);
     }
+    updateCntr(_id, data) {
+        return http.put(`/usuarios/cntr/_id/${_id}`, data);
+    }
 }
 export default new UserService();
