@@ -185,7 +185,7 @@
                 @click="editItem(item)"
                 v-if="
                   currentUser.role == 'ROLE_ADMIN' &&
-                    item.usuario.role.nombre == 'docente'
+                    item.usuario.role.nombre == 'docente' && item.cntr == 0
                 "
                 >mdi-pencil</v-icon
               >
@@ -195,7 +195,8 @@
                 @click="deleteItem(item)"
                 v-if="
                   currentUser.role == 'ROLE_ADMIN' &&
-                    item.usuario.role.nombre == 'encargado'
+                    item.cntr == 0 &&
+                    item.usuario.role.nombre != 'admin'
                 "
                 >mdi-delete</v-icon
               >
@@ -266,6 +267,11 @@ export default {
         sortable: false,
         value: "usuario.role.nombre",
       },
+      /* {
+        text: "Materias Inscritas",
+        sortable: false,
+        value: "cntr",
+      }, */
       { text: "Acciones", value: "actions", sortable: false },
     ],
 

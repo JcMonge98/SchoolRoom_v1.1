@@ -215,6 +215,8 @@ export default {
           console.log(response.data);
           //this.$router.push({ name: "tutorials" });
           alert("Detalle eliminado con éxito");
+          //this.detallesGrado();
+          //this.llenarCombo();
           this.initialize();
         })
         .catch(e => {
@@ -288,6 +290,27 @@ export default {
           this.llenarCombo();
           this.dialog = false;
           this.initialize();
+          alert("Materia creada con éxito");
+
+          // ____________ agregado ___________________
+
+            var contador = this.detalles.length;
+            var suma = contador + 1;
+            console.log(suma);
+            var data = {
+              _id: JSON.parse(localStorage.getItem("id_inscripcion")),
+              cntr: suma,
+            };
+            console.log("data", data);
+            inscripcionService.updateCntr(data._id, data)
+              .then((response) => {
+                data._id = response.data._id;
+                console.log("si funciono");
+              })
+              .catch((e) => {
+                console.log("no guardo cntr");
+              });
+            // ____________ cierre agregado ___________________
         })
         .catch(e => {
           console.log(e);

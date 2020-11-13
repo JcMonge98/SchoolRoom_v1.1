@@ -124,7 +124,7 @@
     <!-- Datos de la tabla -->
     <template v-slot:item.actions="{ item }">
       <v-icon  color="orange" class="mr-2" @click="AcualizarPassword(item)">mdi-refresh</v-icon>
-      <v-icon  color="red" @click="deleteItem(item)">mdi-delete</v-icon>
+      <v-icon  color="red" @click="deleteItem(item)" v-if="item.cntr == 0">mdi-delete</v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn color="accent" @click="initialize">Refrescar</v-btn>
@@ -190,6 +190,11 @@ export default {
         sortable: false,
         value: "role.nombre",
       },
+      {
+        text: "Inscripciones",
+        sortable: false,
+        value: "cntr",
+      }, 
       { text: "Acciones", value: "actions", sortable: false }
     ],
 
@@ -356,6 +361,33 @@ export default {
         apellidos: this.usuario.apellidos,
         email: this.usuario.email,
         password: this.usuario.password,
+        role: this.usuario.roles,
+      };
+      this.$refs.form.reset();
+      console.log(data);
+      UserService.create(data)
+        .then((response) => {
+          this.usuario._id = response.data._id;
+          console.log(response.data);
+          this.dialog = false;
+          alert("Usuario creado con éxito");
+          this.initialize();
+        })
+        .catch((e) => {
+          alert("Error || Ya existe este Encargado");
+          console.log(e);
+        });
+
+
+
+
+    }
+      /* var data = {
+        _id: this.usuario._id,
+        nombres: this.usuario.nombres,
+        apellidos: this.usuario.apellidos,
+        email: this.usuario.email,
+        password: this.usuario.password,
         role: this.usuario.roles
       };
       this.$refs.form.reset();
@@ -392,8 +424,7 @@ export default {
             console.log(e);
           });
       }
-    }
-    //__________________________________________
+    }*/
   }
 };
 </script>

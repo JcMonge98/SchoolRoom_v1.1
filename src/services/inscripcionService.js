@@ -41,6 +41,11 @@ class inscripcionService {
         return http.get(`/inscripciones/aula/${grado_id}`);
     }
 
+
+    updateCntr(_id, data) {
+        return http.put(`/inscripciones/cntr/_id/${_id}`, data);
+    }
+
     /*generarMateria() {
         return http.get("/materias");
     }

@@ -240,7 +240,7 @@
           >mdi-refresh</v-icon
         >
 
-        <v-icon color="red" @click="deleteItem(item)" v-if="item.cntr = 0"
+        <v-icon color="red" @click="deleteItem(item)" v-if="item.cntr == 0"
           >mdi-delete</v-icon
         >
       </template>
@@ -312,7 +312,7 @@ export default {
         text: "Inscripciones",
         sortable: false,
         value: "cntr",
-      },
+      }, 
       { text: "Acciones", value: "actions", sortable: false },
     ],
 
