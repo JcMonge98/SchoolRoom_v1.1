@@ -245,7 +245,7 @@
                   v-model="card.index"
                   single-line
                   transition="slide-y-transition"
-                ><h5 class="mb-4" style="color: #008080;"> ******************************************************************** Comentarios ********************************************************************  </h5>
+                >
                   <div v-for="(comentario, index) in comentarios" :key="index">
                     <v-row dense
                       v-if="card._id == comentario.publicacion"
@@ -494,7 +494,11 @@ export default {
         inscripcion: JSON.parse(localStorage.getItem("id_inscripcion")),
       };
       console.log(data);
-      publicacionService
+      if(this.message.length > 50){        
+        alert('Ha sobrepasado el numero de carateres permitido')
+      }
+      else{
+        publicacionService
         .createComentario(data)
         .then((response) => {
           //alert("Publicacion realizada con éxito");
@@ -507,6 +511,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      }   
     },
     deleteComentario(comentario, card) {
       const index = this.comentarios.indexOf(comentario);
