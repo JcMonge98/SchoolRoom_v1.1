@@ -12,7 +12,6 @@
             color="#1565C0"
             v-model="codigoVerificacion"
             name="codigo"
-            :rules="RolTexto"
             label="Inserte codigo de Verificación"
           ></v-text-field>
         </v-col>
@@ -37,6 +36,8 @@
             :rules="RolTexto"
             label="Nombres"
             required
+            hint="Ej:  Juan Alberto"
+            persistent-hint
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
@@ -46,6 +47,8 @@
             name="apellidos"
             :rules="RolTexto"
             label="Apellidos"
+            hint="Ej:  Perez Sosa"
+            persistent-hint
           ></v-text-field>
         </v-col>
       </v-row>
@@ -59,9 +62,17 @@
             label="Correo Electronico"
             disabled
           ></v-text-field>
+          
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field v-if="this.verificado == true" v-model="user.roles" label="Rol" type="text" value="encargado" disabled></v-text-field>
+          <v-btn
+        color="blue darken-1"
+        outlined
+        @click="generarCorreo"
+        v-if="user.nombres.length > 3 && user.apellidos.length > 3  && user.email ==''"
+        enabled
+      >Generar Correo</v-btn>
+          <v-text-field v-if="this.verificado == true && user.email !=''" v-model="user.roles" label="Rol" type="text" value="encargado" disabled></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -85,13 +96,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-btn
-        color="green darken-1"
-        text
-        @click="generarCorreo"
-        v-if="user.nombres.length > 3 && user.apellidos.length > 3  && user.email ==''"
-        enabled
-      >Generar Correo</v-btn>
+      
       <v-btn
         dark
         class="mr-4 mb-8 mt-8"
@@ -101,15 +106,15 @@
       >Registrar</v-btn>
       <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'Home'}" v-if="this.verificado == true" dark outlined>Cancelar</v-btn>
     </v-form>
-    <!-- agrege aqui -->
+    <!-- agrege aqui 
     <div
       v-if="message"
       class="alert"
       :class="successful ? 'alert-success' : 'alert-danger'"
     >{{message}}</div>
-    <v-alert color="red lighten-3" v-if="this.confirmar.length > 7" enabled>
+    <v-alert color="red lighten-3" v-if="this.password.length < 7 && this.verificado == true" enabled>
       <h3 class="text-center">Debe ingresar 8 caracteres minimo</h3>
-    </v-alert>
+    </v-alert> -->
     <!-- <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'ListadoEncargados'}">Cancelar</v-btn> -->
   </v-card>
 </v-img>
@@ -133,13 +138,16 @@ export default {
     roles: "encargado",
     RolTexto: [
       v => !!v || "Este campo es requerido",
-      v => /[a-zA-Z]\d*/.test(v) || "No se permiten números"
+      v => /[a-zA-Z]\d*/.test(v) || "No se permiten números",
+      v => (v || '').length > 2 || "Mínimo 3 caracteres"
     ],
     Rolemail: [
       v => !!v || "Correo es requerido",
       v => /.+@.+\..+/.test(v) || "E-mail no valido"
     ],
-    Rolpassword: [v => !!v || "Contraseña es requerida"],
+    Rolpassword: [v => !!v || "Contraseña es requerida",
+    v => (v || '').length > 7 || "Mínimo 8 caracteres"],
+
     RolconPassword: [v => !!v || "Contraseña es requerida"],
 
     //agrege esto

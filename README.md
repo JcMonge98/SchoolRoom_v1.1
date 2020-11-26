@@ -50,17 +50,8 @@ git push para subir nuevos cambios, antes hacer commit locales
 ```
 *************************** DATOS **************************************
 ///////Docentes ///////////
-XA63a2072020@example.edu.sv 1234
-
-HP63a3072020@example.edu.sv 1234
-
-JG63a5072020@example.edu.sv 1234
-
 
 ///////////// Encargados ///////////
-prueba@gmail.com	    1234
-
-JS63a4072020@example.edu.sv 1234
 
 
 https://schoolroomforeducation.herokuapp.com/login   sitio
