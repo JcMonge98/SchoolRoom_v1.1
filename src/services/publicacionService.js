@@ -36,6 +36,10 @@ class publicacionService {
         return http.get(`/publicaciones/detalleaula/${detalle}`);
     }
 
+    verPublicacion(_id) {
+        return http.get(`/publicaciones/_id/${_id}`);
+    }
+
     traerDetalle(_id) {
         return http.get(`/detalleAula/_id/${_id}`);
     }
