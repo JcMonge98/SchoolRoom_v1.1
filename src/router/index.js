@@ -12,7 +12,7 @@ import ListadoDocentes from '../components/ListadoDocentes.vue'
 import ListadoEncargados from '../components/ListadoEncargados.vue';
 import Grado from '../components/Grado.vue'
 import GradoEncargados from '../components/GradoEncargados.vue'
-//import Tablon from '../components/Tablon.vue'
+import Publicacion from '../components/Publicacion.vue'
 import ListadoInscripciones from '../components/ListadoInscripciones.vue'
 //import ListadoInscripcionesDocente from '../components/ListadoInscripcionesDocente.vue'
 //import ListadoInscripcionesEncargado from '../components/ListadoInscripcionesEncargado.vue'
@@ -115,17 +115,6 @@ const routes = [{
         name: 'ListadoInscripciones',
         component: ListadoInscripciones
     },
-    /*
-        {
-            path: '/ListadoInscripcionesDocente',
-            name: 'ListadoInscripcionesDocente',
-            component: ListadoInscripcionesDocente
-        },
-        {
-            path: '/ListadoInscripcionesEncargado',
-            name: 'ListadoInscripcionesEncargado',
-            component: ListadoInscripcionesEncargado
-        },*/
     {
         path: '/Grado',
         name: 'Grado',
@@ -146,6 +135,11 @@ const routes = [{
         path: '/ListadoEncargados',
         name: 'ListadoEncargados',
         component: ListadoEncargados
+    },
+    {
+        path: '/Publicacion',
+        name: 'Publicacion',
+        component: Publicacion
     },
 ]
 

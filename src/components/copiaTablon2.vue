@@ -222,7 +222,7 @@
                     small
                     outlined
                     color="success"
-                    @click="llevarPublicacion(card)"
+                    @click="initialize2(card)"
                   >
                     <v-icon small class>mdi-eye</v-icon>Visualizar
                   </v-btn>{{ "   " }}
@@ -449,11 +449,6 @@ export default {
   },
 
   methods: {
-    llevarPublicacion(card){
-      localStorage.setItem('id_publicacion', JSON.stringify(card._id));
-      this.$router.push('/Publicacion');
-    },
-
     mostrarDetalle() {
       var _id = JSON.parse(localStorage.getItem("id_detalle"));
       console.log(_id);
