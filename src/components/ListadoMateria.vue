@@ -18,7 +18,7 @@
           class="text-xs-center"
           v-model="buscar"
           append-icon="search"
-          label="Busqueda"
+          label="Búsqueda"
           single-line
           hide-details
           color="purple"
@@ -121,7 +121,7 @@ export default {
   // titulo de ventana de Dialogo
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Nueva materia" : "Modificar Materia";
+      return this.editedIndex === -1 ? "Nueva materia" : "Modificar materia";
     },
     currentUser() {
       return this.$store.state.auth.user;
@@ -142,7 +142,7 @@ export default {
       var numeros="0123456789";
       for(var i=0; i<this.materia.nombre.length; i++){
           if (numeros.indexOf(this.materia.nombre.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
+            return alert("No se permiten números");
             
           }
       }

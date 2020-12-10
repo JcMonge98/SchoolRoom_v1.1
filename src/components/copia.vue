@@ -540,7 +540,7 @@ export default {
 
     deleteComentario(comentario, card) {
       const index = this.comentarios.indexOf(comentario);
-      confirm("Estas seguro de querer eliminar el comentario?");
+      confirm("¿Estás seguro de querer eliminar el comentario?");
       publicacionService
         .removeComentario(comentario._id)
         .then((response) => {
@@ -589,11 +589,11 @@ export default {
           data._id = response.data._id;
           console.log(response.data);
           this.close2();
-          alert("Publicacion modificada con éxito");
+          alert("Publicación modificada con éxito");
           this.initialize();
         })
         .catch((e) => {
-          alert("Error al modificar Publicacion");
+          alert("Error al modificar publicación");
           console.log(e);
         });
     },

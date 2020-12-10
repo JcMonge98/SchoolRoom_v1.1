@@ -276,7 +276,7 @@
                           aula.numero != '' &&
                           aula.codigo == ''
                         "
-                        >Generar Codigo</v-btn
+                        >Generar Código</v-btn
                       >
                       <v-btn color="red darken-1" text @click="close"
                         >Cancelar</v-btn
@@ -675,7 +675,7 @@ export default {
           this.aula.codigo = res.data.codigo;
         })
         .catch((e) => {
-          alert("Error al generar codigo");
+          alert("Error al generar código");
           console.log(e);
         });
     },
@@ -705,7 +705,7 @@ export default {
             this.initialize();
           })
           .catch((e) => {
-            alert("Error al modificar Aula");
+            alert("Error al modificar aula");
             console.log(e);
           });
       } else {
@@ -720,7 +720,7 @@ export default {
             this.initialize();
           })
           .catch((e) => {
-            alert("Error || Ya existe esta Seccion");
+            alert("Error || Ya existe esta sección");
             console.log(e);
           });
       }
@@ -729,7 +729,7 @@ export default {
     //_______________________________eliminar___________________________
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      confirm("Estas seguro de querer eliminar el registro?") &&
+      confirm("¿Estás seguro de querer eliminar el registro?") &&
         this.desserts.splice(index, 1);
       aulasService
         .remove(item._id)

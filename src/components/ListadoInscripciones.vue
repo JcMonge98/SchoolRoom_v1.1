@@ -59,7 +59,7 @@
                       <v-text-field
                         v-model="inscripcion.codigo"
                         :rules="RolTexto"
-                        label="Codigo de Aula"
+                        label="Código de Aula"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
@@ -84,7 +84,7 @@
                       <v-text-field
                         v-model="inscripcion.numero"
                         :rules="RolTexto"
-                        label="Numero de Aula"
+                        label="Número de Aula"
                         disabled
                       ></v-text-field>
                     </v-col>
@@ -112,7 +112,7 @@
                       <v-text-field
                         v-model="inscripcion.seccion"
                         :rules="RolTexto"
-                        label="Seccion"
+                        label="Sección"
                         disabled
                       ></v-text-field>
                     </v-col>
@@ -127,7 +127,7 @@
                   @click="generar"
                   enabled
                   v-if="inscripcion.codigo !=''"
-                >Buscar Grado</v-btn>
+                >Buscar grado</v-btn>
                 <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
                 <v-btn color="blue darken-1" text @click="save" v-if="inscripcion.grado!=''">Guardar</v-btn>
               </v-card-actions>
@@ -139,7 +139,7 @@
           <v-card>
             <v-form ref="form" :lazy-validation="lazy">
               <v-card-title>
-                <span class="headline">Editar Inscripcion</span>
+                <span class="headline">Editar Inscripción</span>
               </v-card-title>
               <v-card-text>
                 <v-container>
@@ -171,7 +171,7 @@
                       <v-text-field
                         v-model="inscripcion.aula.codigo"
                         :rules="RolTexto"
-                        label="Codigo de Aula"
+                        label="Código de Aula"
                       ></v-text-field>
                     </v-col>
                      <v-col cols="12" sm="3" md="3">
@@ -255,9 +255,9 @@
       <v-btn icon text @click="llevarInscripcion(item)" color="purple darken-1" v-if="currentUser.role == 'ROLE_DOCENTE'">
         <v-icon small>mdi-note</v-icon>Ver
       </v-btn>
-      <v-btn icon text @click="llevarInscripcion2(item)" color="purple darken-1" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_ADMIN'">
-        <v-icon small>mdi-note</v-icon>Ver
-      </v-btn>
+        <v-btn icon text @click="llevarInscripcion2(item)" color="purple darken-1" v-if="currentUser.role == 'ROLE_ENCARGADO' || currentUser.role == 'ROLE_ADMIN'">
+          <v-icon small>mdi-note</v-icon>Ver+
+        </v-btn>
       <v-btn icon text @click="editItem(item)" class="mr-2 ml-8" color="orange darken-1" v-if="currentUser.role == 'ROLE_ADMIN'">
        <v-icon small>mdi-pencil</v-icon>Editar
       </v-btn>
@@ -292,7 +292,7 @@ export default {
     //columnas de la tabla
     headers: [
       {
-        text: "Fecha Inscripcion",
+        text: "Fecha Inscripción",
         sortable: false,
         //value: moment(new Date("fecha_inscripcion").format("YYYY-MM-DD"))
         value:"fecha_inscripcion"
@@ -318,7 +318,7 @@ export default {
         value: "aula.grado.nombre"
       },
       {
-        text: "Seccion",
+        text: "Sección",
         sortable: false,
         value: "aula.seccion.nombre"
       },
@@ -379,8 +379,8 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1
-        ? "Nueva Inscripcion"
-        : "Modificar Inscripcion";
+        ? "Nueva Inscripción"
+        : "Modificar Inscripción";
     },
     currentUser() {
       return this.$store.state.auth.user;
@@ -478,7 +478,7 @@ export default {
             data._id = response.data._id;
             console.log(response.data);
             this.dialog2 = false;
-            alert("Inscripcion modificada con éxito");
+            alert("Inscripción modificada con éxito");
             this.initialize();
             this.$refs.form.reset();
           })
@@ -489,7 +489,7 @@ export default {
     },
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer eliminar el registro?");
+      var opcion = confirm("¿Estás seguro de querer eliminar el registro?");
       if (opcion == true) {
         this.desserts.splice(index, 1);
         inscripcionService
@@ -497,14 +497,14 @@ export default {
           .then(response => {
             console.log(response.data);
             this.$refs.form.reset();
-            alert("Inscripcion eliminada con éxito");
+            alert("Inscripción eliminada con éxito");
             this.initialize();
           })
           .catch(e => {
             console.log(e);
           });
       } else {
-        console.log("No se elemino");
+        console.log("No se eliminó");
       }
     },
 

@@ -1,4 +1,7 @@
 <template>
+  <v-img
+    src="../assets/88.jpeg">
+  >
   <v-row dense>
     <v-col cols="3">
       <v-card class="ml-5 mt-8" style="border-radius: 8px" color="cyan">
@@ -298,6 +301,7 @@
         </v-card>
       </v-col> -->
   </v-row>
+  </v-img>
 </template>
 <script>
 import moment from "moment"; //para fecha
@@ -428,7 +432,7 @@ export default {
       };
       console.log(data);
       if (this.message.length > 50) {
-        alert("Ha sobrepasado el numero de carateres permitido");
+        alert("Ha sobrepasado el número de carateres permitido");
       } else {
         publicacionService
           .createComentario(data)
@@ -451,7 +455,7 @@ export default {
       publicacionService
         .removeComentario(comentario._id)
         .then((response) => {
-          alert("Se elimino con éxito");
+          alert("Se eliminó con éxito");
           this.verComentarios2();
         })
         .catch((e) => {

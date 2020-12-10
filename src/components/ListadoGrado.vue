@@ -114,7 +114,7 @@
         <!-- formulario temporal -->
         <v-dialog v-model="dialogS" max-width="500px" style="color:purple">
           <template v-slot:activator="{ on }">
-            <v-btn color="#3F51B5" dark class="mb-2" v-on="on">Nueva Seccion</v-btn>
+            <v-btn color="#3F51B5" dark class="mb-2" v-on="on">Nueva Sección</v-btn>
           </template>
           <v-card style="border-radius: 10px">
             <v-form ref="form" :lazy-validation="lazy" >
@@ -241,7 +241,7 @@ export default {
       return this.editedIndex === -1 ? "Nuevo Grado" : "Modificar Grado";
     },
     formTitleS() {
-      return this.editedIndex === -1 ? "Nueva Seccion" : "Modificar Seccion";
+      return this.editedIndex === -1 ? "Nueva Sección" : "Modificar Sección";
     }
   },
 
@@ -318,7 +318,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
-            alert("Error al modificar Grado");
+            alert("Error al modificar grado");
             console.log(e);
           });
       } else {//___________________________guardar____________________
@@ -332,7 +332,7 @@ export default {
             this.initialize();
           })
           .catch(e => {
-            alert("Error || Ya existe este Grado");
+            alert("Error || Ya existe este grado");
             this.dialog = false;
             console.log(e);
           });
@@ -356,11 +356,11 @@ export default {
             data._id = response.data._id;
             console.log(response.data);
             this.dialogS = false;
-            alert("Seccion modificada con éxito");
+            alert("Sección modificada con éxito");
             this.initializeS();
           })
           .catch(e => {
-            alert("Error al modificar Seccion");
+            alert("Error al modificar sección");
             this.dialogS = false;
             console.log(e);
           });
@@ -371,11 +371,11 @@ export default {
             this.seccion._id = response.data._id;
             console.log(response.data);
             this.dialogS = false;
-            alert("Seccion creada con éxito");
+            alert("Sección creada con éxito");
             this.initializeS();
           })
           .catch(e => {
-            alert("Error || Ya existe esta Seccion");
+            alert("Error || Ya existe esta sección");
             console.log(e);
           });
         }
@@ -385,7 +385,7 @@ export default {
     //_______________________________eliminar___________________________
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      confirm("Estas seguro de querer eliminar el registro?") &&
+      confirm("¿Estás seguro de querer eliminar el registro?") &&
         this.desserts.splice(index, 1);
       gradosService
         .remove(item._id)
@@ -401,13 +401,13 @@ export default {
     },
     deleteItemS(item) {
       const index = this.dessertsS.indexOf(item);
-      confirm("Estas seguro de querer eliminar la seccion?") &&
+      confirm("¿Estás seguro de querer eliminar la sección?") &&
         this.desserts.splice(index, 1);
       seccionesService
         .remove(item._id)
         .then(response => {
           console.log(response.data);
-          alert("Seccion eliminada con éxito");
+          alert("Sección eliminada con éxito");
           this.initializeS();
         })
         .catch(e => {

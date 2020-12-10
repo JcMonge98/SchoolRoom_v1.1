@@ -71,7 +71,7 @@
                           v-model="publicacion.descripcion"
                           :rules="RolTexto"
                           outlined
-                          label="Descripcion de tu publicación"
+                          label="Descripción de tu publicación"
                         ></v-textarea>
                       </v-container>
                     </v-card-text>
@@ -145,7 +145,7 @@
                           v-model="publicacion.descripcion"
                           :rules="RolTexto"
                           outlined
-                          label="Descripcion de tu publicación"
+                          label="Descripción de tu publicación"
                         ></v-textarea>
                       </v-container>
                     </v-card-text>
@@ -530,7 +530,7 @@ export default {
       publicacionService
         .create(data)
         .then((response) => {
-          alert("Publicacion realizada con éxito");
+          alert("Publicación realizada con éxito");
           this.publicacion.descripcion = "";
           this.dialog = false;
           this.initialize();
@@ -541,11 +541,11 @@ export default {
     },
     deleteItem(card) {
       const index = this.cards.indexOf(card);
-      confirm("Estas seguro de querer eliminar el registro?");
+      confirm("¿Estás seguro de querer eliminar el registro?");
       publicacionService
         .remove(card._id)
         .then((response) => {
-          alert("Se elimino con éxito");
+          alert("Se eliminó con éxito");
           this.initialize();
         })
         .catch((e) => {
@@ -580,7 +580,7 @@ export default {
       };
       console.log(data);
       if (this.message.length > 50) {
-        alert("Ha sobrepasado el numero de carateres permitido");
+        alert("Ha sobrepasado el número de carateres permitido");
       } else {
         publicacionService
           .createComentario(data)
@@ -603,7 +603,7 @@ export default {
       publicacionService
         .removeComentario(comentario._id)
         .then((response) => {
-          alert("Se elimino con éxito");
+          alert("Se eliminó con éxito");
           //this.initialize();
           //this.verComentarios(card);
           card.index = true;
@@ -652,11 +652,11 @@ export default {
           data._id = response.data._id;
           console.log(response.data);
           this.close2();
-          alert("Publicacion modificada con éxito");
+          alert("Publicación modificada con éxito");
           this.initialize();
         })
         .catch((e) => {
-          alert("Error al modificar Publicacion");
+          alert("Error al modificar publicación");
           console.log(e);
         });
     },

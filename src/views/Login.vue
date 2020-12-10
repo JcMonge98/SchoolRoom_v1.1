@@ -19,7 +19,7 @@
                         style="color: #1A237E"
                       >
                        <p class="font-weight-medium">
-                      Iniciar Sesion
+                      Iniciar Sesión
                       </p>
                       
                       </h6>
@@ -27,7 +27,7 @@
                       <v-text-field
                         v-model="user.email"
                     :rules="RolTexto"
-                        label="Correo Electronico"
+                        label="Correo Electrónico"
                         name="email"
                         append-icon="person"
                         type="text"
@@ -156,7 +156,7 @@ export default {
             },
             error => {
               this.loading = false;
-              this.message = "Correo o Contraseña invalida"
+              this.message = "Correo o contraseña invalida"
                 /*(error.response && error.response.data) ||
                 error.message ||
                 error.toString();*/

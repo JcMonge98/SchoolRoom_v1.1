@@ -11,7 +11,7 @@
         <!-- menu de sesion-->
         
           <v-btn v-if="!currentUser" color="cyan" text to="/register">Registrarse</v-btn>
-          <v-btn v-if="!currentUser" color="#3F51B5" text to="/login">Iniciar Sesion</v-btn>
+          <v-btn v-if="!currentUser" color="#3F51B5" text to="/login">Iniciar Sesión</v-btn>
               
         <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="270" offset-x>
           <template v-slot:activator="{ on }">

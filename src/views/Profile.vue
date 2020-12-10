@@ -34,7 +34,7 @@
         <br> 
     
         <p class="font-weight-regular text-left " style = "padding-left: 50px;">
-      <strong>Codigo:</strong>
+      <strong>Código:</strong>
       {{currentUser.id}}
       </p>
       <p class="font-weight-regular text-left" style = "padding-left: 50px">
@@ -77,7 +77,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="id"
-            name="Codigo"
+            name="Código"
             :rules="RolTexto"
             label="Codigo"
             disabled
@@ -88,7 +88,7 @@
             v-model="email"
             name="email"
             :rules="Rolemail"
-            label="Correo Electronico"
+            label="Correo Electrónico"
             disabled
           ></v-text-field>
         </v-col>

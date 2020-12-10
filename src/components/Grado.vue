@@ -82,7 +82,7 @@
                 </v-img>
                 <br>
                 <v-card-text class="text--primary">
-                  <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia..!</div>
+                  <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia</div>
                 </v-card-text>
                 <v-card-actions>
                   <div class="center">

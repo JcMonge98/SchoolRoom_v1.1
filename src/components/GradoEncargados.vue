@@ -417,7 +417,7 @@ export default {
 
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer eliminar el registro?");
+      var opcion = confirm("¿Estás seguro de querer eliminar el registro?");
       if (opcion == true) {
         this.desserts.splice(index, 1);
         inscripcionService
@@ -425,14 +425,14 @@ export default {
           .then((response) => {
             console.log(response.data);
             this.$refs.form.reset();
-            alert("Inscripcion eliminada con éxito");
+            alert("Inscripción eliminada con éxito");
             this.VerPersonas();
           })
           .catch((e) => {
             console.log(e);
           });
       } else {
-        console.log("No se elemino");
+        console.log("No se eliminó");
       }
     },
 
@@ -455,7 +455,7 @@ export default {
           data._id = response.data._id;
           console.log(response.data);
           this.dialog2 = false;
-          alert("Inscripcion modificada con éxito");
+          alert("Inscripción modificada con éxito");
           this.VerPersonas();
           this.initialize();
           this.$refs.form.reset();

@@ -14,14 +14,14 @@
                         class="text-center display-1 mb-10"
                         :class="`${bgColor}--text`"
                       >
-                        Iniciar Sesion
+                        Iniciar Sesión
                       </h1>
                       <v-text-field
                         id="username"
                         v-model="email"
                         
                     :rules="RolTexto"
-                        label="Nombre de Usuario"
+                        label="Nombre de usuario"
                         name="Username"
                         append-icon="person"
                         type="text"

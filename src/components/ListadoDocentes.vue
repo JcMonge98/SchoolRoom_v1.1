@@ -275,7 +275,7 @@ export default {
     ],
     Rolemail: [
       (v) => !!v || "Correo es requerido",
-      (v) => /.+@.+\..+/.test(v) || "E-mail no valido",
+      (v) => /.+@.+\..+/.test(v) || "E-mail no válido",
     ],
     Rolpassword: [(v) => !!v || "Contraseña es requerida"],
     RolconPassword: [(v) => !!v || "Contraseña es requerida"],
@@ -347,7 +347,7 @@ export default {
     RolConfirmarPassword() {
       return () =>
         this.usuario.password === this.confirmar ||
-        "las contraseñas no coinciden";
+        "Las contraseñas no coinciden";
     },
     currentUser() {
       return this.$store.state.auth.user;
@@ -444,7 +444,7 @@ export default {
 
         } else { */
           const index = this.desserts.indexOf(item);
-          var opcion = confirm("Estas seguro de querer eliminar el registro?");
+          var opcion = confirm("¿Estás seguro de querer eliminar el registro?");
           if (opcion == true) {
             this.desserts.splice(index, 1);
             UserService.remove(item._id)
@@ -516,7 +516,7 @@ export default {
           this.initialize();
         })
         .catch((e) => {
-          alert("Error || Ya existe este Docente");
+          alert("Error || Ya existe este docente");
           console.log(e);
         });
       //}
@@ -563,7 +563,7 @@ export default {
     AcualizarPassword(item) {
       this.editedIndex = this.desserts.indexOf(item);
       var opcion = confirm(
-        "Estas seguro de querer Reestablecer contraseña de Usuario?"
+        "¿Estás seguro de querer reestablecer contraseña de usuario?"
       );
       if (opcion == true) {
         UserService.reestablecerP(item._id)
@@ -577,7 +577,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se actualizo");
+        console.log("No se actualizó");
       }
     },
     //metdo cerrar dialog

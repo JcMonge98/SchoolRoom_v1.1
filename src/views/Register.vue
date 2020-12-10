@@ -12,7 +12,7 @@
             color="#1565C0"
             v-model="codigoVerificacion"
             name="codigo"
-            label="Inserte codigo de Verificación"
+            label="Inserte código de verificación"
           ></v-text-field>
         </v-col>
         
@@ -59,7 +59,7 @@
             v-model="user.email"
             name="email"
             :rules="Rolemail"
-            label="Correo Electronico"
+            label="Correo Electrónico"
             disabled
           ></v-text-field>
           
@@ -143,7 +143,7 @@ export default {
     ],
     Rolemail: [
       v => !!v || "Correo es requerido",
-      v => /.+@.+\..+/.test(v) || "E-mail no valido"
+      v => /.+@.+\..+/.test(v) || "E-mail no válido"
     ],
     Rolpassword: [v => !!v || "Contraseña es requerida",
     v => (v || '').length > 7 || "Mínimo 8 caracteres"],

@@ -18,7 +18,7 @@
           class="text-xs-center"
           v-model="buscar"
           append-icon="search"
-          label="Busqueda"
+          label="Búsqueda"
           single-line
           hide-details
           color="#1565C0"
@@ -41,7 +41,7 @@
                       <v-text-field
                         v-model="usuario.nombres"
                         :rules="RolTexto"
-                        label="Nombres de Usuario"
+                        label="Nombres de usuario"
                         required
                       ></v-text-field>
                     </v-col>
@@ -89,7 +89,7 @@
                       <v-text-field
                         v-model="confirmar"
                         :rules="RolconPassword.concat(RolConfirmarPassword)"
-                        label="Confirmar Contraseña"
+                        label="Confirmar contraseña"
                         type="password"
                         v-if="usuario.email != ''"
                         enabled
@@ -153,7 +153,7 @@ export default {
     ],
     Rolemail: [
       v => !!v || "Correo es requerido",
-      v => /.+@.+\..+/.test(v) || "E-mail no valido"
+      v => /.+@.+\..+/.test(v) || "E-mail no válido"
     ],
     Rolpassword: [v => !!v || "Contraseña es requerida"],
     RolconPassword: [v => !!v || "Contraseña es requerida"],
@@ -231,7 +231,7 @@ export default {
     RolConfirmarPassword() {
       return () =>
         this.usuario.password === this.confirmar ||
-        "las contraseñas no coinciden";
+        "Las contraseñas no coinciden";
     },
     currentUser() {
       return this.$store.state.auth.user;
@@ -254,12 +254,12 @@ export default {
       var numeros="0123456789";
       for(var i=0; i<this.usuario.nombres.length; i++){
           if (numeros.indexOf(this.usuario.nombres.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
+            return alert("No se permiten números");
           }
       }
       for(var i=0; i<this.usuario.apellidos.length; i++){
           if (numeros.indexOf(this.usuario.apellidos.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
+            return alert("No se permiten números");
           }
       }
       return this.generarCorreo();
@@ -295,7 +295,7 @@ export default {
     //_______________________________eliminar___________________________
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer eliminar el registro?");
+      var opcion = confirm("¿Estás seguro de querer eliminar el registro?");
       if (opcion == true) {
         this.desserts.splice(index, 1);
         UserService.remove(item._id)
@@ -309,7 +309,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se elemino");
+        console.log("No se eleminó");
       }
     },
     //__________________________________________
@@ -328,7 +328,7 @@ export default {
 
     AcualizarPassword(item){
       this.editedIndex = this.desserts.indexOf(item);
-      var opcion = confirm("Estas seguro de querer Reestablecer contraseña de Usuario?");
+      var opcion = confirm("¿Estás seguro de querer Reestablecer contraseña de usuario?");
       if (opcion == true) {
         UserService.reestablecerP(item._id)
           .then((response) => {
@@ -341,7 +341,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se actualizo");
+        console.log("No se actualizó");
       }
     },
     //metdo cerrar dialog
@@ -374,7 +374,7 @@ export default {
           this.initialize();
         })
         .catch((e) => {
-          alert("Error || Ya existe este Encargado");
+          alert("Error || Ya existe este encargado");
           console.log(e);
         });
 
