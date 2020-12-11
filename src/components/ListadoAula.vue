@@ -652,6 +652,61 @@ export default {
 
     //_________________  AULAS _________________________
 
+    /* initialize() {
+      var ca = [];
+      var detalle = JSON.parse(localStorage.getItem("id_detalle"));
+      publicacionService
+        .verPublicaciones(detalle)
+        .then((res) => {
+          let date = new Date();
+          ca = res.data.publicacion;
+          ca.map((card) => {
+            let date = new Date(card.fecha_publicacion);
+            console.log(card.fecha_publicacion);
+            console.log(date);
+            //card.fecha_publicacion = moment(date).local()
+            card.fecha_publicacion = moment(date).format(
+              "DD/MM/YYYY - HH:mm A"
+            );
+            card.index = false;
+          });
+          console.log(res.data.publicacion);
+          //this.ca.fecha_publicacion = ;
+          this.cards = ca.reverse();
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        });
+    }, */
+
+   /* initialize() {
+      var ca = [];
+      aulasService
+        .index()
+        .then((res) => {
+          //let turno = new Turno();
+          ca = res.data.aula;
+          ca.map((card) => {
+            let turno = new Turno(card.turno);
+            console.log(card.turno);
+            console.log(turno);
+            if (card.turno == 1 || card.turno == 2) {
+              card.turno = 'Diurno'
+            }
+            card.turno = "Nocturno"
+          });
+          console.log(res.data.aula);
+          this.desserts = ca;
+        })
+        //.then((res) => {
+         // this.desserts = Object.assign([this.editedIndex], res.data.aula);
+         // console.log(Object.assign(res.data.aula));
+        //})
+        .catch((e) => {
+          console.log(e);
+        });
+    },*/
+
     initialize() {
       aulasService
         .index()

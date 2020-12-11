@@ -3,21 +3,32 @@
     src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg"
     gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
   >
-    <v-row align="center" justify="center">
-      <v-col class="text-center" cols="8">
+    <!-- <div>
+      <div>
+        <p>Subir Imagen a Firebase</p>
+        <input type="file" @change="previewImage" accept="*" />
+      </div>
+      <div>
+        <p>
+          Progress:{{ uploadValue.toFixed(+"%") }}
+          <progress :value="uploadValue" max="100"></progress>
+        </p>
+      </div>
+      <div>
+        <img class="preview" :src="picture" />
+        <br />
+        <v-btn color="white darken-1" @click="onUpload" text
+          >Subir Archivo</v-btn
+        >
+      </div>
+    </div> -->
+
+    
+
         <v-row align="center" justify="center">
-          <v-col class="text-center mt-12" cols="4">
-            <v-img
-              cols="12"
-              style="border-radius: 100px"
-              class="ml-4"
-              src="../assets/perfil.jpg"
-              max-height="170px"
-              max-width="170px"
-            >
-            </v-img>
-          </v-col>
-          <v-col class="text-center mt-12" cols="8">
+
+         
+          <v-col class="text-center mr-12 mt-12" cols="8">
             <v-card
               style="border-radius: 12px"
               height="430px"
@@ -140,9 +151,8 @@
                                 persistent-hint
                               ></v-text-field>
                             </v-col>
-                            
                           </v-row>
-                          <v-row >
+                          <v-row>
                             <v-col cols="12" sm="6">
                               <v-text-field
                                 v-model="lastpassword"
@@ -265,7 +275,10 @@
               </v-col>
             </v-row> -->
                         </v-container>
-                        <small>*Unícamente puede cambiar télefono y direccién (confirme su contraseña)</small>
+                        <small
+                          >*Unícamente puede cambiar télefono y direccién
+                          (confirme su contraseña)</small
+                        >
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
@@ -276,13 +289,9 @@
                         >
                           Cerrar
                         </v-btn>
-                        <v-btn
-                          color="blue darken-1"
-                          outlined
-                          @click="save"
-                        >
+                        <v-btn color="blue darken-1" outlined @click="save">
                           Modificar
-                        </v-btn> 
+                        </v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
@@ -290,6 +299,34 @@
               </v-card-actions>
             </v-card>
           </v-col>
+
+         <v-col class="text-center mt-12" cols="4">
+            <img
+              cols="12"
+              style="border-radius: 100px"
+              class="preview ml-6"
+              :src="picture"
+            />
+            <!--<p>
+              <v-file-input dark accept="*" label="Seleccione el archivo" @change="previewImage">
+              </v-file-input>
+            </p> -->
+
+
+             <p class="mt-4" style="color:white">Seleccionar Archivo</p>
+            <input type="file" @change="previewImage" accept="*" /> 
+
+            <p class="mt-4" style="color:white">
+              Subiendo:{{ " " + uploadValue.toFixed(+"%") +" %" }}
+              <v-progress-linear :value="uploadValue" max="100" dark color="white"></v-progress-linear>
+            </p>
+
+
+            <v-btn color="white darken-1" @click="onUpload" outlined dark
+              >Subir Foto</v-btn
+            >
+          </v-col>
+
         </v-row>
         <!-- <h1 class=" font-weight-medium mt-12" style = "padding-left: 1px"
         >Bienvenid@ a SchoolRoom</h1>  
@@ -317,15 +354,20 @@
     </ul>
       </p>
       <br>-->
-      </v-col>
-    </v-row>
+      
   </v-img>
 </template>
 <script>
-import UserService from "../services/user.service";
+import Vue from "vue";
+import firebase from "firebase";
 
+import UserService from "../services/user.service";
 export default {
   data: () => ({
+    imageData: null,
+    picture: null,
+    uploadValue: 0,
+
     dialog: false,
     v0: false,
     si: false,
@@ -400,7 +442,7 @@ export default {
         direccion: this.direccion,
         email: this.email,
         password: this.password,
-        lastpassword: this.lastpassword
+        lastpassword: this.lastpassword,
       };
       //_______________________________actualizar________________________
       UserService.update(_id, data)
@@ -413,9 +455,9 @@ export default {
           //localStorage.setItem('user', JSON.stringify(response.data.usuario));
           this.initialize();
           this.dialog = false;
-          this.password = '';
-          this.confirmar = '';
-          this.lastpassword = '';
+          this.password = "";
+          this.confirmar = "";
+          this.lastpassword = "";
         })
         .catch((e) => {
           alert("No se pudo modificar");
@@ -468,9 +510,69 @@ export default {
           console.log("neles", e);
         });
     },
+
+    previewImage(event) {
+      this.uploadValue = 0;
+      this.picture = null;
+      this.imageData = event.target.files[0];
+    },
+    onUpload(e) {
+      this.picture = null;
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.imageData.name}`)
+        .put(this.imageData);
+      storageRef.on(
+        `state_changed`,
+        (snapshot) => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          storageRef.snapshot.ref.getDownloadURL().then((url) => {
+            this.picture = url;
+            console.log(url);
+            localStorage.setItem("URL", JSON.stringify(url));
+            this.guardarURL();
+          });
+        }
+      );
+    },
+
+    guardarURL(){
+      var _id = this.id;
+      var data = {
+        url: JSON.parse(localStorage.getItem("URL")),
+      };
+      UserService.saveUrl(_id, data)
+        .then((response) => {
+          _id = response.data._id;
+          console.log("save URL",response.data.usuario);
+          this.borrarURL();
+        })
+        .catch((e) => {
+          alert("No se pudo guardar la foto");
+          console.log(e);
+        });
+    },
+
+    borrarURL(){
+       localStorage.removeItem("URL");
+    }
   },
   created() {
     this.initialize();
   },
 };
 </script>
+<style scoped="">
+img.preview {
+  width: 230px;
+  height: 230px;
+  border-radius: 5px;
+}
+</style>
