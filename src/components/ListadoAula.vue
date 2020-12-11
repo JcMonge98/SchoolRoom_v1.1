@@ -426,15 +426,15 @@ export default {
     ],
     turnos: [
       {
-        nombre: "Mañana",
+        nombre: "Matutino",
         _id: 1,
       },
       {
-        nombre: "Tarde",
+        nombre: "Vespertino",
         _id: 2,
       },
       {
-        nombre: "Noche",
+        nombre: "Nocturno",
         _id: 3,
       },
     ],
@@ -708,10 +708,23 @@ export default {
     },*/
 
     initialize() {
+      var ca = []
       aulasService
         .index()
         .then((res) => {
-          this.desserts = Object.assign([this.editedIndex], res.data.aula);
+          ca = res.data.aula;
+          ca.map((card)=> {
+            if(card.turno == 1){
+              card.turno = "Matutino"
+            }
+            if(card.turno == 2){
+              card.turno = "Vespertino"
+            }
+            if(card.turno == 3){
+              card.turno = "Nocturno"
+            }
+          })
+          this.desserts = Object.assign([this.editedIndex], ca);
           console.log(Object.assign(res.data.aula));
         })
         .catch((e) => {
