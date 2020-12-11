@@ -69,7 +69,7 @@
         color="blue darken-1"
         outlined
         @click="generarCorreo"
-        v-if="user.nombres.length > 3 && user.apellidos.length > 3  && user.email ==''"
+        v-if="user.nombres.length >= 3 && user.apellidos.length >= 5  && user.email ==''"
         enabled
       >Generar Correo</v-btn>
           <v-text-field v-if="this.verificado == true && user.email !=''" v-model="user.roles" label="Rol" type="text" value="encargado" disabled></v-text-field>
@@ -102,7 +102,7 @@
         class="mr-4 mb-8 mt-8"
         color="purple"
         type="submit"
-        v-if="user.nombres !='' && user.apellidos !='' && user.email !='' && user.password == confirmar"
+        v-if="user.nombres.length > 3 && user.apellidos.length > 3 && user.email !='' && user.password.length >7 && user.password == confirmar"
       >Registrar</v-btn>
       <v-btn class="mr-4 mb-8 mt-8 ml-12" color="orange" :to="{name:'Home'}" v-if="this.verificado == true" dark outlined>Cancelar</v-btn>
     </v-form>

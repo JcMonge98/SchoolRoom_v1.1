@@ -101,7 +101,7 @@
                   tile
                   outlined
                   dark
-                  color="blue"
+                  color="white"
                   @click="borrarStorage()"
                   v-if="currentUser.role == 'ROLE_DOCENTE'"
                 >
