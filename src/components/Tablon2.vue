@@ -15,7 +15,16 @@
             >
               <v-row>
                 <v-col cols="12" sm="12">
-                  <h2>{{ detalle.materia.nombre }}</h2>
+                  <h2
+                    style="
+                      font-family: Times New Roman;
+                      font-size: 25px;
+                      color: white;
+                      font-weight: bold;
+                    "
+                  >
+                    {{ detalle.materia.nombre }}
+                  </h2>
                 </v-col>
 
                 <v-col cols="10" sm="10">
@@ -189,17 +198,22 @@
           style="border-radius: 20px"
         >
           <v-card-title class="">
-              <div class="">
+            <div class="">
               <div class="float-sm-left">
                 <h5 class="ml-2">
-                  <v-avatar color="cyan" size="32" class="ml-2">
-                    <v-icon dark>mdi-account-circle</v-icon>
+                  <v-avatar color="cyan" size="32" class="ml-2"
+                    ><img v-if="card.url != ''" :src="card.url" />
+                    <v-icon dark small v-if="card.url == ''"
+                      >mdi-account-circle</v-icon
+                    >
+                    <!--  <v-icon dark>mdi-account-circle</v-icon> -->
                   </v-avatar>
                   {{
                     card.inscripcion.usuario.nombres +
-                      " " +
-                      card.inscripcion.usuario.apellidos +
-                      " " + "ha publicado nuevo contenido: "
+                    " " +
+                    card.inscripcion.usuario.apellidos +
+                    " " +
+                    "ha publicado nuevo contenido: "
                   }}
                 </h5>
               </div>
@@ -208,65 +222,70 @@
                 <h6 small class="ml-12">{{ card.fecha_publicacion }}</h6>
               </div>
               <div>
-                <h4 class="ml-12" color="cyan darken-1">{{
-                    card.tema
-                  }}</h4></div>
-            </div>
-              
-              <br />
-              <div class="mt-4 ml-4">
-                  <v-btn
-                    style="border-radius: 20px"
-                    class="mr-2 ml-8"
-                    tile
-                    small
-                    outlined
-                    color="success"
-                    @click="llevarPublicacion(card)"
-                  >
-                    <v-icon small class>mdi-eye</v-icon>Visualizar
-                  </v-btn>{{ "   " }}
-                  <v-btn
-                    style="border-radius: 20px"
-                    class="mr-2 ml-8"
-                    tile
-                    small
-                    outlined
-                    color="orange"
-                    @click="editItem(card)"
-                    v-if="
-                      (currentUser.role == 'ROLE_DOCENTE' &&
-                        currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                        (currentUser.role == 'ROLE_ADMIN' &&
-                          currentUser.nombres == card.inscripcion.usuario.nombres)
-                    "
-                  >
-                    <v-icon small class>mdi-pencil</v-icon>Editar
-                  </v-btn>{{ "   " }}
-                  <v-btn
-                    style="border-radius: 20px"
-                    class="mr-2 ml-8"
-                    tile
-                    small
-                    outlined
-                    color="red"
-                    @click="deleteItem(card)"
-                    v-if="
-                      (currentUser.role == 'ROLE_DOCENTE' &&
-                        currentUser.nombres == card.inscripcion.usuario.nombres) ||
-                        currentUser.role == 'ROLE_ADMIN' ||
-                        (currentUser.role == 'ROLE_ENCARGADO' &&
-                          currentUser.nombres == card.inscripcion.usuario.nombres)
-                    "
-                  >
-                    <v-icon small class>mdi-delete</v-icon>Eliminar
-                  </v-btn>
+                <h4 class="ml-12" color="cyan darken-1">{{ card.tema }}</h4>
               </div>
-            
+            </div>
+
+            <br />
+            <div class="mt-4 ml-4">
+              <v-btn
+                style="border-radius: 20px"
+                class="mr-2 ml-8"
+                tile
+                small
+                outlined
+                color="success"
+                @click="llevarPublicacion(card)"
+              >
+                <v-icon small class>mdi-eye</v-icon>Visualizar </v-btn
+              >{{ "   " }}
+              <v-btn
+                style="border-radius: 20px"
+                class="mr-2 ml-8"
+                tile
+                small
+                outlined
+                color="orange"
+                @click="editItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  (currentUser.role == 'ROLE_ADMIN' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon small class>mdi-pencil</v-icon>Editar </v-btn
+              >{{ "   " }}
+              <v-btn
+                style="border-radius: 20px"
+                class="mr-2 ml-8"
+                tile
+                small
+                outlined
+                color="red"
+                @click="deleteItem(card)"
+                v-if="
+                  (currentUser.role == 'ROLE_DOCENTE' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres) ||
+                  currentUser.role == 'ROLE_ADMIN' ||
+                  (currentUser.role == 'ROLE_ENCARGADO' &&
+                    currentUser.nombres == card.inscripcion.usuario.nombres)
+                "
+              >
+                <v-icon small class>mdi-delete</v-icon>Eliminar
+              </v-btn>
+            </div>
           </v-card-title>
           <v-card-text>
-            <v-dialog v-model="dialogC"  hide-overlay fullscreen scrollable transition="dialog-bottom-transition" >
-              <v-row justify="center"
+            <v-dialog
+              v-model="dialogC"
+              hide-overlay
+              fullscreen
+              scrollable
+              transition="dialog-bottom-transition"
+            >
+              <v-row
+                justify="center"
                 v-for="(cont, index) in contenido"
                 :key="cont._id"
                 :item="cont"
@@ -449,9 +468,9 @@ export default {
   },
 
   methods: {
-    llevarPublicacion(card){
-      localStorage.setItem('id_publicacion', JSON.stringify(card._id));
-      this.$router.push('/Publicacion');
+    llevarPublicacion(card) {
+      localStorage.setItem("id_publicacion", JSON.stringify(card._id));
+      this.$router.push("/Publicacion");
     },
 
     mostrarDetalle() {

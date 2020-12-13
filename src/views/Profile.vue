@@ -23,157 +23,171 @@
       </div>
     </div> -->
 
-    
-
-        <v-row align="center" justify="center">
-
-         
-          <v-col class="text-center mr-12 mt-12" cols="8">
-            <v-card
-              style="border-radius: 12px"
-              height="430px"
-              max-width="800px"
-            >
-              <v-img
-                class="blanck--text center"
-                height="355px"
-                src="../assets/oo.jpg"
+    <v-row align="center" justify="center">
+      <v-col class="text-center mt-12" cols="8">
+        <v-card style="border-radius: 12px" height="430px" max-width="800px">
+          <v-img
+            class="blanck--text center"
+            height="355px"
+            src="../assets/oo.jpg"
+          >
+            <v-card-title>
+              <h2
+                class="font-weight-medium mt-4"
+                style="padding-left: 1px; color: white"
               >
-                <v-card-title>
-                  <v-row align="center" justify="center">
-                    <h2
-                      class="font-weight-medium mt-4"
-                      style="padding-left: 1px; color: white"
-                    >
-                      Bienvenid@ a SchoolRoom
-                    </h2>
-                    <v-col cols="12">
-                      <h5 class="mt-12" style="color: white">
-                        <strong>Código:</strong>{{ currentUser.id }}
-                      </h5>
-                    </v-col>
-                    <v-col cols="12">
-                      <h5 style="color: white">
-                        <strong>Nombres:</strong>{{ currentUser.nombres }}
-                      </h5>
-                    </v-col>
-                    <v-col cols="12">
-                      <h5 style="color: white">
-                        <strong>Apellidos:</strong>{{ currentUser.apellidos }}
-                      </h5>
-                    </v-col>
-                    <v-col cols="12">
-                      <h5 style="color: white">
-                        <strong>Correo:</strong>{{ currentUser.email }}
-                      </h5>
-                    </v-col>
-                    <v-col cols="12">
-                      <h5 style="color: white">
-                        <strong>Rol:</strong>{{ currentUser.role }}
-                      </h5>
-                    </v-col>
-                  </v-row>
-                </v-card-title>
-                <v-card-subtitle class="pb-0 black--text"></v-card-subtitle>
-              </v-img>
-              <v-card-actions>
-                <v-row justify="center">
-                  <v-dialog v-model="dialog" max-width="800px">
-                    <template v-slot:activator="{ on }">
-                      <v-btn color="cyan" outlined dark v-on="on" class="mt-3">
-                        Modificar Datos
-                      </v-btn>
-                    </template>
-                    <v-card>
-                      <v-card-title>
-                        <span class="headline">Modificar Datos Personales</span>
-                      </v-card-title>
-                      <v-card-text>
-                        <v-container>
-                          <v-row>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="id"
-                                name="Código"
-                                :rules="RolTexto"
-                                label="Codigo"
-                                disabled
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="email"
-                                name="email"
-                                :rules="Rolemail"
-                                label="Correo Electrónico"
-                                disabled
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="nombres"
-                                name="nombres"
-                                :rules="RolTexto"
-                                label="Nombres"
-                                required
-                                disabled
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="apellidos"
-                                name="apellidos"
-                                :rules="RolTexto"
-                                label="Apellidos"
-                                disabled
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="telefono"
-                                name="telefono"
-                                :rules="RolTel"
-                                label="Telefono"
-                                hint="Ej:  7000-7000 / 2200-2200 (Opcional)"
-                                persistent-hint
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="direccion"
-                                name="direccion"
-                                label="Direccion"
-                                hint="Ej:  Chalatenango  (Opcional)"
-                                persistent-hint
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="lastpassword"
-                                label="Contraseña"
-                                type="password"
-                                required
-                              ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                              <v-text-field
-                                v-model="password"
-                                name="password"
-                                label="Confirmar"
-                                type="password"
-                                :rules="
-                                  RolconPassword.concat(RolConfirmarPassword)
-                                "
-                              ></v-text-field>
-                            </v-col>
-                          </v-row>
-                          <!--<v-checkbox
+                Bienvenid@ a SchoolRoom
+              </h2>
+              <v-row align="center" justify="center" class="text-center">
+                <v-col class="text-center" cols="4">
+                  
+                  <img
+                    height="200px"
+                    max-width="200px"
+                    style="border-radius: 100px"
+                    class="ml-12 mr-9"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHDHqQ7DQSIxDuq7E4gRclTgJUCgnv-gPIIx2YDIbs-gUUYkQF&usqp=CAU"
+                    v-if="this.image ==''"
+                  />
+                  <img
+                    height="200px"
+                    max-width="200px"
+                    style="border-radius: 100px"
+                    class="ml-12 mr-9"
+                    :src="image"
+                    v-if="this.image !=''"
+                  />
+                  </v-col>
+                <v-col class="text-center" cols="8">
+                  <v-col cols="12">
+                    <h5 class="mt-1" style="color: white">
+                      <strong>Código:</strong>{{ currentUser.id }}
+                    </h5>
+                  </v-col>
+                  <v-col cols="12">
+                    <h5 style="color: white">
+                      <strong>Nombres:</strong>{{ currentUser.nombres }}
+                    </h5>
+                  </v-col>
+                  <v-col cols="12">
+                    <h5 style="color: white">
+                      <strong>Apellidos:</strong>{{ currentUser.apellidos }}
+                    </h5>
+                  </v-col>
+                  <v-col cols="12">
+                    <h5 style="color: white">
+                      <strong>Correo:</strong>{{ currentUser.email }}
+                    </h5>
+                  </v-col>
+                  <v-col cols="12">
+                    <h5 style="color: white">
+                      <strong>Rol:</strong>{{ currentUser.role }}
+                    </h5>
+                  </v-col>
+                </v-col>
+              </v-row>
+            </v-card-title>
+            <v-card-subtitle class="pb-0 black--text"></v-card-subtitle>
+          </v-img>
+          <v-card-actions>
+            <v-row justify="center">
+              <v-dialog v-model="dialog" max-width="800px">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="cyan" outlined dark v-on="on" class="mt-3">
+                    Modificar Datos
+                  </v-btn>
+                  <v-btn color="blue" outlined dark @click="xyzx()" class="mt-3 ml-12">
+                    Actualizar Foto
+                  </v-btn>
+                </template>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Modificar Datos Personales</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="id"
+                            name="Código"
+                            :rules="RolTexto"
+                            label="Codigo"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="email"
+                            name="email"
+                            :rules="Rolemail"
+                            label="Correo Electrónico"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="nombres"
+                            name="nombres"
+                            :rules="RolTexto"
+                            label="Nombres"
+                            required
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="apellidos"
+                            name="apellidos"
+                            :rules="RolTexto"
+                            label="Apellidos"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="telefono"
+                            name="telefono"
+                            :rules="RolTel"
+                            label="Telefono"
+                            hint="Ej:  7000-7000 / 2200-2200 (Opcional)"
+                            persistent-hint
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="direccion"
+                            name="direccion"
+                            label="Direccion"
+                            hint="Ej:  Chalatenango  (Opcional)"
+                            persistent-hint
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="lastpassword"
+                            label="Contraseña"
+                            type="password"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="password"
+                            name="password"
+                            label="Confirmar"
+                            type="password"
+                            :rules="RolconPassword.concat(RolConfirmarPassword)"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <!--<v-checkbox
                             v-model="v0"
                             label="Cambiar Contraseña"
                           ></v-checkbox>
@@ -207,7 +221,7 @@
                               ></v-text-field>
                             </v-col>
                           </v-row> -->
-                          <!-- <v-row>
+                      <!-- <v-row>
               <v-col
                 cols="12"
                 sm="6"
@@ -274,61 +288,86 @@
                 ></v-autocomplete>
               </v-col>
             </v-row> -->
-                        </v-container>
-                        <small
-                          >*Unícamente puede cambiar télefono y direccién
-                          (confirme su contraseña)</small
-                        >
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                          color="red darken-1"
-                          outlined
-                          @click="dialog = false"
-                        >
-                          Cerrar
-                        </v-btn>
-                        <v-btn color="blue darken-1" outlined @click="save">
-                          Modificar
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                </v-row>
-              </v-card-actions>
-            </v-card>
-          </v-col>
+                    </v-container>
+                    <small
+                      >*Unícamente puede cambiar télefono y direccién (confirme
+                      su contraseña)</small
+                    >
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="red darken-1"
+                      outlined
+                      @click="dialog = false"
+                    >
+                      Cerrar
+                    </v-btn>
+                    <v-btn color="blue darken-1" outlined @click="save">
+                      Modificar
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-row>
+          </v-card-actions>
+        </v-card>
+      </v-col>
 
-         <v-col class="text-center mt-12" cols="4">
-            <img
-              cols="12"
-              style="border-radius: 100px"
-              class="preview ml-6"
-              :src="picture"
-            />
-            <!--<p>
+      <v-col class="text-center mt-12" cols="8">
+        <v-card style="border-radius: 12px" height="315px" max-width="800px" v-if="xyz==1">
+          <v-row align="center" justify="center" class="text-center">
+            <v-col class="text-center mt-12" cols="4">
+              <img
+              v-if="this.picture !='' "
+                cols="12"
+                style="border-radius: 100px"
+                class="preview ml-12 mr-12 mt-12"
+                :src="picture"
+              />
+              <img
+                v-if="this.picture =='' "
+                cols="12"
+                style="border-radius: 100px"
+                class="preview ml-12 mr-12 mt-12"
+                src="https://lommon.es/wp-content/uploads/2020/02/no-photo.jpg"
+              />
+              <!--<p>
               <v-file-input dark accept="*" label="Seleccione el archivo" @change="previewImage">
               </v-file-input>
             </p> -->
+            </v-col>
+            <v-col class="text-center mt-12" cols="8">
+              <p class="" style="color: black">Seleccionar Archivo</p>
+              <input
+              
+                class="ml-3 mr-3 "
+                type="file"
+                @change="previewImage"
+                accept="image/*"
+              />
 
-
-             <p class="mt-4" style="color:white">Seleccionar Archivo</p>
-            <input type="file" @change="previewImage" accept="*" /> 
-
-            <p class="mt-4" style="color:white">
-              Subiendo:{{ " " + uploadValue.toFixed(+"%") +" %" }}
-              <v-progress-linear :value="uploadValue" max="100" dark color="white"></v-progress-linear>
-            </p>
-
-
-            <v-btn color="white darken-1" @click="onUpload" outlined dark
+              <p class="ml-12 mr-12 mt-3" style="color: black">
+                Subiendo:{{ " " + uploadValue.toFixed(+"%") + " %" }}
+                <v-progress-linear
+                  class=""
+                  :value="uploadValue"
+                  max="100"
+                  color="cyan"
+                ></v-progress-linear>
+              </p>
+           
+            <v-btn color="cyan darken-1" @click="onUpload" outlined dark
               >Subir Foto</v-btn
-            >
-          </v-col>
-
-        </v-row>
-        <!-- <h1 class=" font-weight-medium mt-12" style = "padding-left: 1px"
+            > 
+            <v-btn color="red darken-1" class="ml-12" @click="xyz=0" outlined dark
+              >Cancelar</v-btn></v-col>
+            
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+    <!-- <h1 class=" font-weight-medium mt-12" style = "padding-left: 1px"
         >Bienvenid@ a SchoolRoom</h1>  
         <br> 
     
@@ -354,7 +393,6 @@
     </ul>
       </p>
       <br>-->
-      
   </v-img>
 </template>
 <script>
@@ -367,7 +405,9 @@ export default {
     imageData: null,
     picture: null,
     uploadValue: 0,
-
+    input: "",
+    image: "",
+    xyz: 0,
     dialog: false,
     v0: false,
     si: false,
@@ -543,7 +583,7 @@ export default {
       );
     },
 
-    guardarURL(){
+    guardarURL() {
       var _id = this.id;
       var data = {
         url: JSON.parse(localStorage.getItem("URL")),
@@ -551,8 +591,12 @@ export default {
       UserService.saveUrl(_id, data)
         .then((response) => {
           _id = response.data._id;
-          console.log("save URL",response.data.usuario);
+          console.log("save URL", response.data.usuario);
+          this.image = this.currentUser.url;
+          alert("Foto añadida con éxito, los cambios seran visibles en su proxímo inicio de seesión");
           this.borrarURL();
+          //location.reload();
+           this.xyz = 0;
         })
         .catch((e) => {
           alert("No se pudo guardar la foto");
@@ -560,19 +604,25 @@ export default {
         });
     },
 
-    borrarURL(){
-       localStorage.removeItem("URL");
+    borrarURL() {
+      localStorage.removeItem("URL");
+      //location.reload();
+    },
+
+    xyzx(){
+      this.xyz = 1;
     }
   },
   created() {
     this.initialize();
+    this.image = this.currentUser.url;
   },
 };
 </script>
 <style scoped="">
 img.preview {
-  width: 230px;
-  height: 230px;
+  width: 170px;
+  height: 170px;
   border-radius: 5px;
 }
 </style>
