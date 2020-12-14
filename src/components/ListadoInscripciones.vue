@@ -193,7 +193,7 @@
                         :items="secciones"
                         item-text="nombre"
                         item-value="nombre"
-                        label="Seccion"
+                        label="Sección"
                         required
                         disabled
                       ></v-select>
