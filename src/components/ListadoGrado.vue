@@ -129,7 +129,7 @@
                         v-model="seccion.nombre"
                         :rules="RolTexto"
                         :items="items"
-                        label="Seccion"
+                        label="Sección"
                         required
                       ></v-select>
                     </v-col>
@@ -223,7 +223,7 @@ export default {
     ],
     headersS: [
       {
-        text: "Seccion",
+        text: "Sección",
         sortable: false,
         value: "nombre"
       },

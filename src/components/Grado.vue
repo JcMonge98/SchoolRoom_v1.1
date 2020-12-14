@@ -171,7 +171,7 @@ export default {
         value: "aula.grado.nombre"
       },
       {
-        text: "Seccion",
+        text: "Sección",
         sortable: false,
         value: "aula.seccion.nombre"
       },
@@ -210,7 +210,7 @@ export default {
 
     eliminarDetalle(detalle) {
       const index = this.detalles.indexOf(detalle);
-      confirm("Estas seguro de querer eliminar el registro?") &&
+      confirm("¿Estas seguro de querer eliminar el registro?") &&
         //this.desserts.splice(index, 1);
       detalleService
         .remove(detalle._id)

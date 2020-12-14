@@ -216,7 +216,7 @@
                       <v-text-field
                         v-model="inscripcion._id"
                         :rules="RolTexto"
-                        label="Id Incripcion"
+                        label="Id Incripción"
                         disabled
                       ></v-text-field>
                     </v-col>
@@ -429,7 +429,7 @@ export default {
             this.$refs.form.reset();
             //this.dialog = false;
             this.initialize();
-            alert("Inscripcion creada con éxito");
+            alert("Inscripción creada con éxito");
             
 
             // ____________ agregado ___________________
@@ -504,7 +504,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se eliminó");
+        console.log("No se elimino");
       }
     },
 

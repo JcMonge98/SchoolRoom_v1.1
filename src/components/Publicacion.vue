@@ -450,7 +450,7 @@ export default {
       };
       console.log(data);
       if (this.message.length > 50) {
-        alert("Ha sobrepasado el número de carateres permitido");
+        alert("Ha sobrepasado el número de caracteres permitido");
       } else {
         publicacionService
           .createComentario(data)

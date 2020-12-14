@@ -16,7 +16,7 @@
           class="text-xs-center"
           v-model="buscar"
           append-icon="search"
-          label="Busqueda"
+          label="Búsqueda"
           single-line
           hide-details
           color="#1565C0"
@@ -577,7 +577,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se actualizó");
+        console.log("No se actualizo");
       }
     },
     //metdo cerrar dialog
