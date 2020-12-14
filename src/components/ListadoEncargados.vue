@@ -309,7 +309,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se eleminó");
+        console.log("No se elemino");
       }
     },
     //__________________________________________

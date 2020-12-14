@@ -2,7 +2,7 @@
 <v-img src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" >
   <v-card class="mx-auto mt-12" max-width="1000" style="border-radius: 15px">
     <v-card-title>
-      <h2 class="text-center font-weight-medium" style="color: #1A237E">Fomulario Registrar Usuarios</h2>
+      <h2 class="text-center font-weight-medium" style="color: #1A237E">Formulario Registrar Usuarios</h2>
     </v-card-title>
     <v-form class="mr-5 ml-5 mt-5 mb-12" name="form" @submit.prevent="handleRegister">
       <v-row>

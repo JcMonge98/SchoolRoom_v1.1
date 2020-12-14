@@ -25,7 +25,7 @@
 
     <v-row align="center" justify="center">
       <v-col class="text-center mt-12" cols="8">
-        <v-card style="border-radius: 12px" height="430px" max-width="800px">
+        <v-card style="border-radius: 20px" height="430px" max-width="800px">
           <v-img
             class="blanck--text center"
             height="355px"
@@ -45,7 +45,7 @@
                     height="200px"
                     max-width="200px"
                     style="border-radius: 100px"
-                    class="ml-12 mr-9"
+                    class="ml-12 mr-9 "
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHDHqQ7DQSIxDuq7E4gRclTgJUCgnv-gPIIx2YDIbs-gUUYkQF&usqp=CAU"
                     v-if="this.image ==''"
                   />
@@ -53,7 +53,7 @@
                     height="200px"
                     max-width="200px"
                     style="border-radius: 100px"
-                    class="ml-12 mr-9"
+                    class="ml-12 mr-9 "
                     :src="image"
                     v-if="this.image !=''"
                   />
@@ -110,9 +110,9 @@
                         <v-col cols="12" sm="6">
                           <v-text-field
                             v-model="id"
-                            name="Código"
+                            name="codigo"
                             :rules="RolTexto"
-                            label="Codigo"
+                            label="Código"
                             disabled
                           ></v-text-field>
                         </v-col>
@@ -153,7 +153,7 @@
                             v-model="telefono"
                             name="telefono"
                             :rules="RolTel"
-                            label="Telefono"
+                            label="Teléfono"
                             hint="Ej:  7000-7000 / 2200-2200 (Opcional)"
                             persistent-hint
                           ></v-text-field>
@@ -162,7 +162,7 @@
                           <v-text-field
                             v-model="direccion"
                             name="direccion"
-                            label="Direccion"
+                            label="Dirección"
                             hint="Ej:  Chalatenango  (Opcional)"
                             persistent-hint
                           ></v-text-field>
@@ -290,7 +290,7 @@
             </v-row> -->
                     </v-container>
                     <small
-                      >*Unícamente puede cambiar télefono y direccién (confirme
+                      >*Únicamente puede cambiar télefono y dirección (confirme
                       su contraseña)</small
                     >
                   </v-card-text>
@@ -462,12 +462,12 @@ export default {
       var numeros = "0123456789";
       for (var i = 0; i < this.nombres.length; i++) {
         if (numeros.indexOf(this.nombres.charAt(i), 0) != -1) {
-          return alert("No se permiten numeros");
+          return alert("No se permiten números");
         }
       }
       for (var i = 0; i < this.apellidos.length; i++) {
         if (numeros.indexOf(this.apellidos.charAt(i), 0) != -1) {
-          return alert("No se permiten numeros");
+          return alert("No se permiten números");
         }
       }
     },
@@ -490,7 +490,7 @@ export default {
           _id = response.data._id;
           console.log(response.data.usuario);
           alert(
-            "Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesion"
+            "Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesión"
           );
           //localStorage.setItem('user', JSON.stringify(response.data.usuario));
           this.initialize();
@@ -520,7 +520,7 @@ export default {
           _id = response.data._id;
           console.log(response.data.usuario);
           alert(
-            "Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesion"
+            "Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesión"
           );
           //localStorage.setItem('user', JSON.stringify(response.data.usuario));
           this.initialize();
@@ -593,7 +593,7 @@ export default {
           _id = response.data._id;
           console.log("save URL", response.data.usuario);
           this.image = this.currentUser.url;
-          alert("Foto añadida con éxito, los cambios seran visibles en su proxímo inicio de seesión");
+          alert("Foto añadida con éxito, los cambios seran visibles en su proxímo inicio de sesión");
           this.borrarURL();
           //location.reload();
            this.xyz = 0;

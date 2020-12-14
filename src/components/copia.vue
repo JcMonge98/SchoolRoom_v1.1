@@ -15,7 +15,7 @@
               <h5>
                 {{
                   detalle.aula.grado.nombre +
-                  " Seccion: " +
+                  " Sección: " +
                   detalle.aula.seccion.nombre +
                   " Aula: " +
                   detalle.aula.numero
@@ -78,7 +78,7 @@
                       v-model="publicacion.descripcion"
                       :rules="RolTexto"
                       outlined
-                      label="Descripcion de tu publicación"
+                      label="Descripción de tu publicación"
                     ></v-textarea>
                   </v-container>
                 </v-card-text>
@@ -111,7 +111,7 @@
                       v-model="publicacion.descripcion"
                       :rules="RolTexto"
                       outlined
-                      label="Descripcion de tu publicación"
+                      label="Descripción de tu publicación"
                     ></v-textarea>
                   </v-container>
                 </v-card-text>
@@ -464,7 +464,7 @@ export default {
       publicacionService
         .create(data)
         .then((response) => {
-          alert("Publicacion realizada con éxito");
+          alert("Publicación realizada con éxito");
           this.publicacion.descripcion = "";
           this.dialog = false;
           this.initialize();
@@ -475,7 +475,7 @@ export default {
     },
     deleteItem(card) {
       const index = this.cards.indexOf(card);
-      confirm("Estas seguro de querer eliminar el registro?");
+      confirm("¿Estas seguro de querer eliminar el registro?");
       publicacionService
         .remove(card._id)
         .then((response) => {

@@ -42,7 +42,7 @@
             <v-divider></v-divider>
             <v-card-actions>
               <v-btn color="cyan"  text @click="menu = false" :to="{name:'profile'}">Ver Perfil</v-btn>
-              <v-btn color="error"  text @click="menu = false" @click.prevent="logOut">Cerrar Sesion</v-btn>
+              <v-btn color="error"  text @click="menu = false" @click.prevent="logOut">Cerrar Sesión</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
