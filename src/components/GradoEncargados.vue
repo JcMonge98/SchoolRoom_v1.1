@@ -9,6 +9,7 @@
           <v-btn
             color="#3F51B5"
             dark
+            style="border-radius: 10px"
             class="mb-2 mx-auto ml-8"
             @click="borrarStorage()"
             ><v-icon left>keyboard_backspace</v-icon>Volver al listado</v-btn
@@ -23,10 +24,10 @@
     </v-row>
 
   <v-card-actions>
-  <v-row justify="center" class="offset-1 pt-5">
+  <v-row justify="center" class="offset-1">
   <v-dialog v-model="dialog" max-width="1000px">
   <template v-slot:activator="{ on }">
-        <v-btn color="#3F51B5" dark v-on="on" class="mb-2 mx-auto ml-8">
+        <v-btn color="#3F51B5" dark v-on="on" style="border-radius: 10px" class="mb-2 mx-auto ml-8">
         <v-icon left>mdi-account-multiple</v-icon>Ver Personas
     </v-btn>
    </template>
