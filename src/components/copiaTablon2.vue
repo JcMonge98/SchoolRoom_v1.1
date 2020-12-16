@@ -575,7 +575,7 @@ export default {
       };
       console.log(data);
       if (this.message.length > 50) {
-        alert("Ha sobrepasado el número de carateres permitido");
+        alert("Ha sobrepasado el número de caracteres permitido");
       } else {
         publicacionService
           .createComentario(data)
@@ -598,7 +598,7 @@ export default {
       publicacionService
         .removeComentario(comentario._id)
         .then((response) => {
-          alert("Se eliminó con éxito");
+          alert("Se elimino con éxito");
           //this.initialize();
           //this.verComentarios(card);
           card.index = true;

@@ -43,7 +43,7 @@
         <p class="text-md-center font-italic">
           <br>
           <br>
-          Es una herramienta desarrollada para mejorar la comunicación por y para los docentes y padres de familia
+          Es una herramienta desarrollada para mejorar la comunicación por y para los docentes y padres de familia.
         </p>
         </div>
       </v-col>
@@ -71,7 +71,7 @@
             <p class="text-md-left font-italic">
               <br>
               <br>
-              Los profesores publicaran las tareas o actividades que lleven tus hijos a casa, podrás estar al pediente de su vida academica 
+              Los profesores publicaran las tareas o actividades que lleven tus hijos a casa, podrás estar al pediente de su vida académica 
               y además, puedes consultar en caso de 
               dudas dejando un comentario al respecto.
             </p>

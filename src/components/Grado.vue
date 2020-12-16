@@ -19,6 +19,13 @@
                 "
               >Inscribir Materia</v-btn>
               <v-btn
+                @click="dialog2=true"
+                style="border-radius: 10px"
+                color="cyan"
+                dark
+                class="mb-2 mx-auto ml-12"
+              >Ver Personas</v-btn>
+              <v-btn
               style="border-radius: 10px"
                 color="#3F51B5"
                 dark
@@ -53,6 +60,34 @@
               </v-card-actions>
             </v-form>
           </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialog2" max-width="800px" >
+            <v-card style="border-radius: 10px" max-width="800px">
+        <v-data-table 
+    :headers="headers"
+    :items="desserts"
+    class=""
+    style="border-radius: 15px"
+  >
+    <template v-slot:top>
+      <!-- encabezado de la tabla -->
+      <v-toolbar flat color style="border-radius: 15px" >
+        <v-toolbar-title>
+          <h3 class="text-center font-weight-bold" style="color: #1A237E">Personas</h3>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+    </template>
+    <!-- Datos de la tabla -->
+    <template v-slot:item.actions="{ item }">
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="VerPersonas">Ver Personas</v-btn>
+    </template>
+  </v-data-table>
+            </v-card>
+
         </v-dialog>
         <!-- __________________________________________________ formulario temporal ____________________________________________________-->
       </v-col>
@@ -98,33 +133,7 @@
     </v-row>
 
 
-    <v-row>
-      <v-col cols="12" sm="12" >
-        <v-data-table
-    :headers="headers"
-    :items="desserts"
-    class="elevation-5 mr-12 ml-12 mt-8"
-    style="border-radius: 15px"
-  >
-    <template v-slot:top>
-      <!-- encabezado de la tabla -->
-      <v-toolbar flat color style="border-radius: 15px" >
-        <v-toolbar-title>
-          <h3 class="text-center font-weight-bold" style="color: #1A237E">Personas</h3>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-      </v-toolbar>
-    </template>
-    <!-- Datos de la tabla -->
-    <template v-slot:item.actions="{ item }">
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="VerPersonas">Ver Personas</v-btn>
-    </template>
-  </v-data-table>
-      </v-col>
-    </v-row>
-
+    
   </v-content>
 </v-img>
 </template>
@@ -140,6 +149,7 @@ export default {
     lazy: "",
     user: "",
     dialog: "",
+    dialog2: false,
     materia: "",
     materias: [],
     materiasuno: [],
@@ -210,7 +220,11 @@ export default {
 
     eliminarDetalle(detalle) {
       const index = this.detalles.indexOf(detalle);
+<<<<<<< HEAD
       confirm("¿Estás seguro de querer eliminar el registro?") &&
+=======
+      confirm("¿Estas seguro de querer eliminar el registro?") &&
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
         //this.desserts.splice(index, 1);
       detalleService
         .remove(detalle._id)

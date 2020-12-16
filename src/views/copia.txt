@@ -1,0 +1,168 @@
+<v-dialog v-model="dialog2" max-width="800px">
+                  <template v-slot:activator="{ on }">
+                  <v-row align="center" justify="center">
+                <v-btn
+                        style="border-radius: 10px"
+                        tile
+                        outlined
+                        dark
+                        v-on="on"
+                        class="mt-3"
+                        color="cyan"
+                      >
+                        <v-icon left>mdi-folder-plus</v-icon>Modificar Datos
+                      </v-btn>
+                </v-row>
+                  </template>
+                  <v-card
+                    class="mt-12"
+                    max-width="800"
+                    style="border-radius: 15px"
+                  >
+                    <v-card-title>
+                      <h2
+                        class="text-center font-weight-medium"
+                        style="color: #1a237e"
+                      >
+                        Modificar Datos
+                      </h2>
+                    </v-card-title>
+                    <v-form class="mr-5 ml-5 mb-10" name="form">
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="id"
+                            name="Código"
+                            :rules="RolTexto"
+                            label="Codigo"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="email"
+                            name="email"
+                            :rules="Rolemail"
+                            label="Correo Electrónico"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="nombres"
+                            name="nombres"
+                            :rules="RolTexto"
+                            label="Nombres"
+                            required
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="apellidos"
+                            name="apellidos"
+                            :rules="RolTexto"
+                            label="Apellidos"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="telefono"
+                            name="telefono"
+                            :rules="RolTel"
+                            label="Telefono"
+                            hint="Ej:  7000-7000 / 2200-2200 (Opcional)"
+                            persistent-hint
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            v-model="direccion"
+                            name="direccion"
+                            label="Direccion"
+                            hint="Ej:  Chalatenango  (Opcional)"
+                            persistent-hint
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-checkbox
+                        v-model="v0"
+                        label="Cambiar Contraseña"
+                      ></v-checkbox>
+                      <v-row v-if="v0 == true">
+                        <v-col cols="12" sm="4">
+                          <v-text-field
+                            v-model="lastpassword"
+                            label="Contraseña anterior"
+                            type="password"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="4">
+                          <v-text-field
+                            v-model="password"
+                            name="password"
+                            :rules="Rolpassword"
+                            label="Nueva Contraseña"
+                            type="password"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="4">
+                          <v-text-field
+                            v-model="confirmar"
+                            name="confirmar"
+                            :rules="RolconPassword.concat(RolConfirmarPassword)"
+                            label="Confirme Contraseña"
+                            type="password"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                      <v-row align="center" justify="center">
+                        <v-btn
+                          dark
+                          class="mr-4 mb-8 mt-8"
+                          color="#3F51B5"
+                          style="border-radius: 5px"
+                          outlined
+                          @click="save1"
+                          v-if="
+                            this.telefono.length == 0 &&
+                            this.direccion.length == 0
+                          "
+                          >Actualizar</v-btn
+                        >
+                        <v-btn
+                          dark
+                          class="mr-4 mb-8 mt-8"
+                          color="#3F51B5"
+                          style="border-radius: 5px"
+                          @click="save2"
+                          v-if="v0 == true && this.password == this.confirmar"
+                          >Actualizar</v-btn
+                        >
+                        <v-btn
+                          class="mr-4 mb-8 mt-8 ml-12"
+                          style="border-radius: 5px"
+                          color="red"
+                          outlined
+                          @click="close()"
+                          >Cerrar</v-btn
+                        >
+                      </v-row>
+                    </v-form>
+                  </v-card>
+                </v-dialog>
+
+
+
+
+
+
+
+                medp00112020@example.edu.sv
+
+                cpah39112020@example.edu.sv

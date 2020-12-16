@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-img
     src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg"
     
@@ -15,79 +16,113 @@
             <v-col cols="12" sm="12">
               <strong style="color: white">{{ detalle.materia.nombre }}</strong>
             </v-col>
+=======
+  <v-img src="../assets/88.jpeg">
+    <v-row dense>
+      <v-col cols="3">
+        <v-card class="ml-5 mt-8" style="border-radius: 8px" color="cyan">
+          <v-card-title
+            class="headline"
+            v-for="(detalle, index) in detalles"
+            :key="index"
+          >
+            <v-row>
+              <v-col cols="12" sm="12">
+                <strong style="color: white">{{
+                  detalle.materia.nombre
+                }}</strong>
+              </v-col>
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
 
-            <v-col cols="12" sm="12">
-              <small
-                ><h5 style="color: white">
-                  {{
-                    detalle.aula.grado.nombre +
-                    " " +
-                    detalle.aula.seccion.nombre
-                  }}
-                </h5></small
+              <v-col cols="12" sm="12">
+                <small
+                  ><h5 style="color: white">
+                    {{
+                      detalle.aula.grado.nombre +
+                      " " +
+                      detalle.aula.seccion.nombre
+                    }}
+                  </h5></small
+                >
+              </v-col>
+              <v-btn
+                style="border-radius: 10px"
+                class="ml-4"
+                tile
+                outlined
+                dark
+                @click="borrarStorage()"
               >
-            </v-col>
-            <v-btn
-              style="border-radius: 10px"
-              class="ml-4"
-              tile
-              outlined
-              dark
-              @click="borrarStorage()"
-            >
-              <v-icon left>keyboard_backspace</v-icon>Volver
-            </v-btn>
-          </v-row>
-        </v-card-title>
-      </v-card>
-    </v-col>
-    <v-col cols="9">
-      <v-card class="mr-5 ml-5 mt-8 mb-8" style="border-radius: 8px">
-        <v-card-title
-          class="headline"
-          v-for="(con, index) in contenido"
-          :key="index"
-        >
-          <v-row >
-            <v-col cols="12">
-              <h5 class="ml-4 mr-2"  style="color: blue; font-size: 25px">{{ con.tema }}</h5>
+                <v-icon left>keyboard_backspace</v-icon>Volver
+              </v-btn>
+            </v-row>
+          </v-card-title>
+        </v-card>
+      </v-col>
+      <v-col cols="9">
+        <v-card class="mr-5 ml-5 mt-8 mb-8" style="border-radius: 8px">
+          <v-card-title
+            class="headline"
+            v-for="(con, index) in contenido"
+            :key="index"
+          >
+            <v-row>
+              <v-col cols="12">
+                <h5 class="ml-4 mr-2" style="color: blue; font-size: 25px">
+                  {{ con.tema }}
+                </h5>
               </v-col>
               <v-col cols="12">
-              <h5 class="ml-4 mr-2" style="color: gray; font-size: 14px; text-align: justify;">{{ con.fecha_publicacion }}</h5>
-            </v-col>
+                <h5
+                  class="ml-4 mr-2"
+                  style="color: gray; font-size: 14px; text-align: justify"
+                >
+                  {{ con.fecha_publicacion }}
+                </h5>
+              </v-col>
 
-            <v-col cols="12">
-              <h5 class="ml-4 mr-2">
-                {{ con.descripcion }}
-              </h5>
-            </v-col>
-          </v-row>
-        </v-card-title>
-        <v-card-text>
-          <v-divider class="mt-1"></v-divider>
-          <v-row>
-            <v-col cols="12" sm="12" md="12">
-              <div v-for="(comentario, index) in comentarios" :key="index">
-                <v-row dense class="mb-4">
-                  <v-avatar color="cyan" size="24" class="ml-1 mt-2">
-                    <v-icon dark small>mdi-account-circle</v-icon>
-                  </v-avatar>
-                  <div>
-                   
-                     <v-row> 
+              <v-col cols="12">
+                <h5 class="ml-4 mr-2">
+                  {{ con.descripcion }}
+                </h5>
+              </v-col>
+            </v-row>
+          </v-card-title>
+          <v-card-text>
+            <v-divider class="mt-1"></v-divider>
+            <v-row>
+              <v-col cols="12" sm="12" md="12">
+                <div v-for="(comentario, index) in comentarios" :key="index">
+                  <v-row dense class="mb-4">
+                    <v-avatar color="cyan" size="24" class="ml-1 mt-2">
+                      <img
+                        v-if="comentario.inscripcion.usuario.url != ''"
+                        :src="comentario.inscripcion.usuario.url"
+                      />
+                      <v-icon
+                        dark
+                        small
+                        v-if="comentario.inscripcion.usuario.url == ''"
+                        >mdi-account-circle</v-icon
+                      >
+                    </v-avatar>
+                    <div>
+                      <v-row>
                         <h4 class="ml-4">
-                        <strong>{{
-                          comentario.inscripcion.usuario.nombres +
-                          " " +
-                          comentario.inscripcion.usuario.apellidos
-                        }}</strong>
-                      </h4>
-                     </v-row>
-                     <v-row>  
-                       <h6 small  class="ml-4">{{ comentario.fecha_comentario }}</h6>
-                     </v-row>
-                     <v-row> 
-                       <h4
+                          <strong>{{
+                            comentario.inscripcion.usuario.nombres +
+                            " " +
+                            comentario.inscripcion.usuario.apellidos
+                          }}</strong>
+                        </h4>
+                      </v-row>
+                      <v-row>
+                        <h6 small class="ml-4">
+                          {{ comentario.fecha_comentario }}
+                        </h6>
+                      </v-row>
+                      <v-row>
+                        <h4
                           class="ml-4 mr-10"
                           style="
                             font-family: 'Comic Sans MS';
@@ -112,10 +147,11 @@
                                 currentUser.nombres ==
                                   comentario.inscripcion.usuario.nombres)
                             "
-                            >mdi-delete</v-icon>
+                            >mdi-delete</v-icon
+                          >
                         </h4>
-                     </v-row>
-                     <!-- 
+                      </v-row>
+                      <!-- 
                     <div class="">
                       <h4 class="ml-2">
                         <strong>{{
@@ -159,35 +195,35 @@
                         </h4></v-row
                       >
                     </div>  -->
-                  </div>
+                    </div>
+                  </v-row>
+                </div>
+                <v-divider class="mt-4"></v-divider>
+                <v-row>
+                  <v-col cols="12" md="12" sm="12">
+                    <v-textarea
+                      auto-grow
+                      rows="1"
+                      row-height="15"
+                      v-model="message"
+                      :append-outer-icon="'mdi-send'"
+                      :rules="RolTexto"
+                      clear-icon="mdi-close-circle"
+                      clearable
+                      label="Añadir Comentario"
+                      type="text"
+                      @click:append="toggleMarker"
+                      @click:append-outer="guardarComentario()"
+                      @click:clear="clearMessage"
+                    ></v-textarea>
+                  </v-col>
                 </v-row>
-              </div>
-              <v-divider class="mt-4"></v-divider>
-              <v-row>
-                <v-col cols="12" md="12" sm="12">
-                  <v-textarea
-                    auto-grow
-                    rows="1"
-                    row-height="15"
-                    v-model="message"
-                    :append-outer-icon="'mdi-send'"
-                    :rules="RolTexto"
-                    clear-icon="mdi-close-circle"
-                    clearable
-                    label="Añadir Comentario"
-                    type="text"
-                    @click:append="toggleMarker"
-                    @click:append-outer="guardarComentario()"
-                    @click:clear="clearMessage"
-                  ></v-textarea>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </v-col>
-    <!-- <v-col >
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <!-- <v-col >
         <v-card  >
             
           <v-card-title v-for="(cont, index) in contenido"
@@ -301,7 +337,7 @@
           </v-card-text>
         </v-card>
       </v-col> -->
-  </v-row>
+    </v-row>
   </v-img>
 </template>
 <script>
@@ -318,8 +354,8 @@ export default {
     lazy: "",
     //RolTexto: [(v) => !!v || "Este campo es requerido"],
     RolTexto: [
-      v => (v || '').length > 2 || "Mínimo 2 caracteres",
-      v => (v || '').length < 51 || "Máximo 50 caracteres",
+      (v) => (v || "").length > 2 || "Mínimo 2 caracteres",
+      (v) => (v || "").length < 51 || "Máximo 50 caracteres",
     ],
     tema: "",
     descripcion: "",
@@ -433,7 +469,7 @@ export default {
       };
       console.log(data);
       if (this.message.length > 50) {
-        alert("Ha sobrepasado el número de carateres permitido");
+        alert("Ha sobrepasado el número de caracteres permitido");
       } else {
         publicacionService
           .createComentario(data)

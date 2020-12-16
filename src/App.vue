@@ -24,12 +24,17 @@
             <v-list >
               <v-list-item>
                 <v-list-item-avatar>
-                  <img
+                 <img v-if="this.image ==''"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRHDHqQ7DQSIxDuq7E4gRclTgJUCgnv-gPIIx2YDIbs-gUUYkQF&usqp=CAU"
                     alt="John"
-                  />
+                  /> 
+                  <v-img
+                   v-if="this.image !=''"
+                    :src="image"
+                    alt="User"
+                  ></v-img>
                 </v-list-item-avatar>
-                <strong>{{currentUser.nombres + ' '}}{{currentUser.apellidos + ' '}}</strong>
+                <strong>{{currentUser.nombres + ' '}}{{currentUser.apellidos}}</strong>
                 <!-- <br> -->
                <!-- {{currentUser.role}} -->
               </v-list-item>
@@ -143,7 +148,9 @@ export default {
   data: () => ({
     draw: false,
     drawer: null,
-    menu: false
+    menu: false,
+    image: null,
+    image2: null
   }),
   computed: {
     currentUser() {
@@ -172,6 +179,10 @@ export default {
       return false;
     }
   },
+
+  created(){
+    this.image=  this.currentUser.url;
+  },
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
@@ -179,8 +190,12 @@ export default {
       localStorage.clear();
     },
 
+
     created(){
         document.title = "SchoolRoom";
+        
+
+
       
     },
   },

@@ -44,5 +44,9 @@ class UserService {
     updateCntr(_id, data) {
         return http.put(`/usuarios/cntr/_id/${_id}`, data);
     }
+
+    saveUrl(_id, data) {
+        return http.put(`/usuarios/url/_id/${_id}`, data);
+    }
 }
 export default new UserService();

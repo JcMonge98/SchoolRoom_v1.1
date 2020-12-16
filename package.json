@@ -12,6 +12,7 @@
         "babel-eslint": "^10.1.0",
         "core-js": "^3.6.4",
         "express": "^4.17.1",
+        "firebase": "^8.1.2",
         "moment": "^2.25.3",
         "node-datetime": "^2.1.2",
         "vee-validate": "^3.3.0",

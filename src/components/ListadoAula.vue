@@ -215,7 +215,11 @@
                             <v-text-field
                               v-model="aula.numero"
                               :rules="RolTexto"
+<<<<<<< HEAD
                               label="Número"
+=======
+                              label="Número de Aula"
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
                               required
                             ></v-text-field>
                           </v-col>
@@ -258,7 +262,7 @@
                               :items="secciones"
                               item-text="nombre"
                               item-value="_id"
-                              label="Seccion"
+                              label="Sección"
                               :rules="RolTexto"
                             ></v-select>
                           </v-col>
@@ -398,7 +402,11 @@ export default {
         value: "_id"
       },*/
       {
+<<<<<<< HEAD
         text: "Número",
+=======
+        text: "Número de Aula",
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
         sortable: false,
         value: "numero",
       },
@@ -426,15 +434,15 @@ export default {
     ],
     turnos: [
       {
-        nombre: "Mañana",
+        nombre: "Matutino",
         _id: 1,
       },
       {
-        nombre: "Tarde",
+        nombre: "Vespertino",
         _id: 2,
       },
       {
-        nombre: "Noche",
+        nombre: "Nocturno",
         _id: 3,
       },
     ],
@@ -652,11 +660,79 @@ export default {
 
     //_________________  AULAS _________________________
 
-    initialize() {
+    /* initialize() {
+      var ca = [];
+      var detalle = JSON.parse(localStorage.getItem("id_detalle"));
+      publicacionService
+        .verPublicaciones(detalle)
+        .then((res) => {
+          let date = new Date();
+          ca = res.data.publicacion;
+          ca.map((card) => {
+            let date = new Date(card.fecha_publicacion);
+            console.log(card.fecha_publicacion);
+            console.log(date);
+            //card.fecha_publicacion = moment(date).local()
+            card.fecha_publicacion = moment(date).format(
+              "DD/MM/YYYY - HH:mm A"
+            );
+            card.index = false;
+          });
+          console.log(res.data.publicacion);
+          //this.ca.fecha_publicacion = ;
+          this.cards = ca.reverse();
+        })
+        .catch((e) => {
+          console.log("neles", e);
+        });
+    }, */
+
+   /* initialize() {
+      var ca = [];
       aulasService
         .index()
         .then((res) => {
-          this.desserts = Object.assign([this.editedIndex], res.data.aula);
+          //let turno = new Turno();
+          ca = res.data.aula;
+          ca.map((card) => {
+            let turno = new Turno(card.turno);
+            console.log(card.turno);
+            console.log(turno);
+            if (card.turno == 1 || card.turno == 2) {
+              card.turno = 'Diurno'
+            }
+            card.turno = "Nocturno"
+          });
+          console.log(res.data.aula);
+          this.desserts = ca;
+        })
+        //.then((res) => {
+         // this.desserts = Object.assign([this.editedIndex], res.data.aula);
+         // console.log(Object.assign(res.data.aula));
+        //})
+        .catch((e) => {
+          console.log(e);
+        });
+    },*/
+
+    initialize() {
+      var ca = []
+      aulasService
+        .index()
+        .then((res) => {
+          ca = res.data.aula;
+          ca.map((card)=> {
+            if(card.turno == 1){
+              card.turno = "Matutino"
+            }
+            if(card.turno == 2){
+              card.turno = "Vespertino"
+            }
+            if(card.turno == 3){
+              card.turno = "Nocturno"
+            }
+          })
+          this.desserts = Object.assign([this.editedIndex], ca);
           console.log(Object.assign(res.data.aula));
         })
         .catch((e) => {

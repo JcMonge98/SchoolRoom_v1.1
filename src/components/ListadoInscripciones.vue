@@ -504,7 +504,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se eliminó");
+        console.log("No se elimino");
       }
     },
 

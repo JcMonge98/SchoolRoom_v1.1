@@ -22,7 +22,7 @@
                   <h5>
                     {{
                       detalle.aula.grado.nombre +
-                        " Seccion: " +
+                        " Sección: " +
                         detalle.aula.seccion.nombre
                     }}
                   </h5>
@@ -444,7 +444,11 @@ export default {
     },
     deleteItem(card) {
       const index = this.cards.indexOf(card);
+<<<<<<< HEAD
       confirm("¿Estás seguro de querer eliminar el registro?");
+=======
+      confirm("¿Estas seguro de querer eliminar el registro?");
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
       publicacionService
         .remove(card._id)
         .then((response) => {
@@ -509,7 +513,11 @@ export default {
       };
       console.log(data);
       if(this.message.length > 50){        
+<<<<<<< HEAD
         alert('Ha sobrepasado el número de carateres permitido')
+=======
+        alert('Ha sobrepasado el número de caracteres permitido')
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
       }
       else{
         publicacionService

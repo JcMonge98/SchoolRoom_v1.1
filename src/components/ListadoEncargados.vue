@@ -43,6 +43,8 @@
                         :rules="RolTexto"
                         label="Nombres de usuario"
                         required
+                        hint="Ej:  Juan Alberto"
+            persistent-hint
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6">
@@ -51,6 +53,8 @@
                         :rules="RolTexto"
                         label="Apellidos de usuario"
                         required
+                        hint="Ej:  Perez Sosa"
+            persistent-hint
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -64,15 +68,16 @@
                         disabled
                       ></v-text-field>
                     </v-col>
-                    <!-- <v-col cols="12" sm="6">
-                      <v-text-field
-                        v-model="usuario.roles"
-                        :rules="RolTexto"
-                        label="Rol"
-                        type="text"
-                        disabled
-                      ></v-text-field>
-                    </v-col> -->
+                    <v-col cols="12" sm="6">
+          <v-btn
+        color="blue darken-1"
+        outlined
+        @click="validar"
+        v-if="usuario.nombres.length >= 3 && usuario.apellidos.length >= 5  && usuario.email ==''"
+        enabled
+      >Generar Correo</v-btn>
+          <v-text-field v-if="usuario.email !=''" v-model="usuario.roles" label="Rol" type="text" value="encargado" disabled></v-text-field>
+        </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12" sm="6">
@@ -100,18 +105,12 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn
-                  color="green darken-1"
-                  text
-                  @click="validar"
-                  v-if="usuario.nombres.length > 3 && usuario.apellidos.length > 3 && usuario.email ==''"
-                  enabled
-                >Generar Correo</v-btn>
                 <v-btn color="red darken-1" text @click="close">Cancelar</v-btn>
                 <v-btn
                   color="blue darken-1"
                   text
                   @click="save"
+                  enabled
                   v-if="usuario.nombres.length > 3 && usuario.apellidos.length > 3  && usuario.email != '' && usuario.password == confirmar"
                 >Guardar</v-btn>
               </v-card-actions>
@@ -309,7 +308,7 @@ export default {
             console.log(e);
           });
       } else {
-        console.log("No se eleminó");
+        console.log("No se elemino");
       }
     },
     //__________________________________________

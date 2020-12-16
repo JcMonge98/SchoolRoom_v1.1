@@ -15,7 +15,7 @@
               <h5>
                 {{
                   detalle.aula.grado.nombre +
-                  " Seccion: " +
+                  " Sección: " +
                   detalle.aula.seccion.nombre +
                   " Aula: " +
                   detalle.aula.numero
@@ -78,7 +78,7 @@
                       v-model="publicacion.descripcion"
                       :rules="RolTexto"
                       outlined
-                      label="Descripcion de tu publicación"
+                      label="Descripción de tu publicación"
                     ></v-textarea>
                   </v-container>
                 </v-card-text>
@@ -475,7 +475,11 @@ export default {
     },
     deleteItem(card) {
       const index = this.cards.indexOf(card);
+<<<<<<< HEAD
       confirm("¿Estás seguro de querer eliminar el registro?");
+=======
+      confirm("¿Estas seguro de querer eliminar el registro?");
+>>>>>>> 70712b7f4166dea7f5332cdee22e6a1a9a9e4862
       publicacionService
         .remove(card._id)
         .then((response) => {
