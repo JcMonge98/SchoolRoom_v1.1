@@ -1,6 +1,7 @@
 <template>
   <v-img
-    src="../assets/88.jpeg">
+    src="https://cdn.wallpapersafari.com/8/23/NKZOwi.jpg"
+    
   >
   <v-row dense>
     <v-col cols="3">
