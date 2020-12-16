@@ -79,7 +79,7 @@
             v-model="id"
             name="Código"
             :rules="RolTexto"
-            label="Codigo"
+            label="Código"
             disabled
           ></v-text-field>
         </v-col>
@@ -218,12 +218,12 @@ export default {
       var numeros="0123456789";
       for(var i=0; i<this.nombres.length; i++){
           if (numeros.indexOf(this.nombres.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
+            return alert("No se permiten números");
           }
       }
       for(var i=0; i<this.apellidos.length; i++){
           if (numeros.indexOf(this.apellidos.charAt(i),0)!=-1){
-            return alert("No se permiten numeros");
+            return alert("No se permiten números");
           }
       }
     }, 
@@ -242,7 +242,7 @@ export default {
           .then(response => {
             _id = response.data._id;
             console.log(response.data.usuario);
-            alert("Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesion");
+            alert("Usuario modificado con éxito, los cambios serán visibles en tu próximo inicio de sesión");
             //localStorage.setItem('user', JSON.stringify(response.data.usuario));
             this.ena2();
             this.initialize();

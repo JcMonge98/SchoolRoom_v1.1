@@ -175,7 +175,7 @@
                 class="text-xs-center"
                 v-model="buscar"
                 append-icon="search"
-                label="Busqueda"
+                label="Búsqueda"
                 single-line
                 hide-details
                 color="#1565C0"
@@ -215,7 +215,7 @@
                             <v-text-field
                               v-model="aula.numero"
                               :rules="RolTexto"
-                              label="Numero"
+                              label="Número"
                               required
                             ></v-text-field>
                           </v-col>
@@ -234,7 +234,7 @@
                             <v-text-field
                               v-model="aula.codigo"
                               :rules="RolTexto"
-                              label="Codigo"
+                              label="Código"
                               required
                               disabled
                               v-if="aula.numero != '' && aula.turno != ''"
@@ -398,7 +398,7 @@ export default {
         value: "_id"
       },*/
       {
-        text: "Numero",
+        text: "Número",
         sortable: false,
         value: "numero",
       },
@@ -408,7 +408,7 @@ export default {
         value: "turno",
       },
       {
-        text: "Codigo Aula",
+        text: "Código Aula",
         sortable: false,
         value: "codigo",
       },
@@ -418,7 +418,7 @@ export default {
         value: "grado.nombre",
       },
       {
-        text: "Seccion",
+        text: "Sección",
         sortable: false,
         value: "seccion.nombre",
       },

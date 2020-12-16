@@ -22,7 +22,7 @@
                   <h5>
                     {{
                       detalle.aula.grado.nombre +
-                      " Seccion: " +
+                      " Sección: " +
                       detalle.aula.seccion.nombre
                     }}
                   </h5>
@@ -71,7 +71,7 @@
                           v-model="publicacion.descripcion"
                           :rules="RolTexto"
                           outlined
-                          label="Descripcion de tu publicación"
+                          label="Descripción de tu publicación"
                         ></v-textarea>
                       </v-container>
                     </v-card-text>

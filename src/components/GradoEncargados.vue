@@ -36,7 +36,7 @@
                 </v-img>
                 <br>
                 <v-card-text class="text--primary">
-                  <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia..!</div>
+                  <div>Presiona entrar, para poder vizualizar todas las tareas de esta materia</div>
                 </v-card-text>
                   <v-card-actions>
                     <div class="text-center font-weight-bold">
@@ -80,7 +80,7 @@
                   <v-card>
                     <v-form ref="form" :lazy-validation="lazy">
                       <v-card-title>
-                        <span class="headline">Editar Inscripcion</span>
+                        <span class="headline">Editar Inscripción</span>
                       </v-card-title>
                       <v-card-text>
                         <v-container>
@@ -114,7 +114,7 @@
                               <v-text-field
                                 v-model="inscripcion.aula.codigo"
                                 :rules="RolTexto"
-                                label="Codigo de Aula"
+                                label="Código de Aula"
                                 disabled
                               ></v-text-field>
                             </v-col>
@@ -137,7 +137,7 @@
                                 :items="secciones2"
                                 item-text="nombre"
                                 item-value="nombre"
-                                label="Seccion"
+                                label="Sección"
                                 required
                                 disabled
                               ></v-select> </v-col
@@ -159,7 +159,7 @@
                               <v-text-field
                                 v-model="inscripcion._id"
                                 :rules="RolTexto"
-                                label="Id Incripcion"
+                                label="Id Incripción"
                                 disabled
                               ></v-text-field>
                             </v-col>
@@ -285,7 +285,7 @@ export default {
         value: "aula.grado.nombre",
       },
       {
-        text: "Seccion",
+        text: "Sección",
         sortable: false,
         value: "aula.seccion.nombre",
       },

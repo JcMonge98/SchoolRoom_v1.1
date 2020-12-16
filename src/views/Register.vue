@@ -183,7 +183,7 @@ export default {
             this.verificado = true;
           }
           else{
-            alert("codigo no valido")
+            alert("Código no valido")
             this.verificado = false;
           }
     },

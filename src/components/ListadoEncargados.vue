@@ -328,7 +328,7 @@ export default {
 
     AcualizarPassword(item){
       this.editedIndex = this.desserts.indexOf(item);
-      var opcion = confirm("¿Estás seguro de querer Reestablecer contraseña de usuario?");
+      var opcion = confirm("¿Estás seguro de querer reestablecer contraseña de usuario?");
       if (opcion == true) {
         UserService.reestablecerP(item._id)
           .then((response) => {

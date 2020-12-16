@@ -156,7 +156,7 @@ export default {
             },
             error => {
               this.loading = false;
-              this.message = "Correo o contraseña invalida"
+              this.message = "Correo o contraseña inválida"
                 /*(error.response && error.response.data) ||
                 error.message ||
                 error.toString();*/

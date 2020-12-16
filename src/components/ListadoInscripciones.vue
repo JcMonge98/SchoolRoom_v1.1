@@ -193,7 +193,7 @@
                         :items="secciones"
                         item-text="nombre"
                         item-value="nombre"
-                        label="Seccion"
+                        label="Sección"
                         required
                         disabled
                       ></v-select>
@@ -216,7 +216,7 @@
                       <v-text-field
                         v-model="inscripcion._id"
                         :rules="RolTexto"
-                        label="Id Incripcion"
+                        label="Id Incripción"
                         disabled
                       ></v-text-field>
                     </v-col>
@@ -429,7 +429,7 @@ export default {
             this.$refs.form.reset();
             //this.dialog = false;
             this.initialize();
-            alert("Inscripcion creada con éxito");
+            alert("Inscripción creada con éxito");
             
 
             // ____________ agregado ___________________
@@ -448,7 +448,7 @@ export default {
             UserService.updateCntr(data._id, data)
               .then((response) => {
                 data._id = response.data._id;
-                console.log("si funciono");
+                console.log("si funcionó");
                 //alert("Usuario modificado con éxito");
               })
               .catch((e) => {

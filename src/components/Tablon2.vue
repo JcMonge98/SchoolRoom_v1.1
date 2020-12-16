@@ -22,7 +22,7 @@
                   <h5>
                     {{
                       detalle.aula.grado.nombre +
-                      " Seccion: " +
+                      " Sección: " +
                       detalle.aula.seccion.nombre
                     }}
                   </h5>

@@ -205,7 +205,7 @@ export default {
     //_______________________________eliminar___________________________
     deleteItem(item) {
       const index = this.desserts.indexOf(item);
-      confirm("Estas seguro de querer eliminar el registro?") &&
+      confirm("¿Estás seguro de querer eliminar el registro?") &&
         this.desserts.splice(index, 1);
       materiasService
         .remove(item._id)

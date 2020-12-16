@@ -16,7 +16,7 @@
           class="text-xs-center"
           v-model="buscar"
           append-icon="search"
-          label="Busqueda"
+          label="Búsqueda"
           single-line
           hide-details
           color="#1565C0"
@@ -40,7 +40,7 @@
                       <v-text-field
                         v-model="usuario.nombres"
                         :rules="RolTexto"
-                        label="Nombres de Usuario"
+                        label="Nombres de usuario"
                         required
                       ></v-text-field>
                     </v-col>
@@ -371,12 +371,12 @@ export default {
       var numeros = "0123456789";
       for (var i = 0; i < this.usuario.nombres.length; i++) {
         if (numeros.indexOf(this.usuario.nombres.charAt(i), 0) != -1) {
-          return alert("No se permiten numeros");
+          return alert("No se permiten números");
         }
       }
       for (var i = 0; i < this.usuario.apellidos.length; i++) {
         if (numeros.indexOf(this.usuario.apellidos.charAt(i), 0) != -1) {
-          return alert("No se permiten numeros");
+          return alert("No se permiten números");
         }
       }
       return this.generarCorreo();
@@ -458,7 +458,7 @@ export default {
                 console.log(e);
               });
           } else {
-            console.log("No se elemino");
+            console.log("No se eliminó");
           }
       //  }
      // }
