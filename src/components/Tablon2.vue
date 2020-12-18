@@ -203,7 +203,7 @@
                 <h5 class="ml-2">
                   <v-avatar color="cyan" size="32" class="ml-2"
                     ><img v-if="card.inscripcion.url != ''" :src="card.inscripcion.usuario.url" />
-                    <v-icon dark small v-if="card.url == ''"
+                    <v-icon dark small v-if="card.inscripcion.usuario.url == ''"
                       >mdi-account-circle</v-icon
                     >
                     <!--  <v-icon dark>mdi-account-circle</v-icon> -->
