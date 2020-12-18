@@ -202,7 +202,7 @@
               <div class="float-sm-left">
                 <h5 class="ml-2">
                   <v-avatar color="cyan" size="32" class="ml-2"
-                    ><img v-if="card.url != ''" :src="card.url" />
+                    ><img v-if="card.inscripcion.url != ''" :src="card.inscripcion.usuario.url" />
                     <v-icon dark small v-if="card.url == ''"
                       >mdi-account-circle</v-icon
                     >
